@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy Registration</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "surface-dark": "#2d2616",
+                        "surface-darker": "#1a160c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-background-dark">
+<main class="flex-grow flex w-full min-h-screen">
+<!-- Left Side: Visual Storytelling -->
+<div class="hidden lg:flex lg:w-1/2 relative bg-surface-darker items-center justify-center overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-overlay" data-alt="Abstract artistic shot of a dancer in motion, high contrast black and white" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqiqkAwLoBBVW19gJK_Nu2_jbTGfw0xhJZl0yhtRYI0mPKfnQjpsMi3YZXOIIi8IzeQDf_YSkePEtA6jz80ChhFQlr5j9g00TuLL3i2B3hoSoZJSDzzOGi-g1BCB8gZkIvfkkKYR_PEZWimTs-cJDo5qAZzJGo9PzGdY1kZ9_kF8zhbUTyPoVAZdX-zy47T03_sIpoL8EINhcZugtSiSogre0XpeRCv9UQB-zhkW8TTbfjloNXLiQDoPDOOYn_5P7hRCZTrC2TQF8');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-background-dark/50"></div>
+<div class="relative z-10 p-12 flex flex-col h-full justify-between">
+<!-- Logo Area -->
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-4xl">music_note</span>
+<h2 class="text-white text-xl font-bold tracking-tight">Dance Academy</h2>
+</div>
+<!-- Quote/Testimonial Area -->
+<div class="max-w-md">
+<div class="mb-6">
+<span class="text-6xl text-primary opacity-50 font-serif">"</span>
+</div>
+<blockquote class="text-3xl font-bold leading-tight text-white mb-6">
+                        Dance is the hidden language of the soul. Unlock your potential with the world's best instructors.
+                    </blockquote>
+<cite class="text-slate-400 not-italic font-medium">— Martha Graham</cite>
+</div>
+<!-- Footer-like info -->
+<div class="flex gap-6 text-sm text-slate-400">
+<span>© 2024 Dance Academy</span>
+<span>Privacy Policy</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="w-full lg:w-1/2 flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-20 bg-background-light dark:bg-background-dark overflow-y-auto">
+<div class="w-full max-w-md mx-auto space-y-8">
+<!-- Mobile Header (Logo only visible on mobile) -->
+<div class="flex items-center gap-3 text-primary lg:hidden mb-8">
+<span class="material-symbols-outlined text-3xl">music_note</span>
+<h2 class="text-white text-lg font-bold tracking-tight">Dance Academy</h2>
+</div>
+<!-- Form Header -->
+<div class="text-left space-y-2">
+<h1 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white">Join the Movement</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Create your account to access the ultimate dance encyclopedia.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="fullname">Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary sm:text-sm" id="fullname" placeholder="Jane Doe" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary sm:text-sm" id="email" placeholder="jane@example.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 rounded-lg border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary sm:text-sm" id="password" placeholder="••••••••" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-slate-400 hover:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+</div>
+</div>
+<!-- Style Preference Selector -->
+<div class="space-y-3 pt-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Which styles interest you? <span class="text-slate-500 font-normal ml-1">(Select all that apply)</span>
+</label>
+<div class="flex flex-wrap gap-2">
+<!-- Selected State Example -->
+<label class="cursor-pointer group relative">
+<input checked="" class="peer sr-only" name="style" type="checkbox" value="ballet"/>
+<span class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50 dark:hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+                                    Ballet
+                                </span>
+</label>
+<!-- Unselected State -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="style" type="checkbox" value="hiphop"/>
+<span class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50 dark:hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">speaker</span>
+                                    Hip Hop
+                                </span>
+</label>
+<!-- Unselected State -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="style" type="checkbox" value="contemporary"/>
+<span class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50 dark:hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">all_inclusive</span>
+                                    Contemporary
+                                </span>
+</label>
+<!-- Unselected State -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="style" type="checkbox" value="jazz"/>
+<span class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50 dark:hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">piano</span>
+                                    Jazz
+                                </span>
+</label>
+<!-- Unselected State -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="style" type="checkbox" value="latin"/>
+<span class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-surface-dark bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50 dark:hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">local_fire_department</span>
+                                    Latin
+                                </span>
+</label>
+</div>
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start">
+<div class="flex h-5 items-center">
+<input class="h-4 w-4 rounded border-surface-dark bg-surface-dark text-primary focus:ring-primary focus:ring-offset-background-dark" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-medium text-slate-700 dark:text-slate-300" for="terms">I agree to the <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a></label>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-background-dark bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-dark transition-colors duration-200 uppercase tracking-wide" type="submit">
+                        Join the Academy
+                    </button>
+</form>
+<!-- Social Login Separator -->
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-surface-dark"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-background-light dark:bg-background-dark text-slate-500">Or continue with</span>
+</div>
+</div>
+<!-- Social Buttons -->
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center w-full px-4 py-3 border border-slate-200 dark:border-surface-dark rounded-lg bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-surface-dark/80 transition-colors" type="button">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" viewbox="0 0 24 24">
+<path d="M12.0003 20.45c4.6667 0 8.45-3.7833 8.45-8.45 0-4.6667-3.7833-8.45-8.45-8.45-4.6667 0-8.45 3.7833-8.45 8.45 0 4.6667 3.7833 8.45 8.45 8.45Z" fill="white" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+<path d="M12 12L12 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<span class="text-sm font-medium">Google</span>
+</button>
+<button class="flex items-center justify-center w-full px-4 py-3 border border-slate-200 dark:border-surface-dark rounded-lg bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-surface-dark/80 transition-colors" type="button">
+<svg aria-hidden="true" class="h-5 w-5 mr-2 text-current" fill="currentColor" viewbox="0 0 24 24">
+<path d="M13.156 12.392c.156 2.508 2.22 3.398 2.308 3.444-1.26 1.764-2.58 3.516-4.524 3.564-1.8.036-2.376-1.068-4.44-1.068-2.064 0-2.712 1.032-4.428 1.092-1.788.06-2.748-1.548-3.744-2.988-2.028-2.94-1.716-8.472 2.016-10.08 1.836-.804 3.552-.276 4.704-.276 1.116 0 3.204-1.056 5.376-.9 1.848.096 3.252.756 4.272 2.256-3.696 1.908-3.084 6.96 2.46 9.06m-2.928-11.604c.96-1.152 1.608-2.76 1.428-4.38-1.38.06-3.048.924-4.044 2.112-.888 1.056-1.668 2.724-1.452 4.308 1.572.12 3.168-.78 4.068-2.04"></path>
+</svg>
+<span class="text-sm font-medium">Apple</span>
+</button>
+</div>
+<!-- Footer Link -->
+<p class="text-center text-sm text-slate-500 dark:text-slate-400">
+                    Already a member? 
+                    <a class="font-bold text-primary hover:text-primary/80 transition-colors" href="#">Log In</a>
+</p>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Courses</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1933",
+                        "surface-dark-hover": "#2a2442",
+                        "border-dark": "#292348",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary dark:text-white">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-xl">self_improvement</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Dance Academy</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-white text-sm font-bold transition-colors" href="#">Learn</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Instructors</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Pricing</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">My Library</a>
+</nav>
+</div>
+<div class="flex items-center justify-end gap-4 lg:gap-8">
+<label class="hidden md:flex flex-col min-w-40 h-10 w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-slate-400 dark:text-[#9b92c9] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-none placeholder:text-slate-400 dark:placeholder:text-[#9b92c9] px-3 text-sm font-normal" placeholder="Find a class, style, or teacher"/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="hidden sm:flex h-9 items-center justify-center rounded-lg px-4 text-slate-900 dark:text-white text-sm font-bold hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+                        Log In
+                    </button>
+<button class="flex h-9 items-center justify-center rounded-lg px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25">
+                        Sign Up
+                    </button>
+<button class="lg:hidden flex items-center justify-center text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 py-8">
+<!-- Hero Section -->
+<div class="relative w-full rounded-2xl overflow-hidden mb-12 group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Dancer in dramatic lighting performing a contemporary move" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAySxAW3uSCXikvJBNhOkmwaBK77d6ThTVNouK-ot8hnCCsV5GFFTxZ2sWGkZdHYKkR0piuMuuzTEUa8JA9-m1wDSlDeL8GtlyE0_NsKYBBjoubfV29-fNCrrrz9ASb2TZe3Z_2ZJ9Z_BfoAnIpgsKJy-ipPz8PovBUA4yV45203pswmiolnmDcuz-uXuqXNbBJNG9qTp-Pu54_1Aa3QjZdIvjzXnnUwqRMloeYIlIido86wYYbTEO4_73y7s4BC_v1lvqcoR0Q5fA');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark/95 via-background-dark/60 to-transparent"></div>
+<div class="relative z-10 flex flex-col justify-center h-full min-h-[400px] p-8 md:p-12 lg:p-16 max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary-300 text-xs font-bold uppercase tracking-wider w-fit mb-4 text-white">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> Trending Now
+                    </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-4 tracking-tight">
+                        Master the Art of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">Movement</span>
+</h1>
+<p class="text-slate-300 text-lg mb-8 max-w-xl leading-relaxed">
+                        Join Martha S. in her new advanced contemporary series. Learn to blend fluidity with power in 12 comprehensive lessons.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="h-12 px-8 rounded-lg bg-white text-primary font-bold text-base hover:bg-slate-100 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+                            Start Learning
+                        </button>
+<button class="h-12 px-8 rounded-lg bg-surface-dark/50 backdrop-blur-sm border border-white/10 text-white font-bold text-base hover:bg-white/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">playlist_add</span>
+                            Add to List
+                        </button>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">timelapse</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Weekly Goal</p>
+<p class="text-white text-xl font-bold">3.5 / 5 hrs</p>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark flex items-center gap-4">
+<div class="size-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Completed</p>
+<p class="text-white text-xl font-bold">12 Lessons</p>
+</div>
+</div>
+<div class="md:col-span-2 p-4 rounded-xl bg-surface-dark border border-border-dark flex flex-col justify-center">
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Current Course</p>
+<h3 class="text-white font-bold truncate">Ballet Barre Essentials</h3>
+</div>
+<span class="text-primary font-bold text-sm">75%</span>
+</div>
+<div class="h-2 w-full bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="sticky top-[72px] z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl py-4 mb-6 border-b border-transparent dark:border-border-dark/50 -mx-4 px-4 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 transition-all">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 max-w-[1440px] mx-auto">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Explore Courses</h2>
+<div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+<!-- Dropdown Filter: Genre -->
+<div class="relative group/dropdown">
+<button class="flex h-10 shrink-0 items-center gap-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark px-4 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-primary dark:hover:border-primary transition-colors">
+<span>Genre</span>
+<span class="material-symbols-outlined text-lg">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Dropdown Filter: Level -->
+<div class="relative">
+<button class="flex h-10 shrink-0 items-center gap-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark px-4 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-primary dark:hover:border-primary transition-colors">
+<span>Difficulty</span>
+<span class="material-symbols-outlined text-lg">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Dropdown Filter: Duration -->
+<div class="relative">
+<button class="flex h-10 shrink-0 items-center gap-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark px-4 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-primary dark:hover:border-primary transition-colors">
+<span>Duration</span>
+<span class="material-symbols-outlined text-lg">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="w-px h-10 bg-slate-300 dark:bg-slate-700 mx-2"></div>
+<!-- Active Filters / Tags -->
+<button class="flex h-10 shrink-0 items-center gap-2 rounded-lg bg-primary/10 border border-primary/20 px-4 text-sm font-medium text-primary hover:bg-primary/20 transition-colors">
+<span>New Releases</span>
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Content Grid: Continue Watching -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                        Continue Watching
+                    </h3>
+<a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 (Active) -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-video w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Dancer stretching in a studio with warm lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgGOAz9Gp638rZBW5nTBLpnDhasKdV97OxOztOhf79kiMIHLytz5mKr2Yv2dVYKhZSPQTupSdFS9-ZJD0rUr7qfyk49Q7wuWDJ9B6R_Me92IDRR1k8YOAYz2VxSgKFKpQJojHwYfuxEEcW7tbeMRrK_W4_fKq489K2Xa0LgmjcYf8gP0gDwGpx2zHF6d-YqkOneQnL6aOsu5H-H0GbIufiqAepZGPMewPWZIJvPRDEAs5JZVmn8THctdGFasYDYsTBHhNK5XWbyZs');">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-3 right-3 px-2 py-1 rounded bg-black/60 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">play_circle</span> 12m left
+                            </div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-start justify-between mb-2">
+<div class="text-xs font-bold uppercase tracking-wider text-primary">Contemporary</div>
+<div class="flex gap-1">
+<span class="size-2 rounded-full bg-slate-600"></span>
+<span class="size-2 rounded-full bg-slate-600"></span>
+<span class="size-2 rounded-full bg-primary"></span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">Contemporary Foundations</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Martha S. • Intermediate</p>
+<div class="mt-auto">
+<div class="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
+<span>Lesson 4 of 12</span>
+<span>35%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[35%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 (Active) -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-video w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Ballet dancer performing a jump on stage" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiJDWbMEeV9LO8en9nc6a-TQmS9xIn8B7yopkAiAIWmnWYJS_oTQ_oWcia0RZ0WNxl0vSBEEG_Ms1moJcLTtWGML-OWEDeS0z4wwYFl3vUhqBmanq41X3AMK4yVZeTMr1XDdCubY_axo60Dr1Mh1MHQvycQmXr1rGa8747iSdZ4UdCc2JkeD9nPYl8YyhMSm_0IXmP_pwLpJocFCiTIVGER3uqqJzu1Mo_Ytm3kXjQQLn_HKm0UBVItFeYP-v0pjITjWQ8yYlCKoY');">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-start justify-between mb-2">
+<div class="text-xs font-bold uppercase tracking-wider text-pink-500">Ballet</div>
+<div class="flex gap-1">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="size-2 rounded-full bg-slate-600"></span>
+<span class="size-2 rounded-full bg-slate-600"></span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">Barre Essentials Vol. 2</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Elena R. • Beginner</p>
+<div class="mt-auto">
+<div class="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
+<span>Lesson 2 of 15</span>
+<span>12%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Grid: All Courses -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Trending This Week</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 3 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Hip hop dancers in urban setting posing" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsxaK9_xpJDPY3nuVIRfxaAANKbYuiqfuH49ls5C-b3k2GBtbvvap4JFWV6E1wmtGkLpquP1F9X7pKdcgJgNxtCyrd_kZEsQrm9gjbPE2mZp3Dsv4LLdlPSNOu5oOBRfUXSoYcnt3UYFbDsLNk3Zw221GUHRFUJFGsr0VFzX_WJMcbLMDfvG2-7tDGyD4AbGBDjhGPFE2vgZFyN3aPbBalkBZ44sr5Mne5rHbwRu_pWYs_okSI4q6ENfbVBszRE1TwG2V-4mElO9c');">
+</div>
+<div class="absolute top-3 left-3 px-2 py-1 rounded bg-yellow-500 text-black text-xs font-bold uppercase tracking-wider">
+                                Premium
+                            </div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-8 rounded-full bg-slate-700 bg-cover bg-center" data-alt="Portrait of instructor Jay K" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyQkqc8qkKxinjjr8gBijEKyCnSLVYBDfHy9_wAbULAbR6F3YVSvEYsosEvVjvO9qTGNiAIJb43QdfFYZSpTZZPoRpV0HKhS4-iFJ3r7Em-eAM2AiUii-bO3pnHAOeBYGLRUzuiWmq89JIvt0emLnMcZc3wgeJ9CbmCbUNqL4MmEIlL4lLPOsmlngnQqoqgeorkvJdfcSS8G9Yr_IzyNu0JAIsyy1jI2DgHZeEen1_lw6LfDdCkcrHMJfES4cYiB-X9STJbS36XjQ');"></div>
+<div>
+<p class="text-xs text-slate-400 font-medium">Instructor</p>
+<p class="text-sm font-bold text-slate-200 leading-none">Jay K.</p>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight">Street Jazz Vol. 1: Grooves &amp; Isolation</h3>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-auto">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Advanced</span>
+<span class="size-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 1h 20m</span>
+</div>
+<button class="mt-4 w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white text-sm font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+                                View Course
+                            </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Two dancers performing salsa moves" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-t0miQM42JEM9A4fyx39NlzRP_w2nuvViiwl34CVmgFAP3kLmZZCucwSIi5ZE2Ik5LhhxwwbYubLMfe-iTy0NRxrZ0i3SSN_9iPwZiJ1acjBJ2x8bhbBVQ38X4LAiMVhYmRLWSnqsqavzFWWSCem7w-AYjn4lPpYiME7sm-Zzz-i2ASCppKovkO91M9Fjk8AJHL4zcC-02yUn_fzBp3zQebBWfEVTQ0bDLe1kTkB5Mox-MDR1bbP5iRGuNZE5ux-eYetlJJS2ZF4');">
+</div>
+<div class="absolute top-3 left-3 px-2 py-1 rounded bg-green-500 text-white text-xs font-bold uppercase tracking-wider">
+                                New
+                            </div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-8 rounded-full bg-slate-700 bg-cover bg-center" data-alt="Portrait of instructor Maria G" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzHK9fsr9q8cMOp7MjzbJUsC_ufpsCMfWE4IloZbILKntUoy7rLiELkAxDL3qFjgxmYsl9jR0GxHVUWriuxd1ToUAGeMY0GU4uijx7HRg8dLElcOlWaG0nne-jvV-8jvBvJsJLw6XsSoeyiE2P84w7HDWDyHEFbUkoWa_5pLbmRK-GOorsjkRQB0vU8ltydiMJqeT4xVc9363UwCFTR_GG7m8wAPXp6ScdgCET_YZuvnEMEzPXemeHt9K76HEzp44LfWig4uJ4O9s');"></div>
+<div>
+<p class="text-xs text-slate-400 font-medium">Instructor</p>
+<p class="text-sm font-bold text-slate-200 leading-none">Maria G.</p>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight">Salsa for Beginners: Partner Work</h3>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-auto">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Beginner</span>
+<span class="size-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 45m</span>
+</div>
+<button class="mt-4 w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white text-sm font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+                                View Course
+                            </button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Group of dancers in a brightly lit studio doing aerobics" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBt8qEK1Y3xKwWGgRYHblYTVkg0VrYCD9S5xMMxBDAK3pUhQr5nLIGMaRmz4eGZPHZqSx9tGVnfH16TQugHl32ZDcmZIWZkIVKayRaT-LBi6oERPrsPi6kMBsBAsr_CQDYRdH265sqb-pkWhvAu6ke9veXz1EdF4st4r0EoRj51hHN775vEe4FheWpIn3oN4KbOtK-1s8QJr_D519fsPEXML9rvY9K07SgJ-HCJU2fGCRyDLtk56kQQHWNeQvkB0KxmcdYBVnKE4Cg');">
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-8 rounded-full bg-slate-700 bg-cover bg-center" data-alt="Portrait of instructor Marcus D" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5G08tSUMFmCZa61yz_0MhhSytn-_5w6qBEPJ2d7-XLCJMFMIXEQSTP5jDApKXMvQY6jxxwXvLpqT62lITSlTnPBp7R3AC50pZE99VhhKx01Yebh3gkYMmd6RvBItqGz4XK5N17fZgWpwTlXMBVKhDSy64JDAA65qV6ioNMux99oDy1FFoAw2WELHbumHGMPuKYTrM8jtrIyX4gBQY2vOtcQEw2ARsKS-yW_y-7Hqi8F9CUGABzS8HcHZPYpI1DCGfeRtayYZT5hI');"></div>
+<div>
+<p class="text-xs text-slate-400 font-medium">Instructor</p>
+<p class="text-sm font-bold text-slate-200 leading-none">Marcus D.</p>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight">Hip Hop Groove Theory</h3>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-auto">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Intermediate</span>
+<span class="size-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 2h 10m</span>
+</div>
+<button class="mt-4 w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white text-sm font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+                                View Course
+                            </button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Silhouette of a dancer in a classical pose" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCijdoZQ2rqr5gVvMNjeBAyP0sSt0qaPQYSElarC30OFlsx8ubMtA2QYifzHDZWBY6a_XzvJI_4PFIhiBT-6hHZOecMFyOu6ZKCtouUU0NAt9tB_Ds39DBdkLSpR5R5IUfAZ3jt6pWTqWDnrRiSbMf1TzzJA65XTAQ0L-IStU5sQHaB7hV0r4muvOQHp0Yjyu_irRJbKNrDNzsPpyZaOGLVpEfqJxEDUoMclokz8RrYH9FBUda65HDK2UG03KpEuZc7Q5nglu0Y3YY');">
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-8 rounded-full bg-slate-700 bg-cover bg-center" data-alt="Portrait of instructor Sophie L" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwbymhknW1BG5hiTtGjszvsrpYAWMFIGV1X8fYZjjuDLL5pv3f8OY5kd9aJSmKjRC8eZtq1sSod0cDnd-ZQE-i1_vEbjlr0TokOWkEWzJPZZaWaAKhKnoC3oWXq2E2unYroALkQ8QeWPbllooCmNyWy1VXqUKNImUoqZ8ROuyhJ-Cft0UL_O9tD2UlyvN5wqx2VKM7ljVPi1eu9PdgZjbOy9QUvEJ68YIDOY-T6aTKrdEmMeK47XyPPjjCb3MFCxfhNA33VDlKnd0');"></div>
+<div>
+<p class="text-xs text-slate-400 font-medium">Instructor</p>
+<p class="text-sm font-bold text-slate-200 leading-none">Sophie L.</p>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight">Advanced Lyrical Techniques</h3>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-auto">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Expert</span>
+<span class="size-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 3h 15m</span>
+</div>
+<button class="mt-4 w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white text-sm font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+                                View Course
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Spacer -->
+<div class="h-20"></div>
+</div>
+</body></html>

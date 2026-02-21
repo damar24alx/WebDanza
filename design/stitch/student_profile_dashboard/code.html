@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1933",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292348; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3211d4; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-[#141122] flex flex-col h-screen sticky top-0">
+<div class="p-6 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">
+                D
+            </div>
+<span class="text-xl font-bold tracking-tight">DanceFlow</span>
+</div>
+<nav class="flex-1 px-4 flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-medium">Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-primary/20 dark:text-white font-medium" href="#">
+<span class="material-symbols-outlined fill-1">play_circle</span>
+<span>My Learning</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Encyclopedia</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Community</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span>Achievements</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2.5 mb-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 cursor-pointer">
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="Profile picture of a young woman smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD71GAMfHjenB35hklhunBM5DcCR6MYA5stWYGKKvEy4OcNCqb-X2abNOzpO8vscXHhEJNjIOQ4isuSENvjLqOZp6d5zrSYAL-NpcJ2l0G8BLMc4ICJlpEwBFoRij_TB8YkGJ2Qp8c1B_TWwKvbHgMr8v4H0sVtmlVTbWkRyIy4lbtLTlkOPdNkfOtvk4d1jX1tWn7CLsVJ8-z3UDTkNM1nQC8D6z8ZvVQaHxZRPsa6ZMflRYUKC7C9QpuZ4jLcT7QixHOgWw2Hdzk')"></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Alex Dancer</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Intermediate</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 h-screen overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-10">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">My Dashboard</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Welcome back, Alex! Let's keep that rhythm going.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center h-12 w-12 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors shadow-sm relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-3 right-3 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<button class="bg-primary hover:bg-primary/90 text-white h-12 px-6 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined">play_arrow</span>
+                    Resume Learning
+                </button>
+</div>
+</header>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Streak Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-orange-100 dark:bg-orange-500/20 rounded-lg text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Streak</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-1">5 Days</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">You're on fire! 🔥</p>
+</div>
+</div>
+<!-- Hours Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-blue-100 dark:bg-blue-500/20 rounded-lg text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Time</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-1">124 Hrs</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Total practice time</p>
+</div>
+</div>
+<!-- Courses Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-purple-100 dark:bg-purple-500/20 rounded-lg text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Completed</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-1">12</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Courses finished</p>
+</div>
+</div>
+<!-- Level Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-emerald-100 dark:bg-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Level</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-1">Interm.</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Next: Advanced I</p>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout for Main Content -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Left Column (Courses & Activity) -->
+<div class="xl:col-span-2 flex flex-col gap-8">
+<!-- In Progress Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+                            In Progress Courses
+                        </h2>
+<a class="text-sm font-medium text-primary hover:text-primary/80" href="#">View All</a>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
+<div class="w-full md:w-64 h-48 rounded-xl bg-cover bg-center shrink-0 relative overflow-hidden group" data-alt="Two tango dancers performing a dramatic dip on a wooden floor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmfv3bl61Aud7NAj3Yh6Vc9p6jX5Y6cpkV8cax6g_O8tAAnx-izmu2b5ot3kN9EFlyC1fC43cUfctGIDCW0UfccbE49_mLZDBs9y-p17rwe5IdYrgSEKN8bbDx9uDeHNU7XE5HZYxtt3UNTvWSayWIjSNCQVq7XyXM3hVKGtEgd1wHoZ-1vr29ipU-hBCHw-A_wTRxcXjot4Jccg-lcC5fFYJNbjIckB_kY_2Go2o0VmFrifICqcjggxpZ7BPatoqYZ1stGJmo9as')">
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">2h 15m left</div>
+</div>
+<div class="flex flex-col justify-center flex-1 py-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded uppercase">Tango</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">• Advanced</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">Advanced Tango Footwork &amp; Boleos</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Instructor: Elena Rossi</p>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 mb-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="font-medium text-slate-700 dark:text-slate-300">75% Complete</span>
+<button class="text-primary font-semibold hover:underline">Continue Learning</button>
+</div>
+</div>
+</div>
+<!-- Secondary Course Card (Compact) -->
+<div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-800 flex gap-4 items-center">
+<div class="h-20 w-20 rounded-lg bg-cover bg-center shrink-0" data-alt="Close up of ballet shoes on a wooden floor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcQGOQWy-mbKwqzFXBRVEHuiWPYnhRNBNXeqdlZcLdQroeQJabveyXHidnCR4mQxcezBv7_J8mI7RtKJD2iE8-HewmqxvDQYoBqDL-9sOAvnxJr_iOQiJVASC-5U2VQaFJDfohPNYoj_CSjQMcRkBAlTqiM6l5hs747Pw_xBVe9BwY_UiIbqVZBokEo-H9OUPSP9Yv8GF8uPj3nvKAQeIeYPUWN5v05yRpcOBt9AoLLGpC9zkuXRPhbHR7MNJhCFNOxDQ6un3RpKw')"></div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-slate-900 dark:text-white truncate">Ballet Foundations II</h4>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-1.5 mt-2 mb-1">
+<div class="bg-primary h-1.5 rounded-full" style="width: 30%"></div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400">30% Complete</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-800 flex gap-4 items-center">
+<div class="h-20 w-20 rounded-lg bg-cover bg-center shrink-0" data-alt="Silhouette of a contemporary dancer jumping in the air" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTRK5T7b5yW3Ir7XCLu4YYqbSl7sMFNeX8NN2ge18knn8TUu72jHVFeusiuERCFUUxmP3gZ5NeVn1WUsWhrpmcLjG7p5g3VyWiik9HM3CWczaqJ7Fi4fI6kWvKUC0616t2hgsBqKoF0C5kvW--jBX5xYohdSOwd01yz2RIred5bGG9mjppBfWvq5XMMl80VYPuAq1WnXycIE3383LxSe3oSTzpo0lEM0ZjbsFztuQCZkEtYnFV062OmYSqrq04VOEmTFKpTlH5vX8')"></div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-slate-900 dark:text-white truncate">Contemporary Flow</h4>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-1.5 mt-2 mb-1">
+<div class="bg-primary h-1.5 rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400">12% Complete</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Certificates Gallery -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+                            Certificates
+                        </h2>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 snap-x">
+<div class="snap-start shrink-0 w-64 bg-white dark:bg-surface-dark rounded-xl p-3 shadow-sm border border-slate-100 dark:border-slate-800 group cursor-pointer relative">
+<div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-lg mb-3 flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">article</span>
+<div class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-medium flex items-center gap-1"><span class="material-symbols-outlined text-lg">download</span> Download</span>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white truncate">Salsa Beginner Level 1</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Earned: Oct 12, 2023</p>
+</div>
+<div class="snap-start shrink-0 w-64 bg-white dark:bg-surface-dark rounded-xl p-3 shadow-sm border border-slate-100 dark:border-slate-800 group cursor-pointer relative">
+<div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-lg mb-3 flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">article</span>
+<div class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-medium flex items-center gap-1"><span class="material-symbols-outlined text-lg">download</span> Download</span>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white truncate">Jazz Foundations</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Earned: Sep 28, 2023</p>
+</div>
+<div class="snap-start shrink-0 w-64 bg-white dark:bg-surface-dark rounded-xl p-3 shadow-sm border border-slate-100 dark:border-slate-800 group cursor-pointer relative">
+<div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-lg mb-3 flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">article</span>
+<div class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-medium flex items-center gap-1"><span class="material-symbols-outlined text-lg">download</span> Download</span>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white truncate">Hip Hop History</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Earned: Aug 15, 2023</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column (Badges, Mastered Styles, Calendar) -->
+<div class="flex flex-col gap-8">
+<!-- Mastered Styles -->
+<section>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                        Mastered Styles
+                    </h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-transparent hover:border-primary/50 transition-colors cursor-default">Bachata</span>
+<span class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-transparent hover:border-primary/50 transition-colors cursor-default">Salsa Cubana</span>
+<span class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-transparent hover:border-primary/50 transition-colors cursor-default">Jazz Funk</span>
+<span class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-transparent hover:border-primary/50 transition-colors cursor-default">Waltz</span>
+<span class="px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-sm font-medium border-dashed cursor-pointer hover:bg-slate-100 dark:hover:bg-white/5">+ Add Interest</span>
+</div>
+</section>
+<!-- Badges / Achievements -->
+<section class="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Recent Badges</h2>
+<a class="text-primary text-sm hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center gap-2 text-center group cursor-pointer">
+<div class="h-16 w-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">wb_twilight</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Early Bird</span>
+</div>
+<div class="flex flex-col items-center gap-2 text-center group cursor-pointer">
+<div class="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">music_note</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Salsa King</span>
+</div>
+<div class="flex flex-col items-center gap-2 text-center group cursor-pointer">
+<div class="h-16 w-16 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">done_all</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Comple- tionist</span>
+</div>
+<!-- Locked Badge -->
+<div class="flex flex-col items-center gap-2 text-center opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+<div class="h-16 w-16 rounded-full bg-gradient-to-br from-pink-400 to-rose-600 flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Social Butterfly</span>
+</div>
+</div>
+</section>
+<!-- Activity Graph Placeholder -->
+<section class="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex-1">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Activity</h2>
+<div class="flex items-end justify-between h-32 gap-2">
+<!-- Bars -->
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 40%"></div>
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">1h</div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 70%"></div>
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">2.5h</div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 30%"></div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 85%"></div>
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">3h</div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 50%"></div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 0%"></div>
+</div>
+<div class="w-full bg-primary/10 dark:bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all hover:bg-primary/80" style="height: 20%"></div>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-xs text-slate-400 font-medium">
+<span>M</span>
+<span>T</span>
+<span>W</span>
+<span>T</span>
+<span>F</span>
+<span>S</span>
+<span>S</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

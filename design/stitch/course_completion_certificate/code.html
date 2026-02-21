@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Completion Certificate - Dance Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Dancing+Script:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eebd2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221d10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "script": ["Dancing Script", "cursive"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #eebd2b 0%, #bf951d 100%)',
+                        'subtle-grain': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.05\'/%3E%3C/svg%3E")',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Styles for Print & Precision */
+        .certificate-frame {
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+            background-image: radial-gradient(circle at 50% 0%, #3a3321 0%, #221d10 70%);
+        }
+        
+        .gold-border {
+            border: 1px solid #eebd2b;
+            box-shadow: 0 0 15px rgba(238, 189, 43, 0.1) inset;
+        }
+
+        .gold-text-shimmer {
+            background: linear-gradient(to right, #eebd2b 20%, #fff 50%, #eebd2b 80%);
+            background-size: 200% auto;
+            color: #eebd2b;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Grid pattern background for main page */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #2a2515 1px, transparent 1px),
+                              linear-gradient(to bottom, #2a2515 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden bg-grid-pattern">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">local_activity</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Dance Academy</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 text-sm text-slate-400">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>HDF-2023-8921</span>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 text-sm font-bold transition-all">
+<span class="truncate">Back to Dashboard</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtLN-2CJdeTRJmZghpYRMZAOQ16l1-SIDFI49NvEcEzMGQiD1LNZ_mdjTwcI3hZ5haro4PNUT5-bhQ-27FqAAzehu6UBEWUIgR8QYinMj61SnpK0JrcsrN_Gy6N5oZNESkpEtO4wSFeSVinNQaL16l3iINWW_FwHub2nkdLSVWUKrhz0jenSgLHefWZ0l1Q-So_jgBptMNeFCkFJCn7oAVoE1Epm2B48oD6cJYpIoNIhCDx_CbxKFebluCFpCJbubAvBBQ_y4Y5Rs");'></div>
+</div>
+</header>
+<div class="layout-container flex h-full grow flex-col items-center justify-start pt-8 pb-20 px-4 md:px-8">
+<!-- Context Header -->
+<div class="max-w-5xl w-full flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary text-sm font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">trophy</span>
+<span>Achievement Unlocked</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-100">House Dance Foundations</h1>
+<p class="text-slate-400 max-w-lg">Mastery of footwork, jacking, and lofting techniques. Completed on October 24, 2023.</p>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-3 rounded-lg font-semibold transition-colors border border-slate-700">
+<span class="material-symbols-outlined">share</span>
+                        Share
+                    </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-primary hover:bg-[#dca60b] text-background-dark px-6 py-3 rounded-lg font-bold shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined">download</span>
+                        Download PDF
+                    </button>
+</div>
+</div>
+<!-- Certificate Viewer -->
+<div class="w-full max-w-[1000px] relative perspective-1000">
+<!-- Certificate Card -->
+<div class="certificate-frame relative w-full aspect-[1.414/1] bg-[#221d10] text-slate-100 rounded-sm overflow-hidden p-2 md:p-3 lg:p-4 border border-slate-800">
+<!-- Inner Ornamental Border Container -->
+<div class="w-full h-full border-2 border-primary/40 relative p-1">
+<!-- Corner Accents (Top Left) -->
+<div class="absolute top-0 left-0 size-16 border-t-4 border-l-4 border-primary z-10"></div>
+<div class="absolute top-2 left-2 size-12 border-t border-l border-primary/50 z-10"></div>
+<!-- Corner Accents (Top Right) -->
+<div class="absolute top-0 right-0 size-16 border-t-4 border-r-4 border-primary z-10"></div>
+<div class="absolute top-2 right-2 size-12 border-t border-r border-primary/50 z-10"></div>
+<!-- Corner Accents (Bottom Left) -->
+<div class="absolute bottom-0 left-0 size-16 border-b-4 border-l-4 border-primary z-10"></div>
+<div class="absolute bottom-2 left-2 size-12 border-b border-l border-primary/50 z-10"></div>
+<!-- Corner Accents (Bottom Right) -->
+<div class="absolute bottom-0 right-0 size-16 border-b-4 border-r-4 border-primary z-10"></div>
+<div class="absolute bottom-2 right-2 size-12 border-b border-r border-primary/50 z-10"></div>
+<!-- Main Content Area with Paper Texture -->
+<div class="w-full h-full bg-[#1a160d] relative flex flex-col items-center text-center justify-between py-12 px-12 md:px-20 lg:py-16 lg:px-24 border border-primary/20 shadow-[inset_0_0_80px_rgba(0,0,0,0.8)]">
+<!-- Texture Overlay -->
+<div class="absolute inset-0 bg-subtle-grain opacity-30 pointer-events-none"></div>
+<!-- Logo Watermark Background -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+<svg class="w-3/4 h-3/4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L2 19h20L12 2zm0 3.8l6.8 11.2H5.2L12 5.8z"></path>
+</svg>
+</div>
+<!-- Header -->
+<div class="flex flex-col items-center gap-6 z-10 w-full">
+<div class="flex items-center gap-3 text-primary mb-2 opacity-90">
+<span class="material-symbols-outlined text-4xl">local_activity</span>
+<span class="text-xl font-bold tracking-[0.2em] uppercase">Dance Academy</span>
+</div>
+<h2 class="text-primary/90 text-sm md:text-base font-bold tracking-[0.3em] uppercase border-b border-primary/30 pb-2">Certificate of Excellence</h2>
+<h1 class="text-3xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-100 mt-2 tracking-wide">Certificate of Completion</h1>
+<p class="text-slate-400 font-display text-sm md:text-base tracking-widest uppercase mt-4">This acknowledges that</p>
+</div>
+<!-- Name Section -->
+<div class="flex flex-col items-center justify-center py-6 z-10 w-full relative">
+<div class="text-4xl md:text-6xl lg:text-7xl font-serif italic text-white gold-text-shimmer py-4 px-8 relative">
+                                    Jordan Smith
+                                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+</div>
+</div>
+<!-- Course Section -->
+<div class="flex flex-col items-center gap-4 z-10 max-w-3xl">
+<p class="text-slate-300 font-display text-base md:text-lg leading-relaxed">
+                                    Has successfully completed the comprehensive curriculum and demonstrated proficiency in the art of urban movement.
+                                </p>
+<h3 class="text-2xl md:text-3xl font-bold text-primary mt-2 uppercase tracking-tight">House Dance Foundations</h3>
+<div class="w-16 h-1 bg-primary mt-2 rounded-full opacity-80"></div>
+</div>
+<!-- Footer Section -->
+<div class="w-full flex flex-col md:flex-row items-end justify-between mt-auto pt-12 gap-8 z-10">
+<!-- Instructor Signature -->
+<div class="flex flex-col items-center md:items-start gap-2 text-center md:text-left min-w-[200px]">
+<div class="h-16 flex items-end justify-center md:justify-start px-2 relative">
+<p class="font-script text-4xl text-slate-200 -rotate-2 opacity-90 relative z-10">Marcus Johnson</p>
+<!-- fake SVG signature underline -->
+<svg class="absolute bottom-0 left-0 w-full h-4 text-primary opacity-60" preserveaspectratio="none" viewbox="0 0 100 10">
+<path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<div class="border-t border-slate-600 w-full mt-1 pt-2">
+<p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Instructor Signature</p>
+<p class="text-xs text-primary/80 mt-0.5">Marcus 'Orbit' Johnson</p>
+</div>
+</div>
+<!-- Center Badge -->
+<div class="hidden md:flex flex-col items-center justify-center -mb-4">
+<div class="size-20 rounded-full border-2 border-primary/30 flex items-center justify-center bg-[#221d10] shadow-[0_0_20px_rgba(238,189,43,0.15)] relative">
+<div class="absolute inset-0 border border-primary rounded-full scale-90 opacity-50 border-dashed"></div>
+<span class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_5px_rgba(238,189,43,0.8)]">verified</span>
+</div>
+</div>
+<!-- Date & QR -->
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-1 min-w-[140px]">
+<p class="text-lg font-serif text-slate-200 border-b border-slate-600 pb-2 px-2 w-full text-center md:text-left">October 24, 2023</p>
+<p class="text-xs uppercase tracking-widest text-slate-400 font-bold w-full text-center md:text-left mt-1">Date Issued</p>
+</div>
+<div class="bg-white p-1 rounded-sm shadow-lg">
+<!-- QR Code Placeholder -->
+<div class="size-16 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+<img alt="Verification QR Code for Certificate ID HDF-2023-8921" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu-wT7hwh0tqWxVUiwQFgXQLoSzhflziVzRC6-Yc_UodMuZnQu-323K3u9f2CiEv6S9DcTo6WiPKtzk1dlcuNvhh_iFdDKfJCCJRCIlhNd_uKYNZ2oPPmpn-Z2YAktiUTHlWKMOWzjztCLAaumi5NUBHy1wh-nF0Xxnf-FBdZF6x3BOa3EH3xhmU6o066WCJRd4rVrC3omYJf4212XzxZV9LEvDPKgd4TFxjl_jSpLhX3KcPKeQ-eZpWhMdFTbxtjMsGY5rbFyAT0"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Certificate ID footer line -->
+<div class="absolute bottom-4 left-0 w-full text-center">
+<p class="text-[10px] text-slate-600 uppercase tracking-widest font-mono">Verification ID: <span class="text-primary/60">HDF-2023-8921</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Reflections / Shadows for "Realism" -->
+<div class="absolute -bottom-4 left-4 right-4 h-4 bg-black/40 blur-xl rounded-[50%] z-[-1]"></div>
+</div>
+<!-- Details Section below certificate -->
+<div class="max-w-4xl w-full mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-[#1a160d] border border-primary/10 rounded-xl p-6">
+<h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                        Curriculum Details
+                    </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm mt-1">check_circle</span>
+<span class="text-slate-400 text-sm">Fundamentals of Jacking: Body mechanics and groove theory.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm mt-1">check_circle</span>
+<span class="text-slate-400 text-sm">Footwork Drills: Pas de bourrée, loose leg, and heel-toe variations.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm mt-1">check_circle</span>
+<span class="text-slate-400 text-sm">Lofting &amp; Floorwork: Smooth transitions from standing to floor.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm mt-1">check_circle</span>
+<span class="text-slate-400 text-sm">Musicality: Interpretation of deep house rhythms and syncopation.</span>
+</li>
+</ul>
+</div>
+<div class="bg-[#1a160d] border border-primary/10 rounded-xl p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+                            Verification
+                        </h3>
+<p class="text-slate-400 text-sm mb-4">
+                            This certificate can be verified by scanning the QR code or visiting our verification portal.
+                        </p>
+<div class="bg-background-dark p-3 rounded border border-dashed border-slate-700 flex items-center justify-between">
+<code class="text-primary font-mono">HDF-2023-8921</code>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-primary/10">
+<p class="text-xs text-slate-500">
+                            Issued by Dance Academy Platform. <br/>
+                            San Francisco, CA 94103
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

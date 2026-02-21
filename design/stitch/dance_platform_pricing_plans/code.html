@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Pricing Plans</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1132d4",
+              "primary-light": "#3f5bf1",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "surface-dark": "#191e33",
+              "accent-gold": "#D4AF37",
+              "accent-gold-light": "#f3cf55",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"],
+              "body": ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "md": "0.375rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101322; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #323b67; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a5589; 
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(to right, #D4AF37, #f3cf55, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-[#232948] bg-[#111422]/90 backdrop-blur-md">
+<div class="flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">music_note</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Classes</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Encyclopedia</a>
+<a class="text-white text-sm font-bold leading-normal transition-colors" href="#">Pricing</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Instructors</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-transparent border border-[#323b67] text-white hover:bg-[#232948] transition-colors text-sm font-bold">
+<span class="truncate">Log In</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-primary-light transition-colors text-white text-sm font-bold shadow-[0_0_15px_rgba(17,50,212,0.4)]">
+<span class="truncate">Sign Up</span>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Icon -->
+<div class="md:hidden text-white cursor-pointer">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 pb-20">
+<!-- Hero & Toggle Section -->
+<section class="flex flex-col items-center pt-16 pb-12 text-center relative">
+<!-- Background Decoration -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<h1 class="text-4xl md:text-6xl font-black leading-tight tracking-[-0.033em] mb-4">
+                Choose Your Rhythm. <br class="hidden md:block"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-white">Master Your Craft.</span>
+</h1>
+<p class="text-slate-400 text-lg md:text-xl font-normal max-w-2xl mb-10">
+                Flexible plans for street dancers, ballroom enthusiasts, and studio owners. Unlock your potential with the world's best instructors.
+            </p>
+<!-- Billing Toggle -->
+<div class="relative flex items-center bg-[#232948] p-1.5 rounded-full border border-[#323b67]">
+<div class="absolute -top-3 -right-6 md:-right-12 bg-accent-gold text-[#111422] text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full shadow-lg transform rotate-6 border border-white/20">
+                    Save 20%
+                </div>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="billing" type="radio" value="monthly"/>
+<span class="block px-6 py-2 rounded-full text-sm font-semibold text-slate-400 peer-checked:bg-[#191e33] peer-checked:text-white peer-checked:shadow-sm transition-all duration-200">
+                        Monthly Billing
+                    </span>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="billing" type="radio" value="annual"/>
+<span class="block px-6 py-2 rounded-full text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-lg transition-all duration-200">
+                        Annual Billing
+                    </span>
+</label>
+</div>
+</section>
+<!-- Pricing Cards Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-20 relative z-10">
+<!-- FREE TIER -->
+<div class="flex flex-col p-6 rounded-2xl bg-[#191e33]/60 border border-[#323b67] hover:border-slate-500 transition-all duration-300 group">
+<div class="mb-4">
+<h3 class="text-lg font-bold text-white mb-2">Explorador</h3>
+<p class="text-slate-400 text-sm h-10">Perfect for beginners just getting started with dance.</p>
+</div>
+<div class="mb-6">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">$0</span>
+<span class="text-slate-400 font-medium">/ forever</span>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 rounded-xl bg-[#232948] hover:bg-[#323b67] text-white text-sm font-bold transition-colors mb-6 border border-[#323b67]">
+                    Start Free
+                </button>
+<div class="space-y-3 mt-auto">
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+<span>Basic tutorials (Intro levels)</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+<span>Community forum access</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+<span>Ad-supported viewing</span>
+</div>
+</div>
+</div>
+<!-- SINGLE STYLE TIER -->
+<div class="flex flex-col p-6 rounded-2xl bg-[#191e33] border border-[#323b67] hover:border-primary/50 transition-all duration-300 shadow-lg relative group">
+<div class="mb-4">
+<h3 class="text-lg font-bold text-white mb-2">Pack por Estilo</h3>
+<p class="text-slate-400 text-sm h-10">Deep dive into a specific family of dance styles.</p>
+</div>
+<!-- Style Selector -->
+<div class="mb-4 relative">
+<select class="w-full bg-[#111422] border border-[#323b67] text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 appearance-none cursor-pointer">
+<option>Urban Family (Hip Hop, Breaking)</option>
+<option>Latin Family (Salsa, Bachata)</option>
+<option>Afro Family (Afrobeats, Dancehall)</option>
+<option>Ballroom Family (Waltz, Tango)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">$19</span>
+<span class="text-slate-400 font-medium">/ month</span>
+</div>
+<p class="text-xs text-slate-500 mt-1">per style family</p>
+</div>
+<button class="w-full py-2.5 px-4 rounded-xl bg-[#232948] group-hover:bg-primary transition-colors text-white text-sm font-bold mb-6 border border-[#323b67] group-hover:border-primary">
+                    Select Style
+                </button>
+<div class="space-y-3 mt-auto">
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Full access to 1 Style Family</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Certificate for chosen style</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Offline mode for mobile</span>
+</div>
+</div>
+</div>
+<!-- PRO TIER (HIGHLIGHTED) -->
+<div class="flex flex-col p-6 rounded-2xl bg-[#191e33] border-2 border-accent-gold shadow-[0_0_30px_rgba(212,175,55,0.15)] relative transform md:-translate-y-4 z-10">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-gold text-[#111422] text-xs font-black uppercase tracking-wider py-1 px-4 rounded-full shadow-md">
+                    Best Value
+                </div>
+<div class="mb-4 mt-2">
+<h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        Todo Acceso <span class="text-accent-gold text-xs px-2 py-0.5 rounded border border-accent-gold/30 bg-accent-gold/10">PRO</span>
+</h3>
+<p class="text-slate-400 text-sm h-10">Unlimited access to every style and instructor.</p>
+</div>
+<div class="mb-6">
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-black text-white">$49</span>
+<span class="text-slate-400 font-medium">/ month</span>
+</div>
+<p class="text-xs text-accent-gold mt-1">billed annually ($588)</p>
+</div>
+<button class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-accent-gold to-accent-gold-light hover:brightness-110 text-[#111422] text-sm font-bold transition-all mb-6 shadow-lg shadow-accent-gold/20">
+                    Get All Access
+                </button>
+<div class="space-y-3 mt-auto">
+<div class="flex items-start gap-3 text-sm text-white font-medium">
+<span class="material-symbols-outlined text-accent-gold text-[20px]">verified</span>
+<span>Access to ALL 50+ styles</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-white font-medium">
+<span class="material-symbols-outlined text-accent-gold text-[20px]">verified</span>
+<span>All Certificates included</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-white font-medium">
+<span class="material-symbols-outlined text-accent-gold text-[20px]">verified</span>
+<span>Priority support &amp; Ad-free</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-white font-medium">
+<span class="material-symbols-outlined text-accent-gold text-[20px]">verified</span>
+<span>Exclusive Masterclasses</span>
+</div>
+</div>
+</div>
+<!-- STUDIO TIER -->
+<div class="flex flex-col p-6 rounded-2xl bg-[#191e33]/60 border border-[#323b67] hover:border-slate-500 transition-all duration-300 group">
+<div class="mb-4">
+<h3 class="text-lg font-bold text-white mb-2">Studio</h3>
+<p class="text-slate-400 text-sm h-10">For dance academies requiring bulk licenses.</p>
+</div>
+<div class="mb-6">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">Custom</span>
+</div>
+<p class="text-xs text-slate-500 mt-1">per location pricing</p>
+</div>
+<button class="w-full py-2.5 px-4 rounded-xl bg-transparent border border-slate-500 hover:bg-slate-800 text-white text-sm font-bold transition-colors mb-6">
+                    Contact Sales
+                </button>
+<div class="space-y-3 mt-auto">
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">domain</span>
+<span>Bulk student licenses</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">domain</span>
+<span>Admin dashboard &amp; Analytics</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">domain</span>
+<span>White-label portal options</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Savings Calculator Visual -->
+<section class="mb-24 px-4">
+<div class="max-w-4xl mx-auto bg-gradient-to-b from-[#191e33] to-[#111422] rounded-3xl p-8 border border-[#323b67] relative overflow-hidden">
+<!-- Abstract BG -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col md:flex-row gap-10 items-center">
+<div class="flex-1 space-y-4">
+<h2 class="text-2xl font-bold text-white">Why Go Pro?</h2>
+<p class="text-slate-400">
+                            Thinking of learning <span class="text-white font-semibold">Bachata</span> AND <span class="text-white font-semibold">Hip Hop</span>? 
+                            The Pro plan becomes the logical choice as soon as you want more than two styles.
+                        </p>
+<div class="bg-[#111422] p-4 rounded-xl border border-[#323b67] inline-flex items-center gap-4">
+<div class="text-center">
+<div class="text-xs text-slate-500 uppercase tracking-wider mb-1">2 Styles Cost</div>
+<div class="text-xl font-bold text-slate-300 strike-through decoration-red-500">$38<span class="text-sm font-normal">/mo</span></div>
+</div>
+<span class="material-symbols-outlined text-slate-600">arrow_forward</span>
+<div class="text-center">
+<div class="text-xs text-accent-gold uppercase tracking-wider mb-1">Pro Cost</div>
+<div class="text-2xl font-black text-white">$49<span class="text-sm font-normal text-slate-400">/mo</span></div>
+</div>
+</div>
+<p class="text-xs text-slate-500 italic">*For just $11 more, you get 48+ more styles.</p>
+</div>
+<!-- Visual Bar Chart -->
+<div class="flex-1 w-full flex items-end justify-center gap-4 h-48 border-b border-slate-700 pb-2 px-4">
+<div class="w-16 bg-[#323b67] rounded-t-lg relative group flex flex-col justify-end h-[30%] transition-all hover:bg-slate-500">
+<div class="text-center text-xs text-white pb-2 font-bold">$19</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 w-max">1 Style</div>
+</div>
+<div class="w-16 bg-[#323b67] rounded-t-lg relative group flex flex-col justify-end h-[60%] transition-all hover:bg-slate-500">
+<div class="text-center text-xs text-white pb-2 font-bold">$38</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 w-max">2 Styles</div>
+</div>
+<div class="w-16 bg-[#323b67] rounded-t-lg relative group flex flex-col justify-end h-[90%] transition-all hover:bg-slate-500">
+<div class="text-center text-xs text-white pb-2 font-bold">$57</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 w-max">3 Styles</div>
+</div>
+<!-- Pro Bar -->
+<div class="w-20 bg-gradient-to-t from-accent-gold to-accent-gold-light rounded-t-lg relative shadow-[0_0_20px_rgba(212,175,55,0.3)] flex flex-col justify-end h-[75%]">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-2 py-1 rounded shadow">WINNER</div>
+<div class="text-center text-xs text-[#111422] pb-2 font-black">$49</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-accent-gold font-bold w-max">Unlimited</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certificates Showcase -->
+<section class="mb-24 relative">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1 relative">
+<!-- Certificate Mockup -->
+<div class="relative z-10 bg-white text-slate-900 p-6 rounded-lg shadow-2xl rotate-[-3deg] border-4 border-[#111422] max-w-md mx-auto">
+<div class="border-2 border-dashed border-slate-300 p-4 h-full flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-12 h-12 rounded-full bg-accent-gold flex items-center justify-center text-white font-bold text-2xl">D</div>
+<h4 class="font-serif text-xl font-bold uppercase tracking-widest">Certificate of Mastery</h4>
+<p class="text-xs text-slate-500">This certifies that</p>
+<div class="font-handwriting text-2xl text-primary font-bold">Alex Dancer</div>
+<p class="text-xs text-slate-500">Has successfully completed the Advanced Urban Choreography Level 3</p>
+<div class="w-full h-px bg-slate-200 my-2"></div>
+<div class="flex justify-between w-full text-[10px] text-slate-400 uppercase">
+<span>Date: 2023</span>
+<span>Dance Academy</span>
+</div>
+</div>
+</div>
+<!-- Second subtle certificate behind -->
+<div class="absolute top-4 left-10 md:left-24 w-full max-w-md h-full bg-slate-200 rounded-lg rotate-[2deg] -z-0 opacity-20"></div>
+</div>
+<div class="order-1 md:order-2">
+<div class="flex items-center gap-3 mb-4">
+<span class="p-2 bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">school</span>
+</span>
+<h2 class="text-3xl font-bold text-white">Earn Official Certificates</h2>
+</div>
+<p class="text-slate-400 text-lg mb-6 leading-relaxed">
+                        Validate your skills. Every time you complete a level in any style, you earn a verifiable certificate. Great for your portfolio, teaching credentials, or just personal pride.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-slate-300">
+<span class="material-symbols-outlined text-accent-gold">verified_user</span>
+                            Shareable on LinkedIn &amp; Social Media
+                        </li>
+<li class="flex items-center gap-3 text-slate-300">
+<span class="material-symbols-outlined text-accent-gold">verified_user</span>
+                            Signed by world-renowned instructors
+                        </li>
+<li class="flex items-center gap-3 text-slate-300">
+<span class="material-symbols-outlined text-accent-gold">verified_user</span>
+                            Included in Pack por Estilo &amp; Pro plans
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Feature Comparison Table -->
+<section class="mb-24 overflow-x-auto">
+<h2 class="text-3xl font-bold text-white text-center mb-10">Compare Features</h2>
+<div class="min-w-[800px] bg-[#191e33] rounded-2xl border border-[#323b67] overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#111422] border-b border-[#323b67]">
+<th class="p-6 sticky left-0 bg-[#111422] z-10 w-1/4">Features</th>
+<th class="p-6 text-center text-white w-1/5">Free</th>
+<th class="p-6 text-center text-white w-1/5">Style Pack</th>
+<th class="p-6 text-center text-accent-gold w-1/5 border-x border-[#323b67]/50 bg-[#323b67]/10">Pro Access</th>
+<th class="p-6 text-center text-white w-1/5">Studio</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Content Row -->
+<tr class="border-b border-[#323b67] hover:bg-[#232948]/50 transition-colors">
+<td class="p-4 px-6 text-slate-300 font-medium sticky left-0 bg-[#191e33]">Number of Styles</td>
+<td class="p-4 text-center text-slate-400">Restricted</td>
+<td class="p-4 text-center text-white">1 Family</td>
+<td class="p-4 text-center text-accent-gold font-bold bg-[#323b67]/5 border-x border-[#323b67]/50">All 50+</td>
+<td class="p-4 text-center text-white">All 50+</td>
+</tr>
+<!-- Content Row -->
+<tr class="border-b border-[#323b67] hover:bg-[#232948]/50 transition-colors">
+<td class="p-4 px-6 text-slate-300 font-medium sticky left-0 bg-[#191e33]">Video Quality</td>
+<td class="p-4 text-center text-slate-400">720p</td>
+<td class="p-4 text-center text-white">1080p</td>
+<td class="p-4 text-center text-accent-gold font-bold bg-[#323b67]/5 border-x border-[#323b67]/50">4K Ultra HD</td>
+<td class="p-4 text-center text-white">4K Ultra HD</td>
+</tr>
+<!-- Content Row -->
+<tr class="border-b border-[#323b67] hover:bg-[#232948]/50 transition-colors">
+<td class="p-4 px-6 text-slate-300 font-medium sticky left-0 bg-[#191e33]">Offline Downloads</td>
+<td class="p-4 text-center text-slate-500">
+<span class="material-symbols-outlined text-lg">close</span>
+</td>
+<td class="p-4 text-center text-primary">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+<td class="p-4 text-center text-accent-gold bg-[#323b67]/5 border-x border-[#323b67]/50">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+<td class="p-4 text-center text-white">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+</tr>
+<!-- Content Row -->
+<tr class="border-b border-[#323b67] hover:bg-[#232948]/50 transition-colors">
+<td class="p-4 px-6 text-slate-300 font-medium sticky left-0 bg-[#191e33]">Certificates</td>
+<td class="p-4 text-center text-slate-500">
+<span class="material-symbols-outlined text-lg">close</span>
+</td>
+<td class="p-4 text-center text-primary">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+<td class="p-4 text-center text-accent-gold bg-[#323b67]/5 border-x border-[#323b67]/50">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+<td class="p-4 text-center text-white">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+</tr>
+<!-- Content Row -->
+<tr class="hover:bg-[#232948]/50 transition-colors">
+<td class="p-4 px-6 text-slate-300 font-medium sticky left-0 bg-[#191e33]">Personal Feedback</td>
+<td class="p-4 text-center text-slate-500">
+<span class="material-symbols-outlined text-lg">close</span>
+</td>
+<td class="p-4 text-center text-slate-500">
+<span class="material-symbols-outlined text-lg">close</span>
+</td>
+<td class="p-4 text-center text-accent-gold bg-[#323b67]/5 border-x border-[#323b67]/50">
+<span class="material-symbols-outlined text-lg">check</span>
+</td>
+<td class="p-4 text-center text-white">Custom</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- FAQ Accordion -->
+<section class="max-w-3xl mx-auto">
+<h2 class="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<!-- Item 1 -->
+<details class="group bg-[#191e33] rounded-lg border border-[#323b67] overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium hover:bg-[#232948] transition-colors">
+<span>Can I switch from a Style Pack to Pro later?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        Absolutely. You can upgrade to the Pro plan at any time from your account settings. We will prorate the remaining value of your current subscription towards the upgrade.
+                    </div>
+</details>
+<!-- Item 2 -->
+<details class="group bg-[#191e33] rounded-lg border border-[#323b67] overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium hover:bg-[#232948] transition-colors">
+<span>Do certificates expire?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        No, once earned, your certificates are yours forever. You can download them as PDFs or share the unique verification link on LinkedIn indefinitely.
+                    </div>
+</details>
+<!-- Item 3 -->
+<details class="group bg-[#191e33] rounded-lg border border-[#323b67] overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium hover:bg-[#232948] transition-colors">
+<span>What styles are included in "Urban Family"?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        The Urban Family pack includes Hip Hop, Breaking, Popping, Locking, Krump, and House Dance. It's one of our most comprehensive collections.
+                    </div>
+</details>
+<!-- Item 4 -->
+<details class="group bg-[#191e33] rounded-lg border border-[#323b67] overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium hover:bg-[#232948] transition-colors">
+<span>Can I download videos to watch offline?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        Yes! Offline viewing is available on our iOS and Android mobile apps for both the "Pack por Estilo" and "Todo Acceso (Pro)" plans.
+                    </div>
+</details>
+</div>
+</section>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-[#232948] py-12 bg-[#0e111d]">
+<div class="max-w-[1440px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-primary">music_note</span>
+<span class="font-bold">Dance Academy</span>
+</div>
+<div class="text-slate-500 text-sm">
+                © 2023 Dance Academy Inc. All rights reserved.
+            </div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Privacy</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Terms</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

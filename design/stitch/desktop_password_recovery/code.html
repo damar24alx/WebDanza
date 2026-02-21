@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Password Recovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7b25f4",
+                        "primary-dark": "#5e1bb8",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#171022",
+                        "surface-dark": "#241834",
+                        "border-dark": "#322249",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Smooth fade for state transitions */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden-state {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark px-10 py-4 bg-white dark:bg-background-dark relative z-20">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined !text-3xl">local_activity</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Classes</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Encyclopedia</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Pricing</a>
+<a class="text-slate-900 dark:text-white font-bold text-sm leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Login</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Get Started</span>
+</button>
+</div>
+<div class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex items-center justify-center p-4 relative overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Center Card Container -->
+<div class="w-full max-w-[480px] bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-xl shadow-2xl p-8 md:p-10 relative z-10 transition-all duration-300">
+<!-- STATE A: Input Form -->
+<div class="flex flex-col fade-in" id="recovery-form-state">
+<div class="mb-6 text-center">
+<div class="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined !text-2xl">lock_reset</span>
+</div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">Reset Password</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed">
+                        Enter the email associated with your account and we’ll send you a link to reset your password.
+                    </p>
+</div>
+<form class="flex flex-col gap-5" onsubmit="event.preventDefault(); document.getElementById('recovery-form-state').classList.add('hidden', 'hidden-state'); document.getElementById('success-state').classList.remove('hidden-state'); document.getElementById('success-state').classList.add('flex', 'fade-in');">
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Email Address</span>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[20px]">mail</span>
+</div>
+<input class="w-full h-12 pl-10 pr-4 bg-slate-50 dark:bg-[#1a1225] border border-slate-200 dark:border-border-dark rounded-lg text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" placeholder="dancer@example.com" required="" type="email"/>
+</div>
+</label>
+<button class="mt-2 w-full h-12 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 group" type="submit">
+<span>Send Instructions</span>
+<span class="material-symbols-outlined !text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 text-center">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined !text-[16px]">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+</div>
+<!-- STATE B: Success Message (Initially Hidden) -->
+<div class="flex-col items-center text-center hidden-state" id="success-state">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 relative">
+<div class="absolute inset-0 rounded-full bg-primary/20 animate-ping opacity-75"></div>
+<span class="material-symbols-outlined !text-4xl text-primary relative z-10">mark_email_read</span>
+</div>
+<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Check your mail</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed mb-8 max-w-[320px]">
+                    We have sent password recovery instructions to your email address.
+                </p>
+<div class="flex flex-col gap-3 w-full">
+<button class="w-full h-12 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/40" onclick="window.location.href='mailto:'">
+                        Open Email App
+                    </button>
+<button class="w-full h-12 bg-transparent border border-slate-200 dark:border-border-dark hover:border-primary/50 text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium rounded-lg transition-all duration-200" onclick="document.getElementById('success-state').classList.add('hidden-state'); document.getElementById('success-state').classList.remove('flex'); document.getElementById('recovery-form-state').classList.remove('hidden', 'hidden-state'); document.getElementById('recovery-form-state').classList.add('flex', 'fade-in');">
+                        Skip, I'll confirm later
+                    </button>
+</div>
+<div class="mt-8 text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                        Didn't receive the email? <a class="text-primary hover:text-primary-dark font-semibold" href="#" onclick="document.getElementById('success-state').classList.add('hidden-state'); document.getElementById('success-state').classList.remove('flex'); document.getElementById('recovery-form-state').classList.remove('hidden', 'hidden-state'); document.getElementById('recovery-form-state').classList.add('flex', 'fade-in');">Click to resend</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer for Context -->
+<footer class="py-6 text-center text-xs text-slate-500 dark:text-slate-500 border-t border-slate-200 dark:border-border-dark bg-white dark:bg-background-dark">
+<div class="flex justify-center gap-6 mb-2">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<p>© 2024 Dance Academy Inc. All rights reserved.</p>
+</footer>
+</body></html>

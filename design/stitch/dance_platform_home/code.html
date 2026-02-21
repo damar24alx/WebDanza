@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Platform Home</title>
+<!-- Google Fonts & Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2640; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3211d4; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded bg-primary text-white">
+<span class="material-symbols-outlined text-[20px]">music_note</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Dance Academy</h1>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Encyclopedia</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Academy</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">My Learning</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<button class="flex items-center gap-2 pl-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/5 transition-colors p-1 pr-1">
+<div class="size-8 rounded-full overflow-hidden border border-slate-200 dark:border-white/10">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Profile picture of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx9tvc28fAOQLJmLFxvrgMMlDGt-edRC9lK_c1klHzufFTpiuJkJMjgihcbKl9AEFjSmp0luus3oonk6sVSIKvFKAH7x1Qt_97e0kUTsZTcr50s3xgKoKya7OwcnsENFqPEE7at7Ca49Y6USwdGx0a1sKsOtamGDgpyc4fQyxGq4K8VIb-3BLxLiSvcwEptNh5EKp9D__Jn0qkCXJ7-OAQGb6xXVibqcuEZwQYkSjz3oGPkgMaWvZDfP9xQVCT8UZpa1m3DE8W3c8"/>
+</div>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="relative w-full h-[560px] flex items-center justify-center overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-background-dark/30 z-10"></div>
+<div class="absolute inset-0 bg-black/40 z-10"></div> <!-- Darken for text contrast -->
+<img alt="Dancers performing in urban setting" class="w-full h-full object-cover" data-alt="Urban dancers performing a dynamic hip hop move in a dimly lit street setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuwgx3Ka58yDNzMTcSH-gdySnE3RkNwmusL_Ofq2jzc1MIKuFsCbr-uAnpJqawuS6ERhimYELp4pVCeGoYlbRRNpFWptj1gNSuv31fTff55A10cOZSZNa_jW47kQ_uZe86LkQx3FxPJmfdmwszp9UxDVO_R4i6rb7yTpHs5WDqE9Ysc3AYEo5QiK6uwVWEsHoW4c_PFw7ORrMiXZ6AYd2swwLYbRuKCw92dM4cgP_r06wnhaY1mjMYW3Y2PPlzLH_-LhfOIMcn5MM"/>
+</div>
+<!-- Hero Content -->
+<div class="relative z-20 w-full max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-8 animate-fade-in-up">
+<div class="space-y-4">
+<h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
+                        Master the Movement
+                    </h1>
+<p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
+                        Explore the comprehensive encyclopedia of dance and join our world-class academy.
+                    </p>
+</div>
+<!-- Global Search Bar -->
+<div class="w-full max-w-2xl mx-auto">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative flex items-center w-full bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/10 rounded-full shadow-2xl overflow-hidden focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+<div class="pl-6 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white placeholder-slate-400 focus:ring-0 h-14 px-4 text-lg" placeholder="Search styles, steps, or instructors..." type="text"/>
+<button class="mr-2 px-6 h-10 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-colors flex items-center gap-2">
+<span>Search</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex flex-wrap justify-center gap-3 text-sm text-slate-400">
+<span>Trending:</span>
+<a class="hover:text-primary underline-offset-4 hover:underline" href="#">Popping</a>
+<a class="hover:text-primary underline-offset-4 hover:underline" href="#">Ballet Basics</a>
+<a class="hover:text-primary underline-offset-4 hover:underline" href="#">House Footwork</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col gap-16">
+<!-- Continue Learning (Logged In State) -->
+<section class="w-full">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+                        Continue Learning
+                    </h2>
+<a class="text-sm font-medium text-primary hover:text-primary/80" href="#">View all progress</a>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1c1833] border border-slate-200 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col md:flex-row h-full">
+<!-- Content Side -->
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-center gap-4 z-10 relative">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded text-xs font-bold bg-primary/20 text-primary uppercase tracking-wider">Course</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Last viewed 2 hours ago</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Foundations of Popping</h3>
+<p class="text-slate-600 dark:text-slate-300">Lesson 4: The Fresnel Technique &amp; Body Control</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full max-w-md space-y-2">
+<div class="flex justify-between text-sm font-medium">
+<span class="text-slate-500 dark:text-slate-400">Progress</span>
+<span class="text-primary">65%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-white/10 rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="pt-2">
+<button class="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 bg-primary rounded-lg shadow-md hover:bg-primary/90 focus:shadow-outline focus:outline-none gap-2">
+<span>Resume Lesson</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Image Side (Background on mobile, side on desktop) -->
+<div class="relative w-full md:w-2/5 min-h-[200px] md:min-h-full">
+<div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-white dark:from-[#1c1833] via-transparent to-transparent z-10"></div>
+<img alt="Dancer practicing popping moves in a studio" class="absolute inset-0 w-full h-full object-cover" data-alt="Close up of a dancer's arm movement in dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwq_dqFx3srWPyeQEmKdo2qYFkvgGPYh97Rf1gMc4mnxk4P2hoZP4yrkWEpAWGQ44PD1hkiJPikv5IHJpkYxYf000bkpfcxaXpHjgWi0lw-biHzHGME2Y0Nd9TfAB2Pkcna75rDQ90Y4UlQbq8bFMuk2U3g8c_tCY8D539KpOSEUD_RnLm1Q0KgdFdCvRMvkbzwjMF8AXm2F0OvpIPAhbBHfPmKgxy7IlUfWcEDpAa2KcvUNB2dJEItflP5qYA05bllqN2syDJkw"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Access Grid -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Explore the Platform</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1: Explore Styles -->
+<a class="group relative h-[420px] rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-1" href="#">
+<div class="absolute inset-0 bg-slate-900">
+<img alt="Ballerina tying shoes" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700" data-alt="High angle shot of ballet shoes and tutu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp6yQiDEkWYksFq49fj28m1haLanb6M-GPHF56zHL7JBylBywMnTW2zQRZHWrdDTT1MUX-20qAdNvWQoQt1DoHphfYTScXaOIYJtL0unIOBe5L4n_Fv117rr5PgzYT1f_2Z2aAOcn-4uMgv8Ic3hMPMnmotZ0-ybQBUX3jiatFqeKLEb7j9ZHeUaFn46783ivgK0pMEad2MXk9Wf5cTAnnHRedwDybpU6zafyIhuWW5MZz4bc8Dz2Ip18QktxavCyQ6m2v53e8eNs"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="mb-4 size-12 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-2">Explore Styles</h3>
+<p class="text-slate-300 text-sm leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                Discover the history and nuance of 50+ dance genres from Ballet to Breakdance.
+                            </p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                Browse Library <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Card 2: Learn Academy -->
+<a class="group relative h-[420px] rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-1" href="#">
+<div class="absolute inset-0 bg-slate-900">
+<img alt="Contemporary dancer jumping" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700" data-alt="Silhouette of a contemporary dancer jumping in mid-air against a studio window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ3mhZcXOrZ3zkAOEt7y52NOONmUIrAKoeWWJhJL-f7xc25LK1AqiOKDTLjRWFuR7wOn64wAfpTazj1Y09zFr1t0y942ygE1jPB3_0kdGFrGTWYb9LXH1FAPROw4Jb06cZn-eRbjDQJfTxkMNaKCpaUp3DfLHqvrfFjbay9ueTcfju-n_xRIG89wQTWZI5jyRy2Lb422REcbDjr2xJ41pPvAQO1NRGTee_lcmtdsdNdNjWKQ-xZemkrzdT_BoBI_O0wgjEzMpbs48"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="mb-4 size-12 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">school</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-2">Learn Academy</h3>
+<p class="text-slate-300 text-sm leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                Structured courses from world-class choreographers designed to level up your skills.
+                            </p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                View Courses <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Card 3: Step Dictionary -->
+<a class="group relative h-[420px] rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-1" href="#">
+<div class="absolute inset-0 bg-slate-900">
+<img alt="Close up of feet dancing" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700" data-alt="Detailed shot of street dance footwear and movement on concrete" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ipwsKyV4gJCd0ndu79vFul2AqoXZt2-PA_U1EjWNl9lwud9IlBrGQeXiPXnKE2aR1G-a0FAdbb75iiD7Uujqw81WrTGC4jF71eC814XFlVu0cURBtjMS2sEsrlTAkhTB_EG308RbhUEgZQAv3Vs1HOtt35Kf1rLLcq_FCkLUdlyEodJFZZjoS_NmQNG-O-0gHa2PfVkCxaEMYlN_p63f2yCGmXfYGj3zDvF6efqQhsIZumY4kj-qgocI6bv44FQ9fB6Gxja0iGw"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="mb-4 size-12 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-2">Step Dictionary</h3>
+<p class="text-slate-300 text-sm leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                The ultimate glossary of technical terminology, moves, and their origins.
+                            </p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                Find a Move <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Featured Today Section (Extra content for richness) -->
+<section class="border-t border-slate-200 dark:border-white/5 pt-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Trending This Week</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Item 1 -->
+<div class="flex flex-col gap-2 group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800">
+<img alt="Breakdancer freezing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Breakdancer performing a freeze on one hand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFcrpzLmRfTyzH-XhemyVnVe2uHpMQcvALKVJltOUN2nHSke8VxNOhHBYMA171COT5bJ9bdf5SLZjbim-sX0fBLYFC3Pi7aF6snEUGmYhHdJ3YYvHWxqvXskChltOmftbRo8-uy_T0J3-AUMB6skgeFzRk3HsMs-T2nUm5yPZ8GPix-guUPxCcM5wbYT1o0qoXH5PkSg0demr8DlpY6aqN2mMVI4OPq3JzWhrFX5l4r8hidwPn9kn1FqyEvCsqhD5AVP7qc_RUnpY"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Power Moves 101</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Breakdance • 45m</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col gap-2 group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800">
+<img alt="Group of dancers in studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Group of dancers performing a synchronized routine in a studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKEeKBpHk0FK1ZmYlHK9h0ipVLL_K3Gcc8hqm8W_ra3dIhG3547V8iUqmjz2xcCQyVBRyvytMOq4budCQny-rgO4KXY1BeHKqSHhrT8FrRM38GQVVcjrrHRbpb0Em0npyWQ5PZGin62rMJcFhoCXc4EiFTCpSh7VebU-rf2bYfiV7Fr83yL22ygU_Pt8mdFCyzJNPMZlFCREZCUzTQGOvKqQOvbFyXIGdOgpf_Ul26gD_OACFx-HesBvY2VBBGg9zFVhAYpQwshJY"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Choreography Theory</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Theory • 1h 20m</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col gap-2 group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800">
+<img alt="Tango dancers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Couple performing an intense tango move" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqryEE48HSZYp5zx6xPsQy8oaHRpQv9P6LAy7KlwnKWn3cPnZ5Js85lbhmqxdWSMKna-icsbCBtooU9SKa0UtzWirIH-5CP05AkkZWcSDYyZDfE4oAIZgDYFBBFO39GM1bLd4oFsi4zc0jPnShQVIlI9UCwG7U3m4aQqNBoEVOCCmP-D5bA_szYUrqYvsj4CqdoiLFcsV6tifWxHFI9Onwc-aHC7pYU6llBOL2LCufP2j2Gv-hvBtEwoHMMCXD2f2KoJwx1KHZGx4"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Tango Essentials</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Ballroom • 55m</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex flex-col gap-2 group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800">
+<img alt="Hip hop dancer portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Portrait of a hip hop dancer with colorful lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvqDSTdvmyEn1VbZEuepNQFEiwHq6K2_PfPPeIk-x8UNgU4TFtuOfIDl9TV23ECSzBcgo1a4b9dpbku0MQYNe6Z7Uj_VdbCfYvIOyVhYPYmJoE2SEtTc7OJpjgHWzknH7_caCDJwKFVjtEGfhn_Qqvg7uIkjNncYNPNPzQeIE74ime5yaJ8lyMhIPON0x8BPKo4OHjg2abm7ZddgbjJjPdF4TV4Kb75US7IUdtWxsqGMxdABeNDuvR_DGc4SExEbfpQ5iPccWJgyM"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Musicality Masterclass</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">General • 30m</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f0c1a] py-12 mt-auto">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-4">
+<div class="flex items-center justify-center size-6 rounded bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">music_note</span>
+</div>
+<span class="font-bold text-slate-900 dark:text-white">Dance Academy</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                        Empowering dancers worldwide with knowledge, history, and technique.
+                    </p>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Platform</h4>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Encyclopedia</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Academy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Instructors</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Support</h4>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Connect</h4>
+<div class="flex gap-4">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">
+<span class="sr-only">Twitter</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+</svg>
+</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.37c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
+<p>© 2023 Dance Academy. All rights reserved.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<a class="hover:text-primary" href="#">Sitemap</a>
+<a class="hover:text-primary" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

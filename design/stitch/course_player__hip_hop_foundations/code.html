@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hip Hop Foundations - Course Player</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "primary-content": "#ffffff",
+                        "primary-light": "#5a3ce0",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex items-center justify-between px-6 z-20 shrink-0">
+<div class="flex items-center gap-4">
+<a class="flex items-center justify-center p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<h1 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">Hip Hop Foundations</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Module 1: The Basics</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2">
+<div class="w-32 h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[25%] rounded-full"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">25% Complete</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-surface-light dark:border-surface-dark"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center ring-2 ring-slate-100 dark:ring-slate-800" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCk731HFuT09G8lwDEw7UyWLhNVvwv7W6l7RT4bcwv8HwIegfOuLfBruB7sGO_gWjnBBjvh1v2IlwtNvdE3lNETBjwihtg9nCn-FDqp05c1k-d5HV2qmZKj2TG_eugLSxeQ9peJjgsesPlAztf3-30WMte4BpNmFOBa7bUdnQ19zZw_3TLZJoYj2QXj6QaiKfccl6nialI6jXqg0nsEEtcIwk8Idq-3Me49BQkVigUwSQub5at_I3e7XpyJF9SWdiZf6ea2maxEZlg');"></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-80 bg-surface-light dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 overflow-y-auto hidden lg:flex">
+<div class="p-5 border-b border-slate-200 dark:border-slate-800">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Course Curriculum</h3>
+<div class="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex items-start gap-3">
+<div class="bg-primary/20 dark:bg-primary/30 p-2 rounded-lg text-primary shrink-0">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Your Goal</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Complete 3 lessons this week to maintain your streak.</p>
+</div>
+</div>
+</div>
+<!-- Module 1 -->
+<div class="flex flex-col">
+<div class="px-5 py-3 bg-slate-50 dark:bg-[#18152b] border-y border-slate-200 dark:border-slate-800 flex items-center justify-between cursor-pointer">
+<span class="text-sm font-bold text-slate-800 dark:text-slate-200">1. Introduction to Bounce</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+<!-- Lesson List -->
+<div class="flex flex-col">
+<!-- Completed Lesson -->
+<a class="group flex items-center gap-3 px-5 py-3 border-l-4 border-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-colors" href="#">
+<div class="shrink-0">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400 line-through truncate group-hover:text-slate-700 dark:group-hover:text-slate-200">The History of Bounce</span>
+<span class="text-xs text-slate-400 dark:text-slate-500">5:20</span>
+</div>
+</a>
+<!-- Active Lesson -->
+<a class="group flex items-center gap-3 px-5 py-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary" href="#">
+<div class="shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-bold text-primary dark:text-white truncate">The Rock: Fundamentals</span>
+<span class="text-xs text-primary/80 dark:text-slate-400">8:45 • Now Playing</span>
+</div>
+</a>
+<!-- Locked/Next Lessons -->
+<a class="group flex items-center gap-3 px-5 py-3 border-l-4 border-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-colors opacity-60" href="#">
+<div class="shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-lg">lock</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">Isolations: Neck &amp; Shoulders</span>
+<span class="text-xs text-slate-500 dark:text-slate-500">12:30</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="flex flex-col mt-auto">
+<div class="px-5 py-3 bg-slate-50 dark:bg-[#18152b] border-y border-slate-200 dark:border-slate-800 flex items-center justify-between cursor-pointer opacity-70">
+<span class="text-sm font-bold text-slate-800 dark:text-slate-200">2. Grooves &amp; Textures</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+</div>
+</div>
+<div class="p-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 p-3 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">help</span>
+                    Support &amp; FAQ
+                 </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-background-light dark:bg-background-dark relative">
+<!-- Video Section -->
+<div class="w-full max-w-6xl mx-auto p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+<!-- Video Player Container -->
+<div class="aspect-video w-full bg-black rounded-xl overflow-hidden shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10 relative group">
+<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="Instructor demonstrating dance move in studio" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgExF7dY8C0L0x5U9DR3IGh7wC1AFhsp2Op8vzF_bqX7StGcjakQWjZlBfzugSqa_OJ05nQfHTgdB61z_5HNlhUsFI2AePPLeS6TZpasrVRjVKIIMfBaxU386JzeIBNNLaJjXlw11xVS89jXMAPd863FHmFx8Fybx1eQ16KlH0hy5gWiDRswGdMozmkIy9NjwnkEOI42k_56x3RT8EKGCTx9aiUQyLVFNoYXFPsYuw5Az964WuDav-caKKDYgMb_QADuEM0B_-frM');"></div>
+<!-- Overlay Controls (Simulated) -->
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-20 h-20 rounded-full bg-primary/90 text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-5xl ml-1">play_arrow</span>
+</button>
+</div>
+<!-- Bottom Controls Bar -->
+<div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-white/20 rounded-full cursor-pointer relative group/progress">
+<div class="absolute left-0 top-0 bottom-0 w-[35%] bg-primary rounded-full"></div>
+<div class="absolute left-[35%] top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 shadow"></div>
+</div>
+<div class="flex items-center justify-between text-white mt-2">
+<div class="flex items-center gap-4">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">play_arrow</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">volume_up</span></button>
+<span class="text-xs font-medium font-mono">2:45 / 8:45</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-1 hover:text-primary transition-colors text-xs font-medium px-2 py-1 rounded bg-white/10 hover:bg-white/20">
+<span class="material-symbols-outlined text-sm">flip</span> Mirror
+                                </button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">speed</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">fullscreen</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Lesson Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-primary font-medium tracking-wide uppercase">
+<span>Module 1</span>
+<span class="w-1 h-1 rounded-full bg-slate-400"></span>
+<span>Lesson 2</span>
+</div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">The Rock: Fundamentals</h1>
+<p class="text-slate-600 dark:text-slate-400 max-w-2xl">Master the foundational groove of "The Rock" focusing on weight transfer and relaxed posture. Remember to keep your knees soft.</p>
+</div>
+<div class="flex items-center gap-3 shrink-0 mt-2 md:mt-0">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            Mark Complete
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-light text-white font-medium text-sm shadow-lg shadow-primary/25 transition-all">
+                            Next Lesson
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Tabs & Additional Content -->
+<div class="mt-8">
+<div class="flex items-center gap-8 border-b border-slate-200 dark:border-slate-800">
+<button class="pb-3 border-b-2 border-primary text-primary font-semibold text-sm">Overview</button>
+<button class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm transition-colors">Discussion (12)</button>
+<button class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm transition-colors">Resources</button>
+<button class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm transition-colors">Notes</button>
+</div>
+<div class="py-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Key Takeaways</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">The "Rock" originates from early breaking movements and mimics a rocking chair motion.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Focus on shifting your weight completely from the front leg to the back leg.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+<span class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Keep your upper body relaxed; tension kills the groove.</span>
+</li>
+</ul>
+</div>
+<!-- Instructor Bio Small -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-white/5">
+<div class="w-12 h-12 rounded-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center" data-alt="Instructor headshot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAutRMOFEkDLmYv4U5OTEp01qxjIsvQsX8psx_FLXkVxUpiJDz8FnZYiyPqRI336DrLPrf61mcK2aHDhQE9fFIOiP0NkweDy4uxWmTCe9ssdSh8eHF5RsgVK9EZjbN8H5BaLuJDdOtZ86kHqT-DiwlVmh7lBSImqd8k559j09kgVgKJxY_CHbKcT969pbZW-bicUIdNcZJ7-K-BRSAegXe5qpX0POnFehT50mfKKYIEmQMQ8hRxfQysHlwmsy41vZU7Qu6WhfTkoQk');"></div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Instructor</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Marcus "Flow" Johnson</h4>
+</div>
+<button class="ml-auto text-xs font-semibold text-primary hover:text-primary-light">View Profile</button>
+</div>
+</div>
+<div class="lg:col-span-1 flex flex-col gap-4">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Music in this lesson</h3>
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center shrink-0 text-white">
+<span class="material-symbols-outlined text-lg">music_note</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Funky Drummer Break</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">James Brown</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center shrink-0 text-white">
+<span class="material-symbols-outlined text-lg">music_note</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Practice Beat #4</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Academy Originals</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+</div>
+</div>
+</div>
+<div class="h-20"></div> <!-- Spacer for scrolling -->
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step Evolution Genealogy Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833",
+                        "surface-highlight": "#292348",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #292348 1px, transparent 1px), linear-gradient(to bottom, #292348 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292348; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3211d4; 
+        }
+        
+        .glow-connection {
+            filter: drop-shadow(0 0 4px #3211d4);
+        }
+        
+        .node-card {
+            transition: all 0.3s ease;
+        }
+        
+        .node-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(50, 17, 212, 0.5);
+            border-color: #3211d4;
+        }
+
+        /* Animated dash line */
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .animated-line {
+            stroke-dasharray: 10;
+            stroke-dashoffset: 100;
+            animation: dash 20s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#292348] bg-white dark:bg-[#141122] px-6 py-3 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Step Evolution</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Encyclopedia</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Academy</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Instructors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">History</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden lg:flex flex-col min-w-40 h-10 w-64 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full h-full pl-10 pr-3 py-2 border border-slate-200 dark:border-[#292348] rounded-lg leading-5 bg-slate-50 dark:bg-[#292348] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition duration-150 ease-in-out" placeholder="Search moves..." type="search"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlUpYudPuLzB7FA-vOosUFn97GVsoNcRJ50UK5zzW_k0IPtXduRbN4vbABhzSeZhcRR-GqPsjuE1J3x2aujzPnef_M_X6OGh72VLTv3O0uOgHKp7i9y_ezrjdp3H6JSz7YSAwa8nDtuJI5nmSO2a_EfO7XdMGnXz3Svb-n5YPBjayd6yf2MvmLgaRMdtEdoKbrQlK23zKtHUWhJsMbpt_TSZTTuAwOfI3A_lZR-L0enBm6nWhoKk-EVLcyyuCz7MKn8gzX0gkvb8A");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Breadcrumbs & Title Overlay -->
+<div class="absolute top-0 left-0 w-full z-20 pointer-events-none p-6 bg-gradient-to-b from-background-dark via-background-dark/80 to-transparent">
+<div class="flex flex-wrap items-center gap-2 pointer-events-auto">
+<a class="text-slate-400 hover:text-primary text-sm font-medium" href="#">Encyclopedia</a>
+<span class="text-slate-600 text-sm">/</span>
+<a class="text-slate-400 hover:text-primary text-sm font-medium" href="#">Popping</a>
+<span class="text-slate-600 text-sm">/</span>
+<span class="text-white text-sm font-medium">The Backslide</span>
+</div>
+<div class="flex items-center justify-between mt-2 pointer-events-auto">
+<h1 class="text-3xl font-bold text-white tracking-tight">Evolution of The Backslide</h1>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-highlight hover:bg-surface-highlight/80 text-white text-sm font-medium transition-colors border border-white/10">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                        Share Map
+                    </button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-highlight hover:bg-surface-highlight/80 text-white text-sm font-medium transition-colors border border-white/10">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export
+                    </button>
+</div>
+</div>
+</div>
+<!-- Node Network Canvas -->
+<div class="flex-1 bg-background-dark relative overflow-auto cursor-grab active:cursor-grabbing group/canvas">
+<!-- Grid Background -->
+<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-[0.07] pointer-events-none w-[200%] h-[200%]"></div>
+<!-- SVG Connections Layer -->
+<svg class="absolute top-0 left-0 w-[2000px] h-[1500px] pointer-events-none z-0">
+<defs>
+<lineargradient id="gradientLine" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#3211d4;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#3211d4;stop-opacity:1"></stop>
+</lineargradient>
+<marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
+<polygon fill="#3211d4" points="0 0, 10 3.5, 0 7"></polygon>
+</marker>
+</defs>
+<!-- Connection: Backslide to Moonwalk -->
+<path class="glow-connection" d="M 400 350 C 550 350, 550 550, 700 550" fill="transparent" marker-end="url(#arrowhead)" stroke="url(#gradientLine)" stroke-width="2"></path>
+<!-- Connection: Backslide to Glide -->
+<path d="M 400 350 C 550 350, 550 200, 700 200" fill="transparent" marker-end="url(#arrowhead)" stroke="#3211d4" stroke-opacity="0.4" stroke-width="2"></path>
+<!-- Connection: Moonwalk to Side Walk -->
+<path d="M 900 550 C 1000 550, 1000 650, 1100 650" fill="transparent" marker-end="url(#arrowhead)" stroke="#3211d4" stroke-opacity="0.4" stroke-width="2"></path>
+<!-- Connection: Moonwalk to Circle Moonwalk -->
+<path d="M 900 550 C 1000 550, 1000 450, 1100 450" fill="transparent" marker-end="url(#arrowhead)" stroke="#3211d4" stroke-opacity="0.4" stroke-width="2"></path>
+</svg>
+<!-- Nodes Container (Positioning simulates a large canvas) -->
+<div class="relative w-[2000px] h-[1500px] p-20 z-10">
+<!-- Node 1: Root (Backslide) -->
+<div class="absolute left-[200px] top-[250px] w-52">
+<div class="node-card bg-surface-dark border-2 border-primary rounded-xl overflow-hidden shadow-[0_0_20px_rgba(50,17,212,0.3)] cursor-pointer group">
+<div class="relative h-32 bg-slate-800 overflow-hidden">
+<div class="absolute top-2 right-2 z-10 bg-black/60 px-2 py-0.5 rounded text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-sm">Foundation</div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Dancer performing backslide" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgIEHceDRhQlhrbwX0YIriHaI3Idq_ynmn8pqSNSYAVxdnD9gAgvN6551Yq6gAqi1pm0fG6znpv-H59oOL0hpDAbZhUHijnJWMiGEG1VulQvuwek9cQ-4a9HZrkDkWfEMCi-6NOlDirvZiQaovTQVzCFO6URbgilY9SFUuQGyixJwBIVzoxdiw91ZUToyBbSRBfCv7dpJWbFY9vlTlQMzViZXFxDdr_qjxlS99401YWLZwLCaUnWPU9tBxir2IxZlXDOTp1pEDHjw"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-lg">play_circle</span>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-white font-bold text-lg leading-tight">The Backslide</h3>
+<span class="text-primary font-mono text-xs font-bold">1979</span>
+</div>
+<p class="text-slate-400 text-xs line-clamp-2">The original mechanical walking technique from The Electric Boogaloos.</p>
+</div>
+</div>
+<!-- Label below -->
+<div class="flex flex-col items-center mt-4">
+<div class="h-8 w-[2px] bg-gradient-to-b from-primary to-transparent"></div>
+<span class="text-primary text-xs font-mono uppercase tracking-widest mt-1">Origin</span>
+</div>
+</div>
+<!-- Node 2: Child (The Moonwalk) -->
+<div class="absolute left-[700px] top-[450px] w-52">
+<div class="node-card bg-surface-dark border border-slate-700 hover:border-primary rounded-xl overflow-hidden shadow-lg cursor-pointer group">
+<div class="relative h-32 bg-slate-800 overflow-hidden">
+<div class="absolute top-2 right-2 z-10 bg-primary/80 px-2 py-0.5 rounded text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-sm">Iconic</div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Dancer legs moonwalking" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaQys-UgLrYuHKS5Px0KDcczMrBBubu67fJOAzIE-EMCp-8g0T9m5GN2zbVEdXqsH83J_nAPEZtUDobj9r-bzd1cdjUjCauTPYnDv0kSHCHy_Mb2lygpmo9urYF-2ndmBUk1J5CV4dtm820mgsSNtTQ89vZwSh-f2ZDA7cGszZnNPDKY9jpnktppiRBrjoSjhO3raiMasb2LMz4b4oPHpomWNSdmfgfEB1t1DUGtVU6k4L7KxG3ZrLik4JuZMVH_rT-_JcqhSNYzM"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+<span class="material-symbols-outlined text-white/80 text-3xl drop-shadow-lg">play_circle</span>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-white font-bold text-lg leading-tight">The Moonwalk</h3>
+<span class="text-slate-500 font-mono text-xs font-bold">1983</span>
+</div>
+<p class="text-slate-400 text-xs line-clamp-2">Popularized globally by Michael Jackson at Motown 25.</p>
+</div>
+</div>
+</div>
+<!-- Node 3: Child (The Glide) -->
+<div class="absolute left-[700px] top-[100px] w-52 opacity-60 hover:opacity-100 transition-opacity">
+<div class="node-card bg-surface-dark border border-slate-700 hover:border-slate-500 rounded-xl overflow-hidden shadow-lg cursor-pointer group">
+<div class="relative h-32 bg-slate-800 overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover opacity-80" data-alt="Abstract gliding motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP-tW7_9QioQt1vSVo-IzhptP7i20SyWM3wN83CFbTlnL8RUC28zZweak0YY3qRJQh-TXidAAFwW_mNwygVhY5rXps6qVepotIPzcwop8DXM15XO9C0l887uHnLqRFVT3B_XA1h01xwjvAXK6XnsM90a-NbhtM4iu8k9ZOxNZHHR2jUfbxZcyeUO-3BQe7DBoe37xdbgwY_1cb2l-ikQvTvpp4ehAlQl1fSnSHWhJj5FpJegTvPlRX82TPzT2_Ygj6iyHwZjf2yQk"/>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-slate-200 font-bold text-lg leading-tight">The Glide</h3>
+<span class="text-slate-600 font-mono text-xs font-bold">1981</span>
+</div>
+<p class="text-slate-500 text-xs line-clamp-2">Side-to-side floating variation often used in circle gliding.</p>
+</div>
+</div>
+</div>
+<!-- Node 4: Grandchild (Circle Moonwalk) -->
+<div class="absolute left-[1100px] top-[350px] w-48 opacity-50 hover:opacity-100 transition-opacity">
+<div class="bg-surface-dark/50 border border-slate-800 hover:border-slate-600 rounded-lg overflow-hidden shadow-sm cursor-pointer p-2 flex items-center gap-3">
+<div class="size-10 rounded bg-slate-800 flex-shrink-0 bg-cover bg-center" data-alt="Circular dance pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkX2jStknpnV1ZylMv1pSOwz1F1N-wLRt8pLdFm4773_CQIPAeM_PFuLGZM82mwjP75KYt0n_gFUNDGmN0AoqOoNJBN8Zfh5W6xH2ha0wrxbOipVojko5aJFfSIefhnahD2siEJohhVZGQnXxgm5YctUZIuMPDxuDsKFikEK56FnAdrS0OlEGy32xJqNGW6UW_rZNMkTGJf9r-CeWqHKAJlD6RWxFUDIPzuKgmH_dzgxLx8m7-WE_3iC91KWAm39WtiU7Hdj_6ykQ')"></div>
+<div>
+<h4 class="text-slate-300 font-bold text-sm">Circle Moonwalk</h4>
+<span class="text-slate-600 font-mono text-xs">1986</span>
+</div>
+</div>
+</div>
+<!-- Node 5: Grandchild (Side Walk) -->
+<div class="absolute left-[1100px] top-[550px] w-48 opacity-50 hover:opacity-100 transition-opacity">
+<div class="bg-surface-dark/50 border border-slate-800 hover:border-slate-600 rounded-lg overflow-hidden shadow-sm cursor-pointer p-2 flex items-center gap-3">
+<div class="size-10 rounded bg-slate-800 flex-shrink-0 bg-cover bg-center" data-alt="Side step dance move" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzd-oo7W5OqTGKqZEK7Hf1iCeZ8CVf8g5G1dAplAJcoAo3XmDftVmdiyBw407ey2zp0v-ZXv1nYx7g_WOX_c3UQwKlZSk09tSmLN2PTbdnVPL72If2ek7_aY41rO3sovqScVZ3rIqt9n-kUbN_IZsvepamR4Fj-g1xd5QwHkYcfNGqpHbRm2lH8Ntqc13FUq9Zuw-k4yTaVUwt6kOO0UpEh4OS-YnNh9MTaE5hgLoWTdYECVer1xiEnbSN7cwiFRX3RDC_qtdv0uM')"></div>
+<div>
+<h4 class="text-slate-300 font-bold text-sm">Side Walk</h4>
+<span class="text-slate-600 font-mono text-xs">1985</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar (Right) - Collapsible -->
+<aside class="w-96 bg-[#18152a] border-l border-[#292348] shadow-2xl z-30 flex flex-col overflow-y-auto">
+<div class="relative h-56 shrink-0 group cursor-pointer">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" data-alt="Close up of moonwalk footwork" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMtjzoNeOqqEo9Sdf33UlMZlm5aV7KO9-Q4BohwRyXNZMMTBiAqIgSHnj5Edk8V6qvKhpInAPwBfu2H0hRgqYNAEgf8AVyBMWQNkq-Lb4sKNwPp8qQYDkaha1clb2jpfCIa0j4N2yucJNx5Eplg6AwHdoN2M1jAUnXa3bw95uHYROnbGlaTo8nef5C_qUCdrpwlCsaT_jXLzVlbhA2gSPuqZ3NnQuAC9jn9BQdTR2RGszZAxwRsPxuXZDg7MmNb6O69FSKOmc02J8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#18152a] to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-white uppercase tracking-wider">Selected</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 uppercase tracking-wider">Popping</span>
+</div>
+<h2 class="text-3xl font-black text-white mb-1">The Moonwalk</h2>
+<p class="text-slate-400 text-sm">a.k.a. The Backslide (Popularized)</p>
+</div>
+<button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-14 bg-primary/90 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/40 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</button>
+</div>
+<div class="p-6 flex-1 space-y-8">
+<!-- Actions -->
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-medium py-2.5 px-4 rounded-lg transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">school</span>
+                        Learn Move
+                    </button>
+<button class="flex items-center justify-center gap-2 bg-surface-highlight hover:bg-white/10 text-white font-medium py-2.5 px-4 rounded-lg transition-colors border border-white/5">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+                        Save
+                    </button>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-3 gap-2 py-4 border-y border-white/5">
+<div class="text-center">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Difficulty</div>
+<div class="flex justify-center text-yellow-400">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+<div class="text-center border-l border-white/5">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Year</div>
+<div class="text-white font-mono font-bold">1983</div>
+</div>
+<div class="text-center border-l border-white/5">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Style</div>
+<div class="text-white font-medium text-sm">Illusion</div>
+</div>
+</div>
+<!-- History -->
+<div>
+<h3 class="text-white font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">history_edu</span>
+                        Historical Context
+                    </h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        While popularized by Michael Jackson during his performance of "Billie Jean" on <i>Motown 25</i>, the move originated as "The Backslide" within the Popping scene. It creates the illusion of the dancer being pulled backwards while attempting to walk forward.
+                    </p>
+</div>
+<!-- Relationships -->
+<div class="space-y-4">
+<div>
+<h4 class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-3">Derived From</h4>
+<a class="flex items-center gap-3 p-2 rounded-lg bg-surface-highlight/50 hover:bg-surface-highlight border border-white/5 transition-colors group" href="#">
+<div class="size-10 rounded bg-slate-700 bg-cover bg-center" data-alt="Backslide thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkOBh9OgJdNvdwBs8QeI2JFYzy_F--qsHtq8BnQzzo3m9UEoNXmVZt7w4Pe_kKnNm-z6keUFWOVi7yZ8H30NeXQGeVVKgitX9p3sXDRHs6XRWZsinh3dACwLvdILXbBF43ddPtIOyuxkmZzSG2NGRZLnyrSR6oxQb4veq8UBAXZnrJefNYrt7512miLco18Wi05A0RAW-nD8LDiJ0ZV2CKMnJn-jrBtvBYKtCATuj2z0SK82N5XJXe84QxpNuph2ES6h_5aqLd1sA')"></div>
+<div class="flex-1">
+<div class="text-white text-sm font-medium group-hover:text-primary transition-colors">The Backslide</div>
+<div class="text-slate-500 text-xs">Foundation • 1979</div>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm">arrow_forward</span>
+</a>
+</div>
+<div>
+<h4 class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-3">Influenced</h4>
+<div class="space-y-2">
+<a class="flex items-center gap-3 p-2 rounded-lg bg-surface-highlight/50 hover:bg-surface-highlight border border-white/5 transition-colors group" href="#">
+<div class="size-8 rounded bg-slate-700 bg-cover bg-center" data-alt="Circle moonwalk thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6LCeck2X4SNlTgVTyG4RIdUVGqbluPvYEjKFDeVy-xO-VanW009dOuN5c5sl8ZFwpk_ZRN_Zb7kzOukX6TNTSudS19O_52ZODbiLAFbkatQK3_JKTuA_q_UhLBk00G5sblhOQqo5yiEuLpanYPaeQ4lgJSmoprpjwprwiNZ7CnsZKnUtVJM2_sxgHyVpkY47PgcA7-RBWWO2NS0rJ9A2v4SJbcwbs197LAzCejRbBe7uU9HXgPbLcsNcGPgFGylq8nYy52fqD69A')"></div>
+<div class="flex-1">
+<div class="text-white text-sm font-medium group-hover:text-primary transition-colors">Circle Moonwalk</div>
+</div>
+</a>
+<a class="flex items-center gap-3 p-2 rounded-lg bg-surface-highlight/50 hover:bg-surface-highlight border border-white/5 transition-colors group" href="#">
+<div class="size-8 rounded bg-slate-700 bg-cover bg-center" data-alt="Side walk thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvGSzw7irfFd-p2X025X3Y4OMtIWLspM7C9PFThgxstiKxMT-VGnAQKz-AtPvJBXJYoYCMdtR5lwpnhY1kcxJVdwtv2QUL1lg2hp6cD_661bGA8SKxwJ3MrnMo-u07Zmf5jnunIjYIXfNqfhJ7IpVjenrjAL8kGqiSZmggg8bOdxqAeQGQlFc3K-gIAdvdUrjZ57JFgfocL4Y4VqEtCseH2NEMFBCAvTMoI-WMwbizlMrTqWdzEIhFmxqpMDoyKU3hy-H-oFFdLy4')"></div>
+<div class="flex-1">
+<div class="text-white text-sm font-medium group-hover:text-primary transition-colors">Side Walk</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Timeline Scrubber (Bottom Overlay) -->
+<div class="absolute bottom-6 left-6 right-96 z-40 px-8">
+<div class="bg-[#18152a]/90 backdrop-blur-md border border-[#292348] rounded-2xl p-4 shadow-2xl">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Timeline</span>
+<div class="flex gap-4 text-xs font-mono text-slate-500">
+<span>Min: 1970</span>
+<span>Max: 2024</span>
+</div>
+</div>
+<div class="relative h-12 flex items-center">
+<!-- Track -->
+<div class="absolute w-full h-1 bg-surface-highlight rounded-full"></div>
+<!-- Active Range -->
+<div class="absolute left-[15%] w-[35%] h-1 bg-primary/50 rounded-full"></div>
+<!-- Ticks -->
+<div class="absolute w-full flex justify-between px-2 pointer-events-none">
+<div class="h-2 w-px bg-slate-700"></div> <!-- 1970 -->
+<div class="h-2 w-px bg-slate-700"></div> <!-- 1980 -->
+<div class="h-2 w-px bg-slate-700"></div> <!-- 1990 -->
+<div class="h-2 w-px bg-slate-700"></div> <!-- 2000 -->
+<div class="h-2 w-px bg-slate-700"></div> <!-- 2010 -->
+<div class="h-2 w-px bg-slate-700"></div> <!-- 2020 -->
+</div>
+<!-- Thumb (Current Time) -->
+<div class="absolute left-[24%] -ml-3 cursor-pointer group z-10">
+<div class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded mb-1 opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 whitespace-nowrap">1983</div>
+<div class="size-6 bg-white border-4 border-primary rounded-full shadow-[0_0_15px_rgba(50,17,212,0.6)] hover:scale-125 transition-transform"></div>
+</div>
+<!-- Labels -->
+<div class="absolute top-6 w-full flex justify-between text-[10px] text-slate-500 font-mono pointer-events-none">
+<span>1970</span>
+<span>1980</span>
+<span>1990</span>
+<span>2000</span>
+<span>2010</span>
+<span>2020</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Controls (Bottom Left) -->
+<div class="absolute bottom-6 left-6 z-40 flex flex-col gap-2">
+<div class="flex flex-col bg-[#18152a] border border-[#292348] rounded-lg overflow-hidden shadow-lg">
+<button class="p-2 text-slate-400 hover:text-white hover:bg-white/5 transition-colors border-b border-[#292348]">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="p-2 bg-[#18152a] border border-[#292348] rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors shadow-lg" title="Reset View">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+<!-- Legend (Top Right of Canvas area) -->
+<div class="absolute top-24 right-[400px] z-20">
+<div class="bg-[#18152a]/80 backdrop-blur border border-[#292348] rounded-lg p-3 shadow-lg">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-0.5 bg-primary"></div>
+<span class="text-xs text-slate-300">Direct Lineage</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-0.5 bg-primary/40 dashed border-b border-primary/40 border-dashed"></div>
+<span class="text-xs text-slate-400">Stylistic Influence</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full border border-primary bg-primary/20"></div>
+<span class="text-xs text-slate-400">Key Milestone</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

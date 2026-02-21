@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Lineage Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1933",
+                        "border-dark": "#292348",
+                        "text-secondary": "#9b92c9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-10 py-3 shrink-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DanceLineage</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Encyclopedia</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Academy</a>
+<a class="text-white text-sm font-medium leading-normal text-primary" href="#">Map</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Community</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden sm:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-secondary flex border-none bg-border-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-border-dark focus:border-none h-full placeholder:text-text-secondary px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search styles..." value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Sign In</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 relative w-full h-full flex overflow-hidden">
+<!-- Interactive Map Container -->
+<div class="relative w-full h-full bg-[#0b0816]">
+<!-- Map Background Representation -->
+<div class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" style="background-image: radial-gradient(#292348 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+<!-- Abstract World Map SVG -->
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Simple abstracted map shape for visualization context -->
+<svg class="w-full h-full opacity-20 text-indigo-900 fill-current" viewbox="0 0 1000 500">
+<path d="M150,150 Q200,100 250,150 T350,150 T450,150 T550,200 T650,150 T750,150 T850,200" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path d="M100,250 Q200,200 300,250 T500,300 T700,250 T900,250" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path d="M50,350 Q250,300 450,350 T850,350" fill="none" stroke="currentColor" stroke-width="2"></path>
+<!-- Continents placeholder shapes -->
+<path d="M200,120 Q220,100 250,110 T280,140 T250,180 T210,170 T200,120" fill="currentColor"></path> <!-- NA -->
+<path d="M450,110 Q480,90 510,110 T530,150 T500,180 T460,160 T450,110" fill="currentColor"></path> <!-- EU -->
+<path d="M750,140 Q780,120 810,140 T830,180 T800,220 T760,200 T750,140" fill="currentColor"></path> <!-- Asia -->
+</svg>
+</div>
+<!-- Connection Lines (Bezier Curves) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
+<defs>
+<lineargradient id="gradientLine" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#3211d4;stop-opacity:0"></stop>
+<stop offset="50%" style="stop-color:#3211d4;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#9b92c9;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<!-- Line from NY to LA -->
+<path class="animate-pulse opacity-60" d="M240 160 Q 300 80 180 160" fill="none" stroke="url(#gradientLine)" stroke-width="2"></path>
+<!-- Line from Bronx to Paris -->
+<path class="opacity-40" d="M240 160 Q 350 40 480 130" fill="none" stroke="url(#gradientLine)" stroke-dasharray="5,5" stroke-width="2"></path>
+<!-- Line from Bronx to Tokyo -->
+<path class="opacity-80" d="M240 160 Q 500 20 800 160" fill="none" stroke="url(#gradientLine)" stroke-width="2"></path>
+</svg>
+<!-- Map Nodes -->
+<!-- Node: The Bronx -->
+<div class="absolute top-[32%] left-[24%] group cursor-pointer z-20">
+<div class="relative flex items-center justify-center">
+<div class="absolute size-12 bg-primary/30 rounded-full animate-ping"></div>
+<div class="relative size-4 bg-white rounded-full border-2 border-primary shadow-[0_0_15px_rgba(50,17,212,0.8)]"></div>
+<!-- Tooltip -->
+<div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-surface-dark border border-border-dark px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+<p class="text-white text-xs font-bold">The Bronx, NYC</p>
+<p class="text-primary text-[10px] font-medium uppercase tracking-wider">Origin: Hip Hop</p>
+</div>
+</div>
+</div>
+<!-- Node: Los Angeles -->
+<div class="absolute top-[34%] left-[18%] group cursor-pointer z-20">
+<div class="relative flex items-center justify-center">
+<div class="size-3 bg-text-secondary rounded-full border border-background-dark group-hover:bg-white transition-colors"></div>
+<!-- Tooltip -->
+<div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-surface-dark border border-border-dark px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+<p class="text-white text-xs font-bold">Los Angeles</p>
+<p class="text-text-secondary text-[10px] font-medium uppercase tracking-wider">Locking &amp; Popping</p>
+</div>
+</div>
+</div>
+<!-- Node: Tokyo -->
+<div class="absolute top-[32%] left-[80%] group cursor-pointer z-20">
+<div class="relative flex items-center justify-center">
+<div class="size-3 bg-text-secondary rounded-full border border-background-dark group-hover:bg-white transition-colors"></div>
+</div>
+</div>
+<!-- Node: Paris -->
+<div class="absolute top-[26%] left-[48%] group cursor-pointer z-20">
+<div class="relative flex items-center justify-center">
+<div class="size-3 bg-text-secondary rounded-full border border-background-dark group-hover:bg-white transition-colors"></div>
+</div>
+</div>
+<!-- Floating Controls: Filters -->
+<div class="absolute top-6 left-6 flex flex-col gap-2 z-30">
+<div class="bg-surface-dark/90 backdrop-blur-sm border border-border-dark p-1 rounded-lg flex flex-col shadow-xl">
+<button class="flex items-center gap-3 px-3 py-2 hover:bg-white/5 rounded-md transition-colors text-left group">
+<div class="size-2 rounded-full bg-primary"></div>
+<span class="text-white text-sm font-medium">Hip Hop Lineage</span>
+<span class="material-symbols-outlined text-text-secondary text-base ml-auto opacity-0 group-hover:opacity-100">check</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2 hover:bg-white/5 rounded-md transition-colors text-left group">
+<div class="size-2 rounded-full bg-pink-500"></div>
+<span class="text-text-secondary text-sm font-medium">Ballet Evolution</span>
+</button>
+<button class="flex items-center gap-3 px-3 py-2 hover:bg-white/5 rounded-md transition-colors text-left group">
+<div class="size-2 rounded-full bg-yellow-500"></div>
+<span class="text-text-secondary text-sm font-medium">Latin Roots</span>
+</button>
+</div>
+</div>
+<!-- Floating Controls: Map Tools -->
+<div class="absolute top-6 right-6 z-30 flex flex-col gap-2">
+<button class="size-10 bg-surface-dark border border-border-dark rounded-lg flex items-center justify-center text-white hover:bg-border-dark transition-colors shadow-lg">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 bg-surface-dark border border-border-dark rounded-lg flex items-center justify-center text-white hover:bg-border-dark transition-colors shadow-lg">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-10 bg-surface-dark border border-border-dark rounded-lg flex items-center justify-center text-white hover:bg-border-dark transition-colors mt-2 shadow-lg">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Bottom Interactive Timeline -->
+<div class="absolute bottom-0 left-0 w-full z-40 px-4 pb-6 pt-12 bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent">
+<div class="max-w-5xl mx-auto w-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<button class="flex items-center gap-2 text-white hover:text-primary transition-colors">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(50,17,212,0.5)] hover:scale-105 transition-transform">
+<span class="material-symbols-outlined fill-current">play_arrow</span>
+</div>
+<span class="text-sm font-bold tracking-wide ml-2">PLAY HISTORY</span>
+</button>
+<div class="text-right">
+<p class="text-xs text-text-secondary uppercase tracking-widest font-medium">Current Era</p>
+<h3 class="text-3xl font-bold text-white tabular-nums tracking-tighter">1973</h3>
+</div>
+</div>
+<!-- Slider Track -->
+<div class="relative h-14 w-full select-none">
+<!-- Background Track -->
+<div class="absolute top-1/2 left-0 right-0 h-1 bg-border-dark -translate-y-1/2 rounded-full"></div>
+<!-- Active Track -->
+<div class="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 rounded-l-full" style="width: 53%;"></div>
+<!-- Ticks -->
+<div class="absolute inset-0 flex justify-between items-center px-1 pointer-events-none">
+<div class="h-2 w-px bg-white/20 relative group"><span class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-text-secondary group-hover:text-white">1920</span></div>
+<div class="h-2 w-px bg-white/20 relative group"><span class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-text-secondary group-hover:text-white">1940</span></div>
+<div class="h-2 w-px bg-white/20 relative group"><span class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-text-secondary group-hover:text-white">1960</span></div>
+<div class="h-4 w-0.5 bg-white relative"><span class="absolute top-5 left-1/2 -translate-x-1/2 text-xs font-bold text-white">1973</span></div>
+<div class="h-2 w-px bg-white/20 relative group"><span class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-text-secondary group-hover:text-white">2000</span></div>
+<div class="h-2 w-px bg-white/20 relative group"><span class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-text-secondary group-hover:text-white">2020</span></div>
+</div>
+<!-- Thumb -->
+<div class="absolute top-1/2 left-[53%] -translate-x-1/2 -translate-y-1/2 size-6 bg-white rounded-full border-4 border-primary cursor-grab hover:scale-110 transition-transform shadow-[0_0_10px_rgba(255,255,255,0.5)] z-50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Detail Sidebar (Slide-over) -->
+<aside class="absolute top-4 bottom-20 right-4 w-96 bg-surface-dark border border-border-dark rounded-xl shadow-2xl flex flex-col overflow-hidden z-40 animate-[slideIn_0.3s_ease-out]">
+<!-- Sidebar Header -->
+<div class="p-6 border-b border-border-dark relative">
+<button class="absolute top-4 right-4 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/20">Active Node</span>
+</div>
+<h2 class="text-2xl font-bold text-white leading-tight">Hip Hop</h2>
+<div class="flex items-center gap-2 mt-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>The Bronx, New York (1973)</span>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Media -->
+<div class="aspect-video w-full rounded-lg bg-black relative overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-60 transition-opacity" data-alt="Black and white photo of breakdancers in the Bronx" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACysGRXGe5xOTZPLs_XCIuYEuTdjkLxinLo19O7N9uNbj0cnLqwSOSWAPVriM2qay-t1GtZ9OBpmyCTo3QRrQ-8_TGivQP19dqFMfCHW09zWN6Q7RClMamLOpRhRLHFpLtBd-zUMEPLDNc9VFIdUYE2JP2gepRhPDEuvVqwhfm7IOv6-Fm-39zBT--HfgBAA9C6r9BT9MOrwtiDfU5j0IbLJCM2ieY74D7m3nPChYKUX_c-PRRrwZtQfTQ_c82gsbWWO3Aosv1llg');"></div>
+<button class="absolute inset-0 flex items-center justify-center">
+<div class="size-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-white">play_arrow</span>
+</div>
+</button>
+<div class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 rounded text-[10px] text-white font-medium">02:14</div>
+</div>
+<!-- Description -->
+<div>
+<h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2">Origins</h3>
+<p class="text-text-secondary text-sm leading-relaxed">
+                        Emerging from the South Bronx in the early 1970s, Hip Hop dance began as breaking (b-boying/b-girling) at block parties thrown by DJ Kool Herc. It was a direct response to the rhythmic breakdown sections of funk records.
+                    </p>
+</div>
+<!-- Lineage Tree -->
+<div class="bg-background-dark/50 rounded-lg p-4 border border-border-dark">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">account_tree</span>
+                        Lineage
+                    </h3>
+<!-- Parents -->
+<div class="mb-4">
+<p class="text-xs text-text-secondary mb-2">Influenced By:</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-border-dark text-xs text-white hover:bg-white/10 cursor-pointer transition-colors border border-white/5">Funk Styles</span>
+<span class="px-3 py-1 rounded-full bg-border-dark text-xs text-white hover:bg-white/10 cursor-pointer transition-colors border border-white/5">African Dance</span>
+<span class="px-3 py-1 rounded-full bg-border-dark text-xs text-white hover:bg-white/10 cursor-pointer transition-colors border border-white/5">Capoeira</span>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-border-dark my-4"></div>
+<!-- Children -->
+<div>
+<p class="text-xs text-text-secondary mb-2">Gave Rise To:</p>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between group cursor-pointer hover:bg-white/5 p-2 rounded-md -mx-2">
+<span class="text-sm text-white font-medium">Krumping</span>
+<span class="text-xs text-text-secondary group-hover:text-primary">Los Angeles, 1990s →</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer hover:bg-white/5 p-2 rounded-md -mx-2">
+<span class="text-sm text-white font-medium">Litefeet</span>
+<span class="text-xs text-text-secondary group-hover:text-primary">Harlem, 2000s →</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-4 border-t border-border-dark bg-background-dark/50 backdrop-blur-sm">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+<span>Explore Full Lineage</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</aside>
+</main>
+</body></html>

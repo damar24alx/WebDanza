@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step Dictionary - Dance Academy</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#7b25f4",
+              "background-light": "#f7f5f8",
+              "background-dark": "#171022",
+              "card-dark": "#241a35",
+              "hover-dark": "#2e2142",
+            },
+            fontFamily: {
+              "display": ["Work Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(123, 37, 244, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(123, 37, 244, 0.2);
+            border-radius: 20px;
+        }
+        
+        /* Skeleton Animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .animate-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #241a35 4%, #2e2142 25%, #241a35 36%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden flex flex-col h-screen">
+<!-- Top Navbar (Adapted from provided component) -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#322249] bg-background-light dark:bg-background-dark px-10 py-3 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">temp_preferences_custom</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Library</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Instructors</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Pricing</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-transparent hover:bg-slate-200 dark:hover:bg-[#322249] text-slate-900 dark:text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Sign In</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 transition-all">
+<span class="truncate">Start Free Trial</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Filter Panel -->
+<aside class="w-80 flex-none bg-background-light dark:bg-[#1a1226] border-r border-slate-200 dark:border-[#322249] flex flex-col overflow-hidden hidden lg:flex">
+<div class="p-6 border-b border-slate-200 dark:border-[#322249] flex justify-between items-center">
+<h3 class="text-lg font-bold">Filters</h3>
+<button class="text-xs font-medium text-primary hover:text-primary/80">Reset All</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+<!-- Dance Style Filter -->
+<div class="space-y-3">
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Dance Style</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">expand_less</span>
+</div>
+<div class="space-y-2 pt-1">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="size-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary/50 dark:focus:ring-offset-[#1a1226]" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Hip Hop</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="size-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary/50 dark:focus:ring-offset-[#1a1226]" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Contemporary</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="size-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary/50 dark:focus:ring-offset-[#1a1226]" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Ballet</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="size-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary/50 dark:focus:ring-offset-[#1a1226]" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">House</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="size-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary/50 dark:focus:ring-offset-[#1a1226]" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Popping &amp; Locking</span>
+</label>
+</div>
+</div>
+<!-- Difficulty Filter -->
+<div class="space-y-3">
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Difficulty</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">expand_less</span>
+</div>
+<div class="space-y-2 pt-1">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full relative mt-2">
+<div class="absolute left-0 top-0 h-full w-1/3 bg-primary rounded-l-full"></div>
+<div class="absolute left-1/3 top-1/2 -translate-y-1/2 size-4 bg-white dark:bg-slate-200 rounded-full shadow cursor-grab border-2 border-primary"></div>
+</div>
+</label>
+<div class="flex justify-between text-xs text-slate-500">
+<span>Beginner</span>
+<span>Expert</span>
+</div>
+</div>
+</div>
+<!-- Body Focus Filter -->
+<div class="space-y-3">
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Focus Area</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">expand_less</span>
+</div>
+<div class="space-y-2 pt-1">
+<button class="flex items-center justify-between w-full px-3 py-2 rounded-md bg-slate-200 dark:bg-card-dark hover:bg-slate-300 dark:hover:bg-hover-dark transition-colors text-left text-sm">
+<span class="text-slate-700 dark:text-slate-300">Footwork</span>
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+</button>
+<button class="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-slate-200 dark:hover:bg-card-dark transition-colors text-left text-sm group">
+<span class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200">Isolations</span>
+</button>
+<button class="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-slate-200 dark:hover:bg-card-dark transition-colors text-left text-sm group">
+<span class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200">Ground Moves</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Header Section -->
+<div class="flex-none px-6 py-6 lg:px-12 lg:pt-10 pb-4">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-4 text-sm">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-slate-500 dark:text-slate-600">/</span>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Library</a>
+<span class="text-slate-500 dark:text-slate-600">/</span>
+<span class="text-primary font-medium">Moves</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
+<div class="max-w-2xl">
+<h1 class="text-4xl lg:text-5xl font-black tracking-tight mb-3 text-slate-900 dark:text-white">Step Dictionary</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Explore our comprehensive library of over 500 dance moves. Filter by style, difficulty, and body focus to build your perfect practice session.</p>
+</div>
+</div>
+<!-- Search & Tags -->
+<div class="flex flex-col gap-4">
+<label class="group flex items-center w-full h-14 rounded-xl bg-white dark:bg-[#241a35] border border-slate-200 dark:border-[#322249] focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all overflow-hidden shadow-sm">
+<div class="pl-5 pr-3 text-slate-400 group-focus-within:text-primary">
+<span class="material-symbols-outlined text-2xl">search</span>
+</div>
+<input class="w-full h-full bg-transparent border-none focus:ring-0 text-lg placeholder:text-slate-400 dark:text-white" placeholder="Search for a move (e.g., 'Moonwalk', 'Pirouette')..." type="text"/>
+<button class="pr-5 text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors" title="Clear search">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</label>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mask-fade-right">
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">#trending</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300 border border-transparent hover:border-primary/50 text-sm font-medium transition-colors">#basics</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300 border border-transparent hover:border-primary/50 text-sm font-medium transition-colors">#spins</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300 border border-transparent hover:border-primary/50 text-sm font-medium transition-colors">#footwork</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300 border border-transparent hover:border-primary/50 text-sm font-medium transition-colors">#flexibility</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300 border border-transparent hover:border-primary/50 text-sm font-medium transition-colors">#choreography</button>
+</div>
+</div>
+</div>
+<!-- Content Grid Container -->
+<div class="flex-1 overflow-y-auto px-6 lg:px-12 pb-12 custom-scrollbar">
+<!-- Results Count -->
+<div class="flex justify-between items-center mb-6">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Showing <span class="text-slate-900 dark:text-white">12</span> of <span class="text-slate-900 dark:text-white">142</span> moves</p>
+<div class="flex items-center gap-2">
+<span class="text-sm text-slate-500 dark:text-slate-400">Sort by:</span>
+<select class="bg-transparent border-none text-sm font-bold text-slate-900 dark:text-white focus:ring-0 p-0 pr-8 cursor-pointer">
+<option>Most Popular</option>
+<option>Newest Added</option>
+<option>Difficulty (Low to High)</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+<!-- Move Card 1 -->
+<div class="group relative flex flex-col bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-slate-100 dark:border-transparent">
+<div class="relative aspect-video bg-slate-900 overflow-hidden">
+<img alt="Dancer performing a fluid contemporary arm movement in low light studio" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHAfUvDkrfQPRnj9KafLQ1wSmp9bChgl2YJWSCHTetlvEPSxGsQNNn0YCTMTMeceFssjJ3kD3ERZvaSeR-439814xUTcfcfIzXZ-2znakB_XIvF8zLxz9NQ5PwxVIvZNIt8uMXAeNFySrpcPekS_F3xtElye5Ep5QgO-K9MW5KqcgBDhcBtaMk-UTccm1Tm_114zmV8uv3PgX117VIFwJyO33xK1H-RFfhR91u_f2OT8Qz3BRAilgrqg5e87z7YLKwyT287fx4G9Y"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+<button class="size-12 rounded-full bg-primary/90 text-white flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="material-symbols-outlined filled">play_arrow</span>
+</button>
+</div>
+<!-- Badges -->
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 rounded bg-black/60 backdrop-blur-sm text-xs font-semibold text-white tracking-wide uppercase">Contemporary</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Fluid Arm Waves</h3>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer text-xl">bookmark_add</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Master the art of creating liquid motion through your upper body.</p>
+<div class="mt-auto pt-3 border-t border-slate-100 dark:border-[#322249] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-300">Beginner</span>
+</div>
+<span class="text-xs font-medium text-slate-400">0:45</span>
+</div>
+</div>
+</div>
+<!-- Move Card 2 -->
+<div class="group relative flex flex-col bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-slate-100 dark:border-transparent">
+<div class="relative aspect-video bg-slate-900 overflow-hidden">
+<img alt="Silhouette of a breakdancer doing a freeze on one hand" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6CBsDJ1MhjlFBh-RdvrjKAwfz7YLX9CEVkJvJQIUywUpBA6QOukTaiMykLST2ehjFYmvFLpHpXzi0GSsWu6NflSQQ9K_5fYwmvZ006A5LINGJJaqfQcjL2_0BxF5Asp3FFvev3Rw7sYaleTPdYaMzbkZpiN_1zIiKxmnx2MRYz6JMGY7IWYSh7rvzdsti7YX00qRIS23ulWyyR7RPOwoyv8LEZJEpYzfz_as9tryfP203B07FHF9hAmvCDdiNelx1-8jeC2gHFFA"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+<button class="size-12 rounded-full bg-primary/90 text-white flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="material-symbols-outlined filled">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 rounded bg-black/60 backdrop-blur-sm text-xs font-semibold text-white tracking-wide uppercase">Breakdance</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Baby Freeze</h3>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer text-xl">bookmark_add</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">A foundational freeze move essential for all b-boys and b-girls.</p>
+<div class="mt-auto pt-3 border-t border-slate-100 dark:border-[#322249] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-300">Intermediate</span>
+</div>
+<span class="text-xs font-medium text-slate-400">1:12</span>
+</div>
+</div>
+</div>
+<!-- Move Card 3 -->
+<div class="group relative flex flex-col bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 border border-slate-100 dark:border-transparent">
+<div class="relative aspect-video bg-slate-900 overflow-hidden">
+<img alt="Ballet dancer performing a jump in a studio with large windows" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCssfs1PRqD0KxgLN07Fok_QvhbLboX1U8h9ZKXrjRc96RyXTO1-s6ZQB6zeLcugfml8LVpU5TwViZI9H7ZqgxGt2F9CmZbd2u3geOEZHur-EGUNPQlDRUz7Ptgiq3tmWjibzCytEpPtuRJ02_jheTBseqdscGhHCwQQ62bReoiZTpPD5BD6Y0bOMV1Yu4YpnuM7JusL3X8ed0Xdyit_-PKUMfzB7G-LczsYakrkh8CU2Q991X_a96ZviKvJs3AE6o6QZDTI4JYnk8"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+<button class="size-12 rounded-full bg-primary/90 text-white flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="material-symbols-outlined filled">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 rounded bg-black/60 backdrop-blur-sm text-xs font-semibold text-white tracking-wide uppercase">Ballet</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Grand Jeté</h3>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer text-xl">bookmark_add</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">The classic split jump. Focus on height and extension.</p>
+<div class="mt-auto pt-3 border-t border-slate-100 dark:border-[#322249] flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-red-500"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-300">Advanced</span>
+</div>
+<span class="text-xs font-medium text-slate-400">2:30</span>
+</div>
+</div>
+</div>
+<!-- Skeleton Loader Card (Visual Representation of loading state) -->
+<div class="flex flex-col bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-transparent">
+<div class="aspect-video bg-slate-200 dark:bg-[#2e2142] animate-shimmer"></div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<div class="h-6 w-3/4 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-6 w-6 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+</div>
+<div class="h-4 w-full bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-4 w-1/2 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer mb-2"></div>
+<div class="mt-auto pt-3 border-t border-slate-100 dark:border-[#322249] flex items-center justify-between">
+<div class="h-4 w-20 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-4 w-10 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+</div>
+</div>
+</div>
+<!-- Skeleton Loader Card 2 -->
+<div class="flex flex-col bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-transparent">
+<div class="aspect-video bg-slate-200 dark:bg-[#2e2142] animate-shimmer"></div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<div class="h-6 w-2/3 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-6 w-6 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+</div>
+<div class="h-4 w-full bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-4 w-1/2 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer mb-2"></div>
+<div class="mt-auto pt-3 border-t border-slate-100 dark:border-[#322249] flex items-center justify-between">
+<div class="h-4 w-20 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+<div class="h-4 w-10 bg-slate-200 dark:bg-[#2e2142] rounded animate-shimmer"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, shown here for structure demo) -->
+<div class="hidden flex-col items-center justify-center py-20 text-center">
+<div class="size-48 bg-slate-100 dark:bg-[#241a35] rounded-full flex items-center justify-center mb-6">
+<!-- Abstract Empty Illustration -->
+<span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600">search_off</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">No moves found</h3>
+<p class="text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">We couldn't find any moves matching your current filters. Try adjusting your search or clearing your filters.</p>
+<button class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold text-sm transition-colors">
+                        Clear All Filters
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

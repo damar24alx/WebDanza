@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Style Detail: House Dance</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "primary-hover": "#260ca3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1b2e",
+                        "surface-dark-lighter": "#2a2640",
+                        "text-main": "#e2e8f0",
+                        "text-muted": "#94a3b8"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-surface-dark-lighter bg-background-dark/80 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="flex size-8 items-center justify-center rounded bg-primary text-white">
+<span class="material-symbols-outlined text-[20px]">queue_music</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">Dance Encyclopedia</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium" href="#">Styles</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium" href="#">History</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium" href="#">Technique</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium" href="#">Learning Paths</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<div class="hidden lg:flex w-full max-w-xs items-center rounded-lg bg-surface-dark px-3 py-2 ring-1 ring-white/10 focus-within:ring-primary/50">
+<span class="material-symbols-outlined text-text-muted">search</span>
+<input class="w-full bg-transparent px-2 text-sm text-white placeholder-text-muted focus:outline-none border-none focus:ring-0" placeholder="Search styles, steps..."/>
+</div>
+<div class="flex gap-3">
+<button class="hidden sm:flex items-center justify-center rounded-lg bg-surface-dark px-4 py-2 text-sm font-bold text-white hover:bg-surface-dark-lighter transition-colors ring-1 ring-white/10">
+                        Log In
+                    </button>
+<button class="flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary-hover transition-colors shadow-[0_0_15px_rgba(50,17,212,0.4)]">
+                        Sign Up
+                    </button>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col">
+<!-- Hero Section -->
+<section class="relative min-h-[500px] w-full flex flex-col justify-end p-6 lg:p-16 overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay z-10"></div>
+<div class="h-full w-full bg-cover bg-center" data-alt="Energetic urban dancer in motion with motion blur effects in a dark warehouse setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9t85-89Sd9t6eSc2u9Nmnmu8DBqBiw_JzVo3nCgBtewhRdIlJQHoHCuoupgVJ4Ev-Ikb49xKjVtKbKL8Fqht_as-10G8UHUn1WID506FNaYcrFiVhE6HtWjvh0R6uLaFcWolxmqqK5gTZS8am4vgG0OzMlKDOjLBN5XufJaxbo4cXHRRiahkaoYjqWwq_fHrFllKFhTdtHMzzLsV1JfgFcMJCaCW-Q3bBkUDy5G_ULUJWuVCAfDlE1vofDBWXZXvEBCZpywYJt6o');"></div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-20 max-w-4xl space-y-6">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/40">
+                            Club Style
+                        </span>
+<span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-inset ring-white/20">
+<span class="material-symbols-outlined mr-1 text-[14px]">speed</span> 120-130 BPM
+                        </span>
+</div>
+<h1 class="text-5xl font-black tracking-tight text-white sm:text-7xl lg:text-8xl">
+                        House Dance
+                    </h1>
+<p class="max-w-2xl text-lg font-medium leading-relaxed text-slate-300 sm:text-xl">
+                        The Chicago-born phenomenon emphasizing 'The Jack'. A soulful, footwork-heavy style born in the warehouse clubs of the 80s, blending African dance, Latin moves, and martial arts.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-base font-bold text-white transition-all hover:bg-primary-hover hover:scale-[1.02] shadow-[0_0_20px_rgba(50,17,212,0.5)]">
+<span class="material-symbols-outlined">play_arrow</span>
+                            Start Path
+                        </button>
+<button class="flex items-center gap-2 rounded-lg bg-surface-dark px-6 py-3.5 text-base font-bold text-white ring-1 ring-white/10 transition-all hover:bg-surface-dark-lighter hover:ring-white/20">
+<span class="material-symbols-outlined">list</span>
+                            View Essential Steps
+                        </button>
+</div>
+</div>
+</section>
+<!-- Sticky Sub-Navigation -->
+<div class="sticky top-[65px] z-40 w-full border-b border-surface-dark-lighter bg-background-dark/95 backdrop-blur shadow-lg">
+<div class="mx-auto flex w-full max-w-7xl gap-8 overflow-x-auto px-6 py-0 lg:px-10 no-scrollbar">
+<a class="whitespace-nowrap border-b-[3px] border-primary py-4 text-sm font-bold text-white" href="#summary">Summary</a>
+<a class="whitespace-nowrap border-b-[3px] border-transparent py-4 text-sm font-bold text-text-muted hover:text-white transition-colors" href="#history">History</a>
+<a class="whitespace-nowrap border-b-[3px] border-transparent py-4 text-sm font-bold text-text-muted hover:text-white transition-colors" href="#technique">Technique</a>
+<a class="whitespace-nowrap border-b-[3px] border-transparent py-4 text-sm font-bold text-text-muted hover:text-white transition-colors" href="#musicality">Musicality</a>
+<a class="whitespace-nowrap border-b-[3px] border-transparent py-4 text-sm font-bold text-text-muted hover:text-white transition-colors" href="#steps">Steps Library</a>
+</div>
+</div>
+<!-- Main Content Container -->
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-12 lg:px-10 lg:flex-row">
+<!-- Left Column: Editorial Content -->
+<div class="flex-1 space-y-16">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4 md:grid-cols-4" id="summary">
+<div class="rounded-xl border border-surface-dark-lighter bg-surface-dark p-5">
+<p class="text-xs font-medium uppercase tracking-wider text-text-muted">Origin</p>
+<p class="mt-1 text-xl font-bold text-white">Chicago, USA</p>
+<div class="mt-2 h-1 w-8 rounded-full bg-primary"></div>
+</div>
+<div class="rounded-xl border border-surface-dark-lighter bg-surface-dark p-5">
+<p class="text-xs font-medium uppercase tracking-wider text-text-muted">Era</p>
+<p class="mt-1 text-xl font-bold text-white">Early 80s</p>
+<div class="mt-2 h-1 w-8 rounded-full bg-emerald-500"></div>
+</div>
+<div class="rounded-xl border border-surface-dark-lighter bg-surface-dark p-5">
+<p class="text-xs font-medium uppercase tracking-wider text-text-muted">Difficulty</p>
+<p class="mt-1 text-xl font-bold text-white">Intermediate</p>
+<div class="mt-2 h-1 w-8 rounded-full bg-yellow-500"></div>
+</div>
+<div class="rounded-xl border border-surface-dark-lighter bg-surface-dark p-5">
+<p class="text-xs font-medium uppercase tracking-wider text-text-muted">Key Element</p>
+<p class="mt-1 text-xl font-bold text-white">The Jack</p>
+<div class="mt-2 h-1 w-8 rounded-full bg-purple-500"></div>
+</div>
+</div>
+<!-- History Section -->
+<section class="scroll-mt-32 space-y-6" id="history">
+<h2 class="text-3xl font-bold tracking-tight text-white">The Warehouse Roots</h2>
+<div class="prose prose-invert prose-lg max-w-none text-slate-300">
+<p class="leading-relaxed">
+                                House dance is a social dance primarily danced to house music that has roots in the clubs of Chicago and of New York. The main elements of House dance include "Footwork", "Jacking", and "Lofting". House dance is often improvised and emphasizes fast and complex foot-oriented steps combined with fluid movements in the torso, as well as floor work.
+                            </p>
+<div class="my-8 border-l-4 border-primary bg-surface-dark p-6 rounded-r-lg">
+<p class="text-xl font-medium italic text-white">
+                                    "House is a feeling that no one can understand really unless you're deep into the vibe of it."
+                                </p>
+<p class="mt-4 text-sm font-bold text-primary uppercase tracking-wider">— Frankie Knuckles</p>
+</div>
+<p class="leading-relaxed">
+                                Early house dance was heavily influenced by the era of disco, but as the music evolved into more mechanical, drum-machine heavy beats, the dance style adapted. The "Jack" became the common denominator—a rhythmic rippling of the torso that mimics the steady 4/4 kick drum.
+                            </p>
+</div>
+</section>
+<!-- Technique Section -->
+<section class="scroll-mt-32 space-y-8" id="technique">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold tracking-tight text-white">Core Techniques</h2>
+<a class="text-sm font-bold text-primary hover:text-white transition-colors" href="#">View all techniques -&gt;</a>
+</div>
+<div class="grid gap-6 md:grid-cols-2">
+<!-- Technique Card 1 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-dark ring-1 ring-white/5 transition-all hover:ring-primary/50">
+<div class="aspect-video w-full bg-surface-dark-lighter relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="rounded bg-primary px-2 py-0.5 text-xs font-bold text-white">Essential</span>
+</div>
+<!-- Placeholder for video/gif -->
+<div class="h-full w-full bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="Dancer performing rhythmic body movement" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDs-fu43zM6_KbjxQEKpFMOzZ-rk55CFvIHbtz498sfkEqjyDQG3CmeZvHr45I-m5ZaErapvRMcyV2RBO1cUCmKKdnEbVLrd_NmTQRgeviM1gmQ1wZRRS9sr6SDiBWyR6X05eMtPnWLxElWYMLsbjvfM6It8QRNYARGPElsj9jKQoiMBbhLhoKsdcx5TAieHLtZiWiX5dFyemmzh__Dtx0eo-8F62GORw_a-plfPZogjQqF0lb2qBc5h8NKFrf9r9BrPTyBvxqBEAM');"></div>
+<div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="rounded-full bg-primary/90 p-3 text-white shadow-lg">
+<span class="material-symbols-outlined text-[32px]">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">The Jack</h3>
+<p class="mt-2 text-sm text-text-muted line-clamp-2">The foundation of all House Dance. A rhythmic body ripple that follows the beat.</p>
+</div>
+</div>
+<!-- Technique Card 2 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-dark ring-1 ring-white/5 transition-all hover:ring-primary/50">
+<div class="aspect-video w-full bg-surface-dark-lighter relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="rounded bg-emerald-600 px-2 py-0.5 text-xs font-bold text-white">Foundational</span>
+</div>
+<div class="h-full w-full bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="Low angle shot of dancer's feet in sneakers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFhq_mOQP6p4BqZe3CG6RIQiHxVlBd9Zzo--g-jsd_ImkZcZeAuE0JUNfhgj9Z445QC07ESAcsJ7yxEsWROdXO8oE4r2Pa83zzjyReloKrZsHk7Mbx32HSEQwR9aqC4snNWYmchD1wi1lTWInMpQGtwRwZvTRo8jjUwtUVTHVmTSRT8yuy_DKpI_fexKIXZ2N3tYNj-zXfuXyowqRcoZtbnJlpmJzNRSLb0BVpdkszT3F9DKYKoVnMlznfoC3Twx9OXnSIEmAyhYg');"></div>
+<div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="rounded-full bg-primary/90 p-3 text-white shadow-lg">
+<span class="material-symbols-outlined text-[32px]">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Complex Footwork</h3>
+<p class="mt-2 text-sm text-text-muted line-clamp-2">Rapid steps including the Pas de Bourrée, Shuffle, and Farmer. Focuses on speed and precision.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Musicality Section -->
+<section class="rounded-2xl border border-surface-dark-lighter bg-gradient-to-br from-surface-dark to-surface-dark-lighter p-8" id="musicality">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-white">Understanding the 4/4 Beat</h2>
+<p class="mt-2 text-text-muted">House music typically ranges from 118 to 135 BPM. The 'Four-on-the-floor' rhythm is key to timing your Jack.</p>
+</div>
+<div class="hidden sm:flex size-12 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">graphic_eq</span>
+</div>
+</div>
+<!-- Audio Visualizer Mockup -->
+<div class="mt-8 flex items-end justify-between gap-1 h-16 w-full opacity-80">
+<div class="w-2 bg-primary h-[40%] rounded-t"></div>
+<div class="w-2 bg-primary h-[70%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[30%] rounded-t"></div>
+<div class="w-2 bg-primary h-[60%] rounded-t"></div>
+<div class="w-2 bg-primary h-[100%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[45%] rounded-t"></div>
+<div class="w-2 bg-primary h-[80%] rounded-t"></div>
+<div class="w-2 bg-primary h-[50%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[20%] rounded-t"></div>
+<div class="w-2 bg-primary h-[60%] rounded-t"></div>
+<div class="w-2 bg-primary h-[90%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[40%] rounded-t"></div>
+<div class="w-2 bg-primary h-[70%] rounded-t"></div>
+<div class="w-2 bg-primary h-[30%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[50%] rounded-t"></div>
+<div class="w-2 bg-primary h-[85%] rounded-t"></div>
+<div class="w-2 bg-primary h-[40%] rounded-t"></div>
+<div class="w-2 bg-primary h-[70%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[30%] rounded-t"></div>
+<div class="w-2 bg-primary h-[60%] rounded-t"></div>
+<div class="w-2 bg-primary h-[100%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[45%] rounded-t"></div>
+<div class="w-2 bg-primary h-[80%] rounded-t"></div>
+<div class="w-2 bg-primary h-[50%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[20%] rounded-t"></div>
+<div class="w-2 bg-primary h-[60%] rounded-t"></div>
+<div class="w-2 bg-primary h-[90%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[40%] rounded-t"></div>
+<div class="w-2 bg-primary h-[70%] rounded-t"></div>
+<div class="w-2 bg-primary h-[30%] rounded-t"></div>
+<div class="w-2 bg-primary/50 h-[50%] rounded-t"></div>
+<div class="w-2 bg-primary h-[85%] rounded-t"></div>
+</div>
+<div class="mt-4 flex gap-4">
+<button class="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-bold text-black hover:bg-slate-200">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                                Play Beat Example
+                            </button>
+</div>
+</section>
+</div>
+<!-- Right Column: Learning Path (LMS Style) -->
+<div class="w-full lg:w-96 flex-shrink-0">
+<div class="sticky top-28 space-y-6">
+<!-- Learning Path Card -->
+<div class="rounded-2xl border border-surface-dark-lighter bg-surface-dark p-6 shadow-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-white">Learning Path</h3>
+<div class="flex items-center gap-1 text-xs font-medium text-emerald-400">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>0% Complete</span>
+</div>
+</div>
+<div class="relative space-y-8 pl-4">
+<!-- Vertical Line -->
+<div class="absolute left-[27px] top-4 bottom-4 w-0.5 bg-surface-dark-lighter"></div>
+<!-- Module 1: Active -->
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary ring-4 ring-surface-dark">
+<div class="h-2 w-2 rounded-full bg-white"></div>
+</div>
+<div class="flex-1 pt-0.5">
+<p class="text-xs font-bold uppercase tracking-wider text-primary">Module 1</p>
+<h4 class="text-base font-bold text-white">Foundations &amp; Groove</h4>
+<p class="mt-1 text-xs text-text-muted">Introduction to rhythm, weight transfer, and the basic Jack.</p>
+<button class="mt-3 w-full rounded bg-primary/10 py-2 text-sm font-bold text-primary hover:bg-primary/20 transition-colors">
+                                            Start Module
+                                        </button>
+</div>
+</div>
+<!-- Module 2: Locked -->
+<div class="relative flex items-start gap-4 opacity-60">
+<div class="relative z-10 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-dark-lighter ring-4 ring-surface-dark border border-text-muted">
+<span class="material-symbols-outlined text-[14px] text-text-muted">lock</span>
+</div>
+<div class="flex-1 pt-0.5">
+<p class="text-xs font-bold uppercase tracking-wider text-text-muted">Module 2</p>
+<h4 class="text-base font-bold text-white">Essential Footwork</h4>
+<p class="mt-1 text-xs text-text-muted">Mastering the Pas de Bourrée, Shuffle, and criss-cross steps.</p>
+</div>
+</div>
+<!-- Module 3: Locked -->
+<div class="relative flex items-start gap-4 opacity-60">
+<div class="relative z-10 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-dark-lighter ring-4 ring-surface-dark border border-text-muted">
+<span class="material-symbols-outlined text-[14px] text-text-muted">lock</span>
+</div>
+<div class="flex-1 pt-0.5">
+<p class="text-xs font-bold uppercase tracking-wider text-text-muted">Module 3</p>
+<h4 class="text-base font-bold text-white">Lofting &amp; Floorwork</h4>
+<p class="mt-1 text-xs text-text-muted">Smooth transitions to the floor and acrobatic elements.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Styles -->
+<div class="rounded-xl border border-surface-dark-lighter bg-surface-dark p-6">
+<h4 class="text-sm font-bold uppercase tracking-wider text-text-muted mb-4">Related Styles</h4>
+<div class="space-y-3">
+<a class="flex items-center gap-3 group" href="#">
+<div class="h-10 w-10 rounded bg-surface-dark-lighter bg-cover bg-center group-hover:ring-2 ring-primary transition-all" data-alt="Voguing dancer silhouette" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8wQ4XMM0z1ScIOFj8ZIK7PK-39qTjuJO1KFcwROdf4ykOfNl06gSsJiSQ3aT9TzI5B0oGkOS9BWhFzm8h8rmpZvQCP7mv3xpHs43uK1eHaCKbDLX1m_Evd8ibl5ZXKsAlwgiQ-kyDzVDG8sT8frOJ1ffVMens66v92Z906igmFypmrVd9XgPMs8yOd3-KPesyVAfbpZ5lKAp-enKk-lhaSnTa5XhTaMUdPgA7OtTcdvT73GCkstH-Akb7gpGXNIAzHrDYOc2p-tw')"></div>
+<div>
+<p class="text-sm font-bold text-white group-hover:text-primary transition-colors">Vogue Femme</p>
+<p class="text-xs text-text-muted">New York</p>
+</div>
+</a>
+<a class="flex items-center gap-3 group" href="#">
+<div class="h-10 w-10 rounded bg-surface-dark-lighter bg-cover bg-center group-hover:ring-2 ring-primary transition-all" data-alt="Breakdancer doing a freeze" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIQZcK3mSBEG0oUg_dofEfkshmj7BEa5-nOSc1UpsQDWaDvWRtZqDIQ6nzgik1rMHlFG2X3cd2dKWX8h8_2f63NDpntBNN6_r2L51iVSDuSeaCqpPuiNAP-wo65o-B0x7_3sYw20vSjFFZ9ckggMbRamj_KolH_DqS9TNh-S_qDWpW0GOYdDLNoxMojzIsDUOhyxZ3S_MjHNmYrZ8_LehRTvCgDq66bRM0q8Urlqgk5kb_8Yk5tI5-hGd_H-DzftJdukiHNpq8ihg')"></div>
+<div>
+<p class="text-sm font-bold text-white group-hover:text-primary transition-colors">Waacking</p>
+<p class="text-xs text-text-muted">Los Angeles</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto border-t border-surface-dark-lighter bg-surface-dark py-12">
+<div class="mx-auto max-w-7xl px-6 lg:px-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 text-white">
+<div class="flex size-6 items-center justify-center rounded bg-primary text-white">
+<span class="material-symbols-outlined text-[14px]">queue_music</span>
+</div>
+<span class="text-lg font-bold">Dance Encyclopedia</span>
+</div>
+<div class="flex gap-8 text-sm text-text-muted">
+<a class="hover:text-white transition-colors" href="#">About</a>
+<a class="hover:text-white transition-colors" href="#">Instructors</a>
+<a class="hover:text-white transition-colors" href="#">Pricing</a>
+<a class="hover:text-white transition-colors" href="#">Privacy</a>
+</div>
+<div class="text-xs text-text-muted">
+                            © 2023 Dance Encyclopedia. All rights reserved.
+                        </div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Achievements and Medals</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for modern feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2640; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3211d4; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">music_note</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Dance Platform</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Classes</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Practice</a>
+<a class="text-slate-900 dark:text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Achievements</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full relative group">
+<div class="text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-slate-100 dark:bg-[#292348] h-full placeholder:text-slate-400 px-4 pl-12 text-base font-normal leading-normal transition-all" placeholder="Search badges..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile photo showing a smiling young woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3XqxpwpSxOE0Ysu7AxQ7ELn0ZsFNYKXTAr-pav8j7T-BsuO6-oXJ0dwm1wKT90fOCG9CrqpcDFeVmhEOcaC5IFs1bK01jS7Rp3anlfL1q_h33tJ0M85hJkHAsz_0d9UBrk4uRFDkqDFxi2YQvfsscu2Cd7ejY-_pLIAjGe-2ySZubWM0fYqIH1xNqdPByCiUfPJxcKVpb4FdynU5501DIdGBuEX3VhQMHz_x4pkncKyS3hqPFhTZkO6egxY3bqkuKwdJX6cKAY6A");'></div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto p-6 md:p-10 gap-8">
+<!-- Main Panel: Achievements -->
+<main class="flex-1 flex flex-col gap-8 min-w-0">
+<!-- Hero / Level Progress -->
+<section class="bg-[#1e1a33] dark:bg-opacity-50 border border-slate-800 rounded-xl p-6 md:p-8 relative overflow-hidden group">
+<!-- Decorative background glow -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-end md:items-center gap-6">
+<div class="flex flex-col gap-2 w-full md:max-w-xl">
+<div class="flex items-center gap-3 mb-1">
+<span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">Level 14</span>
+<span class="text-slate-400 text-sm">Street Jazz Prodigy</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-white mb-2">Keep up the rhythm!</h1>
+<!-- Progress Bar -->
+<div class="w-full bg-[#292348] rounded-full h-4 mb-2 overflow-hidden shadow-inner">
+<div class="bg-gradient-to-r from-blue-600 to-primary h-full rounded-full relative" style="width: 75%;">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+<div class="flex justify-between text-xs font-medium text-slate-400">
+<span>750 XP</span>
+<span>1000 XP (Level 15)</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 min-w-max">
+<span class="text-slate-400 text-sm">Global Rank</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">trophy</span>
+<span class="text-3xl font-black text-white">#420</span>
+</div>
+<span class="text-green-400 text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_drop_up</span> Top 5%
+                        </span>
+</div>
+</div>
+</section>
+<!-- Category: Style Mastery -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-2 bg-[#292348] rounded-lg text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">style</span>
+</span>
+                        Style Mastery
+                    </h2>
+<div class="h-px bg-slate-800 flex-1 ml-6 mr-4"></div>
+<button class="text-sm font-medium text-primary hover:text-white transition-colors">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+<!-- Badge: Unlocked Hip Hop -->
+<div class="bg-[#1e1a33] border border-slate-700/50 hover:border-primary/50 p-6 rounded-xl flex flex-col items-center gap-4 text-center transition-all hover:shadow-[0_0_20px_rgba(50,17,212,0.15)] hover:-translate-y-1 group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative size-24 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 p-1 shadow-lg shadow-yellow-500/20 group-hover:scale-105 transition-transform">
+<div class="w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Graffiti art style background representing Hip Hop culture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZK2_Edj7F0aC3mRFa_GBgUytIlLmTvRVNjVyliL4AGM1Y2F8HfQ6aOft9CZYXgZpTTHuMHLqn944SDhMEKPTCy65Py-JEAggACDW5FxhnDqWfHNHyR20i3qyj-mURQK19Yk7Iu3L0xc3kvuPzxiWFAdP2U6NJO4Fcu0_8a8El2MDrTS04hu67y1AZj-THXL3BUAsaH0erEUB3UXi0b7rdEQmHsjhD7iHFIOvtyFnG9p_Tj5f4P5I4Lz6e3mc84kjYSb7aNsOD-M8"/>
+<span class="material-symbols-outlined absolute text-white text-4xl drop-shadow-md">speaker</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-white">Hip Hop Expert</h3>
+<p class="text-xs text-slate-400 mt-1">Completed 50 Hip Hop Classes</p>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">Unlocked</span>
+</div>
+<!-- Badge: Unlocked House -->
+<div class="bg-[#1e1a33] border border-slate-700/50 hover:border-primary/50 p-6 rounded-xl flex flex-col items-center gap-4 text-center transition-all hover:shadow-[0_0_20px_rgba(50,17,212,0.15)] hover:-translate-y-1 group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative size-24 rounded-full bg-gradient-to-br from-orange-700 to-amber-900 p-1 shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">
+<div class="w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="Abstract club lights representing House music" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH_eUwJpzNKs28GuBqhgvco-hj53pP6FupCUgcgauxV2VeKgyLuAk1RlVKxLlYTimLGg4QrJ_zHnRH03ruYeQ9Rw4hTQuwUvKD-hgXcFlrA5JhXHNgcqnDvMny1twNel3Ib-njD-VDSQFCTdFbMX9ijMfC6MUPh6AM9qrpheqULl5xxtL8CH8AB3oHh79KwL90JA-p1tYj317NLX2OufDi5CaZ6deywZQ6L8Qs9R6wB4K0Nk38wqacUhQyQbf2Y5l5vbZwJbX7qzc"/>
+<span class="material-symbols-outlined absolute text-white text-4xl drop-shadow-md">home</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-white">House Beginner</h3>
+<p class="text-xs text-slate-400 mt-1">Completed 10 House Classes</p>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-900/20 px-2 py-1 rounded">Unlocked</span>
+</div>
+<!-- Badge: Locked Popping -->
+<div class="bg-[#1e1a33] border border-dashed border-slate-700 p-6 rounded-xl flex flex-col items-center gap-4 text-center opacity-60 hover:opacity-100 transition-opacity group relative">
+<div class="absolute top-3 right-3 text-slate-500">
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+<div class="size-24 rounded-full bg-slate-800 p-1 grayscale group-hover:grayscale-0 transition-all duration-500">
+<div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center border-4 border-slate-700 relative">
+<span class="material-symbols-outlined text-slate-600 text-4xl">electric_bolt</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-slate-300">Popping Pro</h3>
+<p class="text-xs text-slate-500 mt-1">Master the robotic movements</p>
+</div>
+<div class="w-full bg-slate-800/50 p-2 rounded text-[10px] text-slate-400">
+<strong>To Unlock:</strong> Finish "Popping 101" Series
+                        </div>
+</div>
+<!-- Badge: Locked Break -->
+<div class="bg-[#1e1a33] border border-dashed border-slate-700 p-6 rounded-xl flex flex-col items-center gap-4 text-center opacity-60 hover:opacity-100 transition-opacity group relative">
+<div class="absolute top-3 right-3 text-slate-500">
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+<div class="size-24 rounded-full bg-slate-800 p-1 grayscale group-hover:grayscale-0 transition-all duration-500">
+<div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center border-4 border-slate-700 relative">
+<span class="material-symbols-outlined text-slate-600 text-4xl">flip_camera_android</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-slate-300">Breaking Basics</h3>
+<p class="text-xs text-slate-500 mt-1">Get down on the floor</p>
+</div>
+<div class="w-full bg-slate-800/50 p-2 rounded text-[10px] text-slate-400">
+<strong>To Unlock:</strong> Learn your first 6-step
+                        </div>
+</div>
+</div>
+</section>
+<!-- Grid Split: Practice Streak & Encyclopedia -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Practice Streak -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-2 bg-[#292348] rounded-lg text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">local_fire_department</span>
+</span>
+                            Practice Streak
+                        </h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- 7 Day Streak -->
+<div class="bg-gradient-to-br from-[#1e1a33] to-[#252040] border border-slate-700/50 p-5 rounded-xl flex items-center gap-4 hover:border-primary/40 transition-colors">
+<div class="size-16 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+<span class="material-symbols-outlined text-4xl">local_fire_department</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-white text-lg">7-Day Spark</h3>
+<p class="text-xs text-slate-400">Consistent for a week!</p>
+<span class="text-[10px] text-primary mt-1 font-semibold">Unlocked 2 days ago</span>
+</div>
+</div>
+<!-- 30 Day Streak (Locked) -->
+<div class="bg-[#1e1a33] border border-dashed border-slate-700 p-5 rounded-xl flex items-center gap-4 opacity-70">
+<div class="size-16 rounded-lg bg-slate-800 flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-4xl">volcano</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-300 text-lg">30-Day Inferno</h3>
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-1/3"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-1">10/30 Days</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Encyclopedia Scholar -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-2 bg-[#292348] rounded-lg text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</span>
+                            Knowledge
+                        </h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- History Buff -->
+<div class="bg-gradient-to-br from-[#1e1a33] to-[#252040] border border-slate-700/50 p-5 rounded-xl flex items-center gap-4 hover:border-primary/40 transition-colors">
+<!-- Shield Shape CSS -->
+<div class="size-16 flex items-center justify-center text-purple-400 relative">
+<svg class="absolute inset-0 w-full h-full text-purple-500/20 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z"></path></svg>
+<span class="material-symbols-outlined text-3xl relative z-10">history_edu</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-white text-lg">History Buff</h3>
+<p class="text-xs text-slate-400">Read 5 articles</p>
+<span class="text-[10px] text-primary mt-1 font-semibold">Unlocked</span>
+</div>
+</div>
+<!-- Roots Researcher (Locked) -->
+<div class="bg-[#1e1a33] border border-dashed border-slate-700 p-5 rounded-xl flex items-center gap-4 opacity-70">
+<div class="size-16 flex items-center justify-center text-slate-600 relative">
+<svg class="absolute inset-0 w-full h-full text-slate-800 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z"></path></svg>
+<span class="material-symbols-outlined text-3xl relative z-10">forest</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-300 text-lg">Roots Researcher</h3>
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+<p class="text-[10px] text-slate-500 mt-2"><strong>Hint:</strong> Complete the "Origins of Funk" quiz with 100% score.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Sidebar: Leaderboard -->
+<aside class="hidden xl:flex flex-col w-80 min-w-80 gap-6">
+<div class="bg-[#1e1a33] border border-slate-800 rounded-xl p-5 sticky top-24">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white">Weekly Top Dancers</h3>
+<span class="material-symbols-outlined text-primary">leaderboard</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Rank 1 -->
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="font-bold text-yellow-500 w-4 text-center">1</div>
+<div class="relative">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-yellow-500/50" data-alt="Portrait of top ranked dancer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGrXUOT-zRaKTXPOY7Lr_-p5rm9aRt2Icrfl1Egbl4NUkOBZiHNlEcEAMN1gvOFVhI0nvdONMw7N-lL4BLQyU47EFW7Ch47cBDLY01MqOvzevuR5IdLAshf4irmSNNrRjwcI9SROnYZjE4-J_zv1jYi-bS38WbrNaMoeAr2T0vVTVJbmC6SMyTFzhUJ9XCJ-Xgwb_VUEAm-T_rksW4CNXGo_VkjyQtqYWObtR9vojx_wJgbCi-5rlCYT_kq04SBrv4PBRUuDAkToI");'></div>
+<div class="absolute -bottom-1 -right-1 bg-yellow-500 text-black text-[10px] font-bold px-1 rounded-full">XP</div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-semibold text-white truncate">Marcus D.</span>
+<span class="text-xs text-slate-400">12,450 XP</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="font-bold text-slate-300 w-4 text-center">2</div>
+<div class="relative">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-300/50" data-alt="Portrait of second ranked dancer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDK7DaA7MlNvcCx0-d74ffbyF0JWnQmBlANdV91AKIrxojHTDmPSq8ykof1sNFWypyuHrP_CtpsBhKS7VsHcr42iDE_4Nn-eSiELPp_891zR1j_l-GV02Ur7e1p9NrKA4fBWhctAtKi46KGLhivMvB8Uvt0GtwimUUX9C0WilqbGKDg7GMGhNAlAo0B0wDfsuJmy4TumkMnASmRGJ7GhIBiYra5hGGzbt57aRgdT6G3f4K5mf-JYCpK4ZPeep2fP7Xn-IaPxV23_-E");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-semibold text-white truncate">Sarah L.</span>
+<span class="text-xs text-slate-400">11,200 XP</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">remove</span>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="font-bold text-amber-700 w-4 text-center">3</div>
+<div class="relative">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-amber-700/50" data-alt="Portrait of third ranked dancer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQzEkJluIdv30LypA2MkbUt-wL80It5EWmWUVRwF4LOKot2DIKmzMXo3a4jwKu-pZ1W0aPvl2WpfxmoArKpHs7EhPRiG2YuHY1znhVsxmJMWoRqfO8uRnuOsQcCEkptJMbYUZ-LWuSat6hJ4p1nnZIhY6bjfTPE8zkQbfR3nEX2_VQ44uIrK5mKRpUSDzGyfC8taPVytfPwoMB1cotwuMvuJPBSOKdusnGiL7VJzPMNPD6UJb5J76EDeHOYEU8YTGMIYaboBfrYZw");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-semibold text-white truncate">Jamal K.</span>
+<span class="text-xs text-slate-400">10,890 XP</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+</div>
+<!-- Divider -->
+<div class="h-px bg-slate-800 my-1"></div>
+<!-- Current User Rank -->
+<div class="flex items-center gap-3 p-3 rounded-xl bg-primary/10 border border-primary/30">
+<div class="font-bold text-primary w-4 text-center text-xs">420</div>
+<div class="relative">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary" data-alt="User profile photo small" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDA_S9188rDVf5bJTS7rqv52QsRAoekKpjaTa98yQq-Fqgi3gTgIFDPBO0tej7UHeEM7E8HeKcaSha_tKLRzcaRzNRsnKK-crWoLFcQMmJRPap8srJwgUclTMuUItEfIjJDe0uXV_jvqyYmiOxy4X8A9i1p-qWuv3sGZCOLioNGljigbOlg7mBgud3OrOw37xkhJyDIR57j5uNTwz9f_cuRYZzjd_T5QC5UJ433ZMQ2GHgWBwSbQqFBit4yLPkWSkQ_i4jDhHU-67s");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="text-sm font-bold text-white truncate">You</span>
+<span class="text-xs text-primary/80">750 XP</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 rounded-lg text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-colors">
+                    View Full Leaderboard
+                </button>
+</div>
+<!-- Mini Widget: Recent Activity -->
+<div class="bg-[#1e1a33] border border-slate-800 rounded-xl p-5">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Friend Activity</h3>
+<div class="flex flex-col gap-4">
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-cover bg-center flex-shrink-0" data-alt="Friend profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAowBfK8AtnTyeW9sTP4eWezmjHyHuD9ckYmp3peSuEN0l81dIz8e_FGXjY4Z7bV8v4IpnjaKuuieRgyPiY5tiuLVXGXE7tQrCwPRK3bUPgjJF0dTC7oEOs6Qw7PfHJmqsBfe8J0AvMOxfBoXehAl4K93jNfO-0-OjYKSRqvc9fw_eq2ESELdBioD6voP1MpJ_lo8q7eKxFR5qUvZzQYByMP71ozWUTBX9SoP9mXmoHajMckhAvdBN1tXJGp1SLoNP8YSfzj0Fku-M");'></div>
+<div class="text-xs text-slate-300">
+<span class="font-bold text-white">Elena</span> earned the <span class="text-primary font-medium">Split Master</span> badge.
+                            <div class="text-slate-500 mt-1">2h ago</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-cover bg-center flex-shrink-0" data-alt="Friend profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7y7SZKRkJiwij0hlRst7EO3FCfkMnggsqK_0NOCaFmg7OLLreNRP6aEpqqzIJBP-hdZUcrB3ljW9s-kPGWMvQTtKXP9r1VFI-hCfdjMcMcQIvGoQNu3SgsYZZDNjS3RRz1pNl94ZwvsjjylIp3H0MqPiA9K7e8n_cz6Z8mApcmizxWqImZIdEUcTw_YvaspkFC7DH9a2cjpuibnRgsCvLb77nSbgjZTP_fxB65bBxlNnp09Syyuh26uM0Gt_3HIix1rnUXAuN9Vo");'></div>
+<div class="text-xs text-slate-300">
+<span class="font-bold text-white">Tyrell</span> reached <span class="text-yellow-500 font-medium">Level 20</span>!
+                            <div class="text-slate-500 mt-1">5h ago</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

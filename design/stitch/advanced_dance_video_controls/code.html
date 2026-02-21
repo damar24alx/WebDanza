@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Advanced Player</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1E1B2E",
+                        "surface-light": "#FFFFFF"
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for A-B Loop */
+        input[type=range]::-webkit-slider-thumb {
+            pointer-events: all;
+            width: 16px;
+            height: 16px;
+            -webkit-appearance: none;
+            background: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 2px #3211d4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header / Nav -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#292348] px-10 py-3 bg-surface-light dark:bg-[#141122]">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Courses</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Instructors</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">My Library</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-[#292348]">
+<div class="text-slate-400 dark:text-[#9b92c9] flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#9b92c9] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search moves..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-slate-500 dark:text-slate-300 hover:text-primary">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDA-IjIdluhl6Ze1PL0Q_yV9TXW4Cblaz-9y-U2ahDmiBRLe6B9kzIvTudbU63j9vwPqsWOICT2_ypdOU8kilAsx-G8fyMSFicNv-14FlHenLHmk0ckiZVoN5MDEEcdHij2JFzxI_3v_fJmCELMIaYPLFrHQQgwBWo7rsTpWim8EKhxFiFcxnuoLs-WZZKT7meA8epM6f6AwUXKJ-mZ6L7Vh38iOEvQxg7OoLyuDXTGURgYm2us625RMA2NBVv_D2LKXfz8_0uawLE");'></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<main class="flex-1 flex flex-col lg:flex-row h-[calc(100vh-65px)]">
+<!-- Video Player Section (Takes majority of space) -->
+<div class="flex-1 flex flex-col bg-black relative group/player">
+<!-- Breadcrumbs Overlay -->
+<div class="absolute top-0 left-0 w-full p-6 z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+<div class="flex flex-wrap gap-2 pointer-events-auto">
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                        Back to Course
+                    </a>
+<span class="text-slate-500 text-sm font-medium leading-normal mx-2">|</span>
+<span class="text-slate-400 text-sm font-medium leading-normal">Hip Hop Foundations</span>
+<span class="text-slate-600 text-sm font-medium leading-normal">/</span>
+<span class="text-white text-sm font-bold leading-normal">The Glide: Breakdown</span>
+</div>
+</div>
+<!-- Mirrored Indicator Badge -->
+<div class="absolute top-20 right-6 z-20 bg-primary/90 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-lg backdrop-blur-sm flex items-center gap-2 animate-pulse">
+<span class="material-symbols-outlined text-[14px]">flip</span>
+                Mirrored View
+            </div>
+<!-- Main Video Area -->
+<div class="flex-1 relative flex items-center justify-center overflow-hidden bg-slate-900">
+<!-- Abstract "Video" Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Dancer in a dark studio performing a glide move" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByxLILIvOlZ8gOJbV4IwhJvAljoQWStTgN21nykj-P5v5fb-dL9e-mvnHBfe7jsvYo_frSUGtR10uQ3FXvL0VfbiwhvgE2xwxoYAe77DpevjNfOY9kmbnKdxyzedLETU_coURthjfCSAcoOqLSPXl5Y1Ey3KOyAxbaSU8ZZO2QtVOHKm1KK3AKWTdmy6m8q-sO8ojb_Rtr_ANwzewMluXvYdWCizvzNBd-PyPjha7JlvY1KHjJiDQsdo15rOLK7v2aMb59pOK3Etk"); transform: scaleX(-1);'></div>
+<!-- Big Play Button Overlay (Hidden when playing) -->
+<button class="z-10 flex items-center justify-center size-20 rounded-full bg-primary/90 text-white hover:scale-110 transition-transform shadow-[0_0_40px_rgba(50,17,212,0.6)] backdrop-blur-sm">
+<span class="material-symbols-outlined text-[48px] ml-1">play_arrow</span>
+</button>
+<!-- Shortcut Hint Overlay -->
+<div class="absolute bottom-32 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 opacity-0 group-hover/player:opacity-100 transition-opacity duration-300 pointer-events-none">
+<p class="text-white/70 text-xs font-medium text-center">Press <span class="text-white font-bold bg-white/20 px-1 rounded mx-0.5">Space</span> to Play • <span class="text-white font-bold bg-white/20 px-1 rounded mx-0.5">M</span> to Mirror</p>
+</div>
+</div>
+<!-- Controls Overlay Bar -->
+<div class="bg-[#141122] border-t border-white/10 p-4 pb-6 flex flex-col gap-4 relative z-30">
+<!-- Progress & Loop Bar -->
+<div class="flex flex-col gap-1 w-full group/timeline">
+<!-- Loop Markers (Visual) -->
+<div class="relative w-full h-6 mb-1">
+<!-- Loop Active Zone -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[20%] right-[40%] h-8 bg-primary/10 border-x-2 border-primary rounded-sm flex items-center justify-center group/loopzone cursor-pointer">
+<span class="text-[10px] text-primary font-bold opacity-0 group-hover/loopzone:opacity-100 bg-black/80 px-1 rounded absolute -top-5 transition-opacity whitespace-nowrap">Loop Active</span>
+</div>
+</div>
+<!-- Main Scrubber -->
+<div class="relative h-2 bg-slate-700 rounded-full cursor-pointer group hover:h-3 transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-[35%] bg-primary rounded-full"></div>
+<!-- Current Time Indicator Thumb -->
+<div class="absolute left-[35%] top-1/2 -translate-y-1/2 size-4 bg-white rounded-full shadow-lg scale-0 group-hover:scale-100 transition-transform"></div>
+<!-- A-B Loop Handles (Simulated) -->
+<div class="absolute left-[20%] top-1/2 -translate-y-1/2 size-5 bg-primary border-2 border-white rounded-full shadow-lg z-20 flex items-center justify-center cursor-grab hover:scale-110 transition-transform" title="Loop Start (A)">
+<span class="text-[8px] font-bold text-white">A</span>
+</div>
+<div class="absolute left-[60%] top-1/2 -translate-y-1/2 size-5 bg-primary border-2 border-white rounded-full shadow-lg z-20 flex items-center justify-center cursor-grab hover:scale-110 transition-transform" title="Loop End (B)">
+<span class="text-[8px] font-bold text-white">B</span>
+</div>
+</div>
+<div class="flex justify-between mt-1 text-xs font-medium text-slate-400">
+<span>1:12</span>
+<span>3:45</span>
+</div>
+</div>
+<!-- Main Controls Row -->
+<div class="flex items-center justify-between gap-4">
+<!-- Left: Playback -->
+<div class="flex items-center gap-4">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[32px]">play_arrow</span>
+</button>
+<div class="flex items-center gap-2 group/volume relative">
+<button class="text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+<div class="w-0 overflow-hidden group-hover/volume:w-20 transition-all duration-300 ease-out">
+<div class="h-1 bg-slate-600 rounded-full w-16 ml-2 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[70%] bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/20 text-primary border border-primary/50 hover:bg-primary hover:text-white transition-all text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">repeat</span>
+                            Loop ON
+                        </button>
+</div>
+<!-- Center: Speed & Tools -->
+<div class="flex items-center gap-2 bg-white/5 p-1 rounded-lg border border-white/5">
+<div class="flex items-center">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors rounded hover:bg-white/10">0.5x</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors rounded hover:bg-white/10">0.75x</button>
+<button class="px-3 py-1.5 text-xs font-bold text-white bg-primary rounded shadow-sm">1.0x</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors rounded hover:bg-white/10">1.25x</button>
+</div>
+<div class="h-4 w-px bg-white/10 mx-1"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-white/10 text-slate-300 hover:text-white transition-colors group/mirror relative" title="Mirror Mode">
+<span class="material-symbols-outlined text-[20px] text-primary">flip</span>
+<span class="text-xs font-medium">Mirror</span>
+<span class="absolute -top-1 -right-1 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</button>
+</div>
+<!-- Right: Screen Options -->
+<div class="flex items-center gap-4">
+<button class="text-slate-300 hover:text-white transition-colors flex items-col gap-1" title="Settings">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-slate-300 hover:text-white transition-colors flex items-col gap-1" title="Picture in Picture">
+<span class="material-symbols-outlined">picture_in_picture_alt</span>
+</button>
+<button class="text-slate-300 hover:text-white transition-colors" title="Full Screen">
+<span class="material-symbols-outlined text-[28px]">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar (Curriculum / Move List) -->
+<aside class="w-full lg:w-[350px] bg-background-light dark:bg-surface-dark border-l border-slate-200 dark:border-white/5 flex flex-col h-full overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-slate-200 dark:border-white/5">
+<button class="flex-1 py-4 text-center text-sm font-semibold text-primary border-b-2 border-primary bg-primary/5">
+                    Move Breakdown
+                </button>
+<button class="flex-1 py-4 text-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                    Discussion
+                </button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+<div class="mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">The Glide</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Hip Hop Foundations • Intermediate</p>
+<div class="mt-4 p-3 bg-primary/10 border border-primary/20 rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div class="flex flex-col gap-1">
+<p class="text-sm font-medium text-primary">Instructor Note</p>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Focus on keeping your weight on the balls of your feet. The illusion works best when your upper body remains completely still.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Sections</h4>
+<!-- Current Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-white dark:bg-[#292348] border border-primary shadow-sm cursor-pointer transition-all hover:shadow-md">
+<div class="relative size-16 rounded overflow-hidden flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up of footwork" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLHAwCLG8ogUQ2vzDSPQKtZObBLum__kB74cB41vNqP7BlPoFbjv-2LaWrlNztptEQ4ctsp6g8fDNpSLoLGbt3wstl6sPI6CDrNZr0yKFq4I5a-jV_DuJPaXhCNVFzStZ8WvxnXongyncyzA9n4UdN2nK7x36cdIfKpzBzURUDaX684ttF8oxVmpYsQxHBRtkolyaQA33Lsjeo0wVtqseF5e2rD05m9-IlN-P6JJY8rLmGtTBdCzFBrgt9KQSF60CxzdSOjRtkXfQ");'></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px] animate-pulse">equalizer</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<p class="text-sm font-bold text-primary truncate">1. Weight Transfer</p>
+<span class="text-[10px] bg-primary text-white px-1.5 py-0.5 rounded">Now</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">0:00 - 1:45</p>
+</div>
+</div>
+<!-- Next Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-transparent hover:bg-white dark:hover:bg-[#292348] border border-transparent hover:border-slate-200 dark:hover:border-white/10 cursor-pointer transition-all">
+<div class="relative size-16 rounded overflow-hidden flex-shrink-0 bg-slate-200 dark:bg-white/5">
+<div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" data-alt="Dancer silhouette doing arm wave" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABEYVHQWOFvqk-931_nDai9m2JCm6V6Rmrxtt4SvXxRHdKmIaFEutJUgGXqWH7Ge6byyeL7cZAv5ts0YJkSRN1h9dX7UzOc8x16HaTdtI1NKOb0YbdeTmSbiJAd2cC4glNLC9wxZuoG-fp67_lg3GMVdw-UhATouEUgo_UvpczoDD1zjPVhdiRmnloBlhee5PTl2VY6De0CnLKKYoWe1xxlUs6IX5Aik4-AjCtElfZoS-b8bkrsJvHpNx80dBP7xJH4DNzxrzp9XU");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200 truncate group-hover:text-primary transition-colors">2. The Slide Motion</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">1:45 - 3:10</p>
+</div>
+<button class="size-8 rounded-full border border-slate-300 dark:border-white/20 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</button>
+</div>
+<!-- Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-transparent hover:bg-white dark:hover:bg-[#292348] border border-transparent hover:border-slate-200 dark:hover:border-white/10 cursor-pointer transition-all">
+<div class="relative size-16 rounded overflow-hidden flex-shrink-0 bg-slate-200 dark:bg-white/5">
+<div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" data-alt="Group of dancers posing" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAd8aSp7DOo4Xcf8iV5NuvP9tqR_5MCPcoU-loLSjxg1qxUAkM5t2Z1mniercNGVb8144ahE9XrTATT6bjsv9519KwDNdOrtVzAMHgJYrQyUm0VYbll02oHjU46xBTmyHXHe_YRnUMpuTN2LvnyQCF4qKyREixlw2BRVzLxRexmsch2jQFTTxOJUEfeHLQYtynrUPyy3ArKkVuy5uc_nOYCo_jLnB-Gst5HWUFVZP3Ic6SGxktrdl0MSPLzaZTTxQzMZZJ6xMNzqGU");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200 truncate group-hover:text-primary transition-colors">3. Putting it Together</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">3:10 - 5:00</p>
+</div>
+<button class="size-8 rounded-full border border-slate-300 dark:border-white/20 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</button>
+</div>
+</div>
+<!-- Practice Stats -->
+<div class="mt-8 pt-6 border-t border-slate-200 dark:border-white/10">
+<h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Practice Session</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-light dark:bg-[#1E1B2E] p-3 rounded-lg border border-slate-200 dark:border-white/5">
+<p class="text-[10px] text-slate-500 uppercase font-semibold">Time Spent</p>
+<p class="text-xl font-bold text-slate-900 dark:text-white mt-1">24m</p>
+</div>
+<div class="bg-surface-light dark:bg-[#1E1B2E] p-3 rounded-lg border border-slate-200 dark:border-white/5">
+<p class="text-[10px] text-slate-500 uppercase font-semibold">Loops</p>
+<p class="text-xl font-bold text-slate-900 dark:text-white mt-1">12</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

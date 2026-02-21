@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Authentication &amp; Access Control - Dance Academy</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7b25f4",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#171022",
+                        "surface-dark": "#241a35",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<!-- Main Container -->
+<div class="min-h-screen flex flex-col md:flex-row w-full relative">
+<!-- Left Side: Hero Image (Hidden on small mobile if desired, or kept as banner) -->
+<div class="hidden md:flex md:w-1/2 lg:w-5/12 relative bg-surface-dark overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105" data-alt="Urban dancer silhouette against dramatic lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbpE0gz3AK10z5Y3F06FYZr7Ik6H3y8HLCNtBXVcqgJNjxpm-lCbkFxn9MlqJogt8qgMt05Ce_htwrRNQJlfHpk6HmoRmoBMPcRSH4fQSKxcKsye8vSbN0UyuMOZLZwx0Qw21oZ3yxbrAAkXsx6DDJNl3p38AUXjF9mJnISJFVfSAKY7jQpWtoQ0imC-b8tzg2bh-9uy_2YrGivBXNFpDTTz9RZUKXq9aQ_jiNS1_Zjojz8zCmafQaZFo-TkF4fIzUuKaDZi_6JO0');">
+</div>
+<!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-[#171022]/60 to-transparent"></div>
+<div class="relative z-10 flex flex-col justify-end h-full p-12 text-white">
+<div class="mb-4">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-wider text-primary backdrop-blur-sm mb-6">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> 
+                        Premium Access
+                    </span>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
+                        Master the<br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">movement.</span>
+</h1>
+<p class="text-slate-300 text-lg max-w-md font-body leading-relaxed">
+                        Join the world's premiere urban dance academy. Unlock exclusive masterclasses, track your progress, and connect with top choreographers.
+                    </p>
+</div>
+<div class="flex items-center gap-4 mt-8 pt-8 border-t border-white/10">
+<div class="flex -space-x-3">
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-background-dark object-cover" data-alt="Portrait of a female student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqPcmqFbVbaWZEzdSomkt02nUQ0kddYL50TO0oIB1-ALM0L2uW7_DTXhxEilpFRs4-F4KA-FflQOaioC2H80_RpnzRLkv7IAhlB27lisMXdGmMvOzIR0JvnFo1BKY_4KCrydrFn1oBvKQ1cDqMVZaIc9iFpRyA77E5H16LGsBQPk3CwvOrKijIiicFUQpYdz9B8hblFFQIxr6ZigOQDEoGPJnO0MnTr4hoole57_5GyiSCsMogC-Z_34GU6o24bcHjTvvGdP-BWx8"/>
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-background-dark object-cover" data-alt="Portrait of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgEqkSv2hC5eC3Ed_wCowiIRQp4u35F0QcQJHyrRfh-MTxnIcUd0-TZ8_r-WhJCt5YqauvzSTzph2Y_Zh27VAFLJNhQLgANxET7ch-48a_0teKt983AjfPdZeP0C2wCNSDFfAo_meoCSBq5Sfk3YhQRk-9dLmkGpOvcffOUvRnpYR7hP2lDA4aFl0gTo_WVAWBzfaMQ1-y9IZ5wD8kQPUqgylTVFRggTy_u_9OgU0cunNBHSp0zyjdj_6s2JG-1H290zKN6d8kpJQ"/>
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-background-dark object-cover" data-alt="Portrait of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMha_puFaOYIxMFXlLQJ2K5eC17t8sxG-0wKOTglcWjTDdSJnIBAZnycB_2FsWuqAe1BsNs1aYsgFSwXooVCXjxLjpB8T8T93JdjVHuVUSEHbCNTomniTyWjxRkIZRubpQlKoXvqcgMJayyUu8V7zDjHuYojeJ3V7zVEsvxuIR_dX2ES4p-Mhxdxis1KS3jNd2OeAyYYQXPwOLrB9AG3__zOO0k037bxLXtrMlyD471HP7OLUgdiVIlZjUQeyDlZNxXkHb5JJIJY4"/>
+<div class="w-10 h-10 rounded-full border-2 border-background-dark bg-surface-dark flex items-center justify-center text-xs font-bold text-white">
+                            +2k
+                        </div>
+</div>
+<span class="text-sm font-medium text-slate-400">Students dancing today</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Authentication Form -->
+<div class="flex-1 flex flex-col justify-center items-center p-6 md:p-12 lg:p-24 bg-background-light dark:bg-background-dark relative">
+<!-- Mobile Header (Visible only on mobile) -->
+<div class="md:hidden w-full mb-8 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white text-2xl">graphic_eq</span>
+</div>
+<h2 class="text-2xl font-bold dark:text-white">Dance Academy</h2>
+</div>
+<div class="w-full max-w-md space-y-8">
+<!-- Header -->
+<div class="text-center md:text-left">
+<h2 class="text-3xl font-bold tracking-tight dark:text-white mb-2">Welcome back</h2>
+<p class="text-slate-500 dark:text-slate-400 font-body">Enter your details to access your account.</p>
+</div>
+<!-- Tabs -->
+<div class="w-full bg-slate-200 dark:bg-surface-dark p-1 rounded-lg grid grid-cols-2 gap-1">
+<button class="flex items-center justify-center py-2.5 px-4 rounded font-bold text-sm bg-white dark:bg-slate-700 shadow-sm text-primary transition-all">
+                        Sign In
+                    </button>
+<button class="flex items-center justify-center py-2.5 px-4 rounded font-bold text-sm text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-white/5 transition-all">
+                        Create Account
+                    </button>
+</div>
+<!-- Form -->
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<!-- Email -->
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-body" id="email" placeholder="name@example.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="password">Password</label>
+<a class="text-sm font-semibold text-primary hover:text-primary/80" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-body" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-300" type="button">
+<span class="material-symbols-outlined text-xl">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-surface-dark transition-all" type="submit">
+                        Log In to Dashboard
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-background-light dark:bg-background-dark text-slate-500 dark:text-slate-400">Or continue with</span>
+</div>
+</div>
+<!-- Social Login -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm bg-white dark:bg-surface-dark text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" type="button">
+<svg class="h-5 w-5 mr-2" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                        Google
+                    </button>
+<button class="flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm bg-white dark:bg-surface-dark text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" type="button">
+<svg class="h-5 w-5 mr-2 dark:fill-white fill-black" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05.88-3.08.38-1.09-.53-2.04-.56-3.15 0-1.12.59-2.13.62-3.21-.45-1.92-1.9-3.29-5.4-1.34-8.1 1.06-1.47 2.76-2.34 4.88-2.3 2.03.04 2.88.94 3.73.94.85 0 2.45-1.12 4.14-.94 1.74.19 3.06.91 3.86 2.09-3.41 1.97-2.82 6.57.65 8.03-.68 1.84-1.63 3.63-2.95 4.97l-.02.01c-.01.01-.01.01-.02.02.01 0-.49.5-.49.5zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"></path>
+</svg>
+                        Apple
+                    </button>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-6 left-0 w-full text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:underline" href="#">Privacy Policy</a> • <a class="hover:underline" href="#">Terms of Service</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Restricted Access Modal (Variations) -->
+<!-- This modal is currently "open" to demonstrate the requirement. 
+         In a real app, this would be hidden by default and triggered by JS. -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background-dark/80 backdrop-blur-md" id="restricted-modal">
+<!-- Modal Content -->
+<div class="relative w-full max-w-lg bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-100 opacity-100">
+<!-- Close button -->
+<button class="absolute top-4 right-4 p-1 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors" onclick="document.getElementById('restricted-modal').style.display='none'">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex flex-col md:flex-row">
+<!-- Modal Sidebar (Image) -->
+<div class="w-full md:w-2/5 h-32 md:h-auto bg-cover bg-center relative" data-alt="Abstract dynamic dance movement light trails" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCB7EC0ONK39UPHE-BcViw2MRt3OjfKWhJuC-wuQ5mwJqji45YWh7ZlRX8gfVqjuHkdN3qGuDq8pFXS9x9XxdgV_0hWJPHBuM2ynDQ2Kh4-8DS27uzSLaYJruz6FgknOPFykeaAPEXSD7bpzBU-PHGbrxTS2WGavLPpBdf6UuemvrqqYnLAxwkcRCR0njct4Q5hbmw6yeDHY7smqbKWW4w4OrgDujZCRi2RwyMww0VxbZXHwXDJOrTf-KJadmM_2qIM7WbyXtpaxss');">
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">lock</span>
+</div>
+</div>
+</div>
+<!-- Modal Body -->
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+<div class="mb-5">
+<span class="text-primary text-xs font-bold uppercase tracking-wider mb-2 block">Premium Content</span>
+<h3 class="text-xl md:text-2xl font-bold dark:text-white mb-2">Access Restricted</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 font-body leading-relaxed">
+                            You must be an Academy member to save your progress or start this masterclass. Join today to unlock full access.
+                        </p>
+</div>
+<div class="space-y-3">
+<button class="w-full flex justify-center items-center py-3 px-4 rounded-lg bg-primary text-white font-bold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all">
+                            Join the Academy
+                        </button>
+<button class="w-full flex justify-center items-center py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onclick="document.getElementById('restricted-modal').style.display='none'">
+                            Log In
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
