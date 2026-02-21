@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Learning Path</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7b25f4",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#171022",
+                        "card-dark": "#241834",
+                        "timeline-line": "#322249",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #322249; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #483168; 
+        }
+
+        /* Pulse animation for current node */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(123, 37, 244, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(123, 37, 244, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(123, 37, 244, 0); }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Top Navigation (Adapted from provided component) -->
+<div class="relative flex h-auto w-full flex-col bg-[#181023] border-b border-[#322249]">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">music_note</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Styles</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Instructors</a>
+<a class="text-primary text-sm font-medium leading-normal border-b-2 border-primary pb-1" href="#">My Path</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#322249] hover:bg-[#483168] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#322249] hover:bg-[#483168] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-[#322249]" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCP1dqW3CjeQmEFJ88Fvq9jdB0ZKC8LvBA1dTAzKw1Ls5Zm8KSBRf9C7NvAl1571q6ConO5cWdCejHK2SLwY82WuMAA5JSgJCfDmhZlIWT0k2XWbCwCEqYouY9AydiEmF2Kgw4UCLu9OyDLBbqGZoBcQqmZksYAdNDU7nM-nrCGTOyuHxTYQ321kM-HimeewF6mZOSmfoae99InAzDJRfMSI5L8J2cBanIHylw-oidnHbRU1QX33JKpQ7iQWEVxULlJwgNqlYMvuhE");'></div>
+</div>
+<!-- Mobile Menu Icon -->
+<div class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 flex justify-center py-8 px-4">
+<div class="w-full max-w-[600px] flex flex-col gap-8">
+<!-- Header Section -->
+<section class="flex flex-col gap-6">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-primary text-sm font-bold tracking-wider uppercase">Urban Style</span>
+<span class="h-1 w-1 rounded-full bg-slate-500"></span>
+<span class="text-slate-400 text-sm">Level 1</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">Hip Hop Foundations</h1>
+<p class="text-slate-400 text-lg">Master the groove, rhythm, and essential isolations.</p>
+</div>
+<div class="hidden sm:block">
+<div class="h-16 w-16 rounded-full border-4 border-[#322249] flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full -rotate-90 text-primary" viewbox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="35, 100" stroke-width="3"></path>
+</svg>
+<span class="text-sm font-bold text-white">35%</span>
+</div>
+</div>
+</div>
+<!-- Sticky Progress Header for Mobile feel on Desktop -->
+<div class="sticky top-4 z-20 bg-card-dark/90 backdrop-blur-md border border-[#322249] rounded-xl p-4 shadow-xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 font-medium uppercase tracking-wide">Current Progress</span>
+<div class="flex items-end gap-2">
+<span class="text-xl font-bold text-white leading-none">4/12</span>
+<span class="text-sm text-slate-400 leading-none mb-0.5">milestones</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 w-1/2">
+<span class="text-xs text-primary font-bold">Next Reward: Locking Badge</span>
+<div class="w-full h-2 bg-[#171022] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[35%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline / Subway Map -->
+<section class="relative pl-4 md:pl-0">
+<!-- Vertical Rail Line -->
+<div class="absolute left-[27px] md:left-1/2 md:-ml-[2px] top-0 bottom-0 w-1 bg-timeline-line rounded-full z-0"></div>
+<!-- Progress Line overlay -->
+<div class="absolute left-[27px] md:left-1/2 md:-ml-[2px] top-0 h-[45%] w-1 bg-primary/50 rounded-full z-0 shadow-[0_0_15px_rgba(123,37,244,0.5)]"></div>
+<div class="flex flex-col gap-12 relative z-10 py-4">
+<!-- Milestone 1: Completed -->
+<div class="group relative flex md:justify-center items-center w-full">
+<!-- Node -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[20px] h-14 w-14 rounded-full bg-card-dark border-4 border-primary flex items-center justify-center shadow-[0_0_20px_rgba(123,37,244,0.3)] z-10">
+<span class="material-symbols-outlined text-primary text-2xl">check</span>
+</div>
+<!-- Content Card (Left for desktop alternating, Right for mobile) -->
+<div class="ml-20 md:ml-0 md:mr-[50%] md:pr-12 w-full md:w-1/2 flex justify-end">
+<div class="bg-card-dark hover:bg-[#2d1f40] transition-all p-5 rounded-xl border border-primary/20 shadow-lg w-full max-w-sm cursor-pointer group-hover:-translate-y-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wide">Completed • 12 min</span>
+<span class="material-symbols-outlined text-primary/50 text-lg">replay</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Rhythm &amp; Bounce</h3>
+<p class="text-slate-400 text-sm">Understanding the basic groove.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 2: Completed -->
+<div class="group relative flex md:justify-center items-center w-full">
+<!-- Node -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[20px] h-14 w-14 rounded-full bg-card-dark border-4 border-primary flex items-center justify-center shadow-[0_0_20px_rgba(123,37,244,0.3)] z-10">
+<span class="material-symbols-outlined text-primary text-2xl">check</span>
+</div>
+<!-- Content Card (Right for desktop alternating) -->
+<div class="ml-20 md:ml-[50%] md:pl-12 w-full md:w-1/2 flex justify-start">
+<div class="bg-card-dark hover:bg-[#2d1f40] transition-all p-5 rounded-xl border border-primary/20 shadow-lg w-full max-w-sm cursor-pointer group-hover:-translate-y-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wide">Completed • 15 min</span>
+<span class="material-symbols-outlined text-primary/50 text-lg">replay</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">The Two-Step</h3>
+<p class="text-slate-400 text-sm">Classic hip hop party move.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 3: CURRENT FOCUS -->
+<div class="group relative flex md:justify-center items-center w-full">
+<!-- Node with Pulse Effect -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[24px] h-[48px] w-[48px] rounded-full bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(123,37,244,0.6)] z-20 animate-pulse-ring">
+<div class="h-12 w-12 bg-primary rounded-full flex items-center justify-center border-4 border-white dark:border-[#171022]">
+<span class="material-symbols-outlined text-white text-2xl">play_arrow</span>
+</div>
+</div>
+<!-- Expanded Active Card -->
+<div class="ml-20 md:ml-0 md:mr-[50%] md:pr-12 w-full md:w-1/2 flex justify-end">
+<div class="bg-gradient-to-br from-card-dark to-[#322249] p-0 rounded-2xl border-2 border-primary shadow-[0_10px_40px_-10px_rgba(123,37,244,0.3)] w-full max-w-sm overflow-hidden transform scale-105 origin-left md:origin-right">
+<div class="relative h-32 w-full bg-cover bg-center" data-alt="Dancer performing isolation move" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhoTCRTnBIxI0VeJ9XLLIvHkjUXJ2JoMr-i7L5Bm8ujV4kZMwZBOfsmvmYoQ1SZ-YcIVEH6ag4ODXYcf6C1jORrCGGBjRFvZ5t5FFDCzDR7T3wkaFx3gn1WtUjCbtU6tnLrnBJYAoAWDXRmFcXpnNb6lmwnRYXGMUMKgvCIZLEHEmLIUYweJX0cxBPp_k5Lt_nwj1owqOC-WB3CL0GuVFTni2NGCt9c2IGokjeLYkLwQulmffnQ0tEAngsLjMBdtVI6XPCW3lJQUs');">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<div class="h-10 w-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white">play_arrow</span>
+</div>
+</div>
+<div class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Current Lesson</div>
+</div>
+<div class="p-5">
+<h3 class="text-xl font-bold text-white mb-1">Isolations: Head &amp; Neck</h3>
+<p class="text-slate-300 text-sm mb-4 leading-relaxed">Master the fundamental head movements for popping and locking. Focus on clean stops.</p>
+<button class="w-full bg-primary hover:bg-violet-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all">
+<span>Resume Lesson</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Milestone 4: Locked -->
+<div class="group relative flex md:justify-center items-center w-full opacity-60 hover:opacity-100 transition-opacity">
+<!-- Node -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[20px] h-14 w-14 rounded-full bg-card-dark border-4 border-slate-700 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-slate-500 text-xl">lock</span>
+</div>
+<!-- Content Card -->
+<div class="ml-20 md:ml-[50%] md:pl-12 w-full md:w-1/2 flex justify-start">
+<div class="bg-card-dark p-5 rounded-xl border border-slate-800 w-full max-w-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Locked • 20 min</span>
+</div>
+<h3 class="text-lg font-bold text-slate-300 mb-1">Arm Waves</h3>
+<p class="text-slate-500 text-sm">Create the illusion of liquid motion.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 5: Boss Challenge -->
+<div class="group relative flex md:justify-center items-center w-full opacity-60 hover:opacity-100 transition-opacity">
+<!-- Node -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[28px] h-[56px] w-[56px] rounded-full bg-card-dark border-4 border-slate-700 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-slate-500 text-2xl">emoji_events</span>
+</div>
+<!-- Content Card -->
+<div class="ml-20 md:ml-0 md:mr-[50%] md:pr-12 w-full md:w-1/2 flex justify-end">
+<div class="bg-card-dark p-5 rounded-xl border border-slate-800 w-full max-w-sm relative overflow-hidden">
+<!-- Boss decorative bg -->
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-[100px]">trophy</span>
+</div>
+<div class="flex justify-between items-start mb-2 relative z-10">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Boss Challenge</span>
+</div>
+<h3 class="text-lg font-bold text-slate-300 mb-1 relative z-10">Final Routine Check</h3>
+<p class="text-slate-500 text-sm relative z-10">Put it all together in a combo.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 6: Locked -->
+<div class="group relative flex md:justify-center items-center w-full opacity-40">
+<!-- Node -->
+<div class="absolute left-0 md:left-1/2 md:-ml-[16px] h-8 w-8 rounded-full bg-card-dark border-2 border-slate-800 z-10"></div>
+<!-- Content Card -->
+<div class="ml-20 md:ml-[50%] md:pl-12 w-full md:w-1/2 flex justify-start">
+<div class="py-2 px-4 rounded-lg border border-transparent w-full max-w-sm">
+<h3 class="text-base font-medium text-slate-500">Advanced Popping</h3>
+</div>
+</div>
+</div>
+<!-- Future path fade out -->
+<div class="h-20 w-full bg-gradient-to-b from-transparent to-background-dark/0"></div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Mobile Action Button (Visible only on small screens) -->
+<div class="fixed bottom-6 right-6 md:hidden z-50">
+<button class="bg-primary hover:bg-violet-600 text-white rounded-full p-4 shadow-[0_4px_20px_rgba(123,37,244,0.4)] transition-all transform hover:scale-110 flex items-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+<span class="font-bold pr-1">Resume</span>
+</button>
+</div>
+<!-- Stats Footer -->
+<footer class="border-t border-[#322249] bg-[#181023] py-6 mt-8">
+<div class="max-w-[1200px] mx-auto px-10 flex flex-wrap justify-center md:justify-between items-center gap-4">
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-primary">local_fire_department</span>
+<span class="text-sm font-medium"><span class="text-white font-bold">3 Day</span> Streak</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-slate-400 hover:text-white text-sm transition-colors" href="#">Help Center</a>
+<a class="text-slate-400 hover:text-white text-sm transition-colors" href="#">Community</a>
+<a class="text-slate-400 hover:text-white text-sm transition-colors" href="#">Privacy</a>
+</div>
+</div>
+</footer>
+</body></html>

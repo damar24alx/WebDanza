@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Substyle Detail View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7b25f4",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#171022",
+                        "surface-dark": "#231b2e", // Slightly lighter for cards/sections
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the mobile container */
+        .mobile-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .mobile-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .mobile-scroll::-webkit-scrollbar-thumb {
+            background-color: #322249;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display flex items-center justify-center min-h-screen p-4 md:p-8">
+<!-- Mobile Frame Container -->
+<div class="relative w-full max-w-[400px] h-[850px] bg-background-dark border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col ring-8 ring-[#0f0a16]">
+<!-- Status Bar Simulation -->
+<div class="h-10 w-full bg-[#181023] flex items-center justify-between px-6 select-none shrink-0 z-20">
+<span class="text-white text-xs font-bold">9:41</span>
+<div class="flex gap-1.5">
+<span class="material-symbols-outlined text-white text-[16px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-white text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-white text-[16px]">battery_full</span>
+</div>
+</div>
+<!-- Top Navigation -->
+<header class="flex items-center justify-between px-4 py-3 bg-[#181023] shrink-0 z-20 sticky top-0 border-b border-white/5">
+<button class="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-white text-base font-bold tracking-tight">Popping</h1>
+<div class="flex gap-2">
+<button class="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+<button class="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<div class="flex-1 overflow-y-auto mobile-scroll relative bg-[#181023]">
+<!-- Hero Section -->
+<div class="relative w-full h-64 shrink-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Dynamic shot of a street dancer performing a popping move with dramatic lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSvu43tutWz3675-KY8_54STosdB4OZ8zIBWS59J1woFqKt0V6uk0uhrozes7VXgf6_ptTNs7-YRUWTWKH7YaRO277SGc3ImXp1Ab3WGoxWPPsLc5ppkU7hTeFlQwHCP2RpbojTM_A3vh26ONEdhvCyteSBHdf_2npOpklzuBhsTiqPUDQyN6gDVPtjD3wCl5O87TQuwsoMpbWDx9Ui6B3TR6bjJYPVdwAoZy7KFVJsbmHsFR6e1q94nT-Pmk_db1nug2w3yNIsZg');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181023] via-[#181023]/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-5 flex flex-col items-start gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-sm border border-white/10">
+                        Intermediate
+                    </span>
+<h2 class="text-4xl font-bold text-white leading-none">Boogaloo</h2>
+<div class="flex items-center gap-4 text-[#a990cb] text-xs mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">school</span>
+                            9 Lessons
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            45 Mins
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                            1.2k Learners
+                        </span>
+</div>
+</div>
+</div>
+<!-- Sticky Tab Bar -->
+<div class="sticky top-0 z-10 bg-[#181023]/95 backdrop-blur-md border-b border-white/5 px-5 pt-2">
+<div class="flex w-full justify-between">
+<button class="flex-1 pb-3 text-sm font-medium text-[#a990cb] hover:text-white transition-colors relative group">
+                        Summary
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-transparent group-hover:bg-primary/50 transition-colors"></span>
+</button>
+<button class="flex-1 pb-3 text-sm font-medium text-[#a990cb] hover:text-white transition-colors relative group">
+                        History
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-transparent group-hover:bg-primary/50 transition-colors"></span>
+</button>
+<button class="flex-1 pb-3 text-sm font-bold text-white relative">
+                        Steps
+                        <span class="absolute bottom-0 left-0 w-full h-[3px] bg-primary rounded-t-full"></span>
+</button>
+</div>
+</div>
+<!-- Content Area: Learning Path -->
+<div class="p-5 pb-24">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold">Learning Path</h3>
+<div class="h-1.5 w-24 bg-surface-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full"></div>
+</div>
+</div>
+<!-- Timeline Container -->
+<div class="relative pl-4 space-y-8">
+<!-- Vertical Line -->
+<div class="absolute left-[23px] top-4 bottom-4 w-[2px] bg-surface-dark"></div>
+<!-- Step 1: Completed -->
+<div class="relative flex gap-4">
+<div class="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary ring-4 ring-[#181023]">
+<span class="material-symbols-outlined text-white text-[12px] font-bold">check</span>
+</div>
+<div class="flex-1 bg-surface-dark p-4 rounded-xl border border-primary/30 group cursor-pointer hover:bg-[#2d2339] transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wide">Lesson 01</span>
+<span class="text-[10px] text-[#a990cb]">5:20</span>
+</div>
+<h4 class="text-white font-bold text-base mb-1">Foundations of the Roll</h4>
+<p class="text-sm text-[#a990cb] line-clamp-2 leading-relaxed">Master the circular movement of the hips, knees, and head.</p>
+<div class="mt-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">play_circle</span>
+<span class="text-xs text-white font-medium">Replay</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Active/Next -->
+<div class="relative flex gap-4">
+<div class="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white ring-4 ring-[#181023] shadow-[0_0_10px_rgba(123,37,244,0.6)]">
+<div class="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex-1 bg-gradient-to-br from-surface-dark to-primary/10 p-4 rounded-xl border border-primary/50 shadow-lg cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-white uppercase tracking-wide">Lesson 02</span>
+<span class="text-[10px] text-white/70">8:15</span>
+</div>
+<h4 class="text-white font-bold text-base mb-1">Walk Outs &amp; Angles</h4>
+<p class="text-sm text-white/70 line-clamp-2 leading-relaxed">Adding directional changes to your basic boogaloo groove.</p>
+<div class="mt-3 w-full bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                                Start Lesson
+                            </div>
+</div>
+</div>
+<!-- Step 3: Locked -->
+<div class="relative flex gap-4 opacity-60">
+<div class="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface-dark border border-white/10 ring-4 ring-[#181023]">
+<span class="material-symbols-outlined text-[#a990cb] text-[12px]">lock</span>
+</div>
+<div class="flex-1 bg-surface-dark p-4 rounded-xl border border-white/5">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-[#a990cb] uppercase tracking-wide">Lesson 03</span>
+<span class="text-[10px] text-[#a990cb]">6:45</span>
+</div>
+<h4 class="text-white/50 font-bold text-base mb-1">Neck-O-Flex Techniques</h4>
+<p class="text-sm text-[#a990cb]/50 line-clamp-2 leading-relaxed">Isolating the neck muscles while maintaining the groove.</p>
+</div>
+</div>
+<!-- Step 4: Locked -->
+<div class="relative flex gap-4 opacity-60">
+<div class="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface-dark border border-white/10 ring-4 ring-[#181023]">
+<span class="material-symbols-outlined text-[#a990cb] text-[12px]">lock</span>
+</div>
+<div class="flex-1 bg-surface-dark p-4 rounded-xl border border-white/5">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-[#a990cb] uppercase tracking-wide">Lesson 04</span>
+<span class="text-[10px] text-[#a990cb]">10:00</span>
+</div>
+<h4 class="text-white/50 font-bold text-base mb-1">Advanced Transitions</h4>
+<p class="text-sm text-[#a990cb]/50 line-clamp-2 leading-relaxed">Learn to switch between walk outs and rolls seamlessly.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Bar CTA -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-[#181023] via-[#181023] to-transparent pt-8 z-30">
+<button class="w-full bg-primary hover:bg-[#6a1fd6] text-white font-bold text-base py-3.5 px-6 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">play_circle</span>
+                Continue Route
+            </button>
+</div>
+<!-- Mobile Bottom Indicator -->
+<div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/20 rounded-full z-40"></div>
+</div>
+</body></html>

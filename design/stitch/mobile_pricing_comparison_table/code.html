@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Pricing Comparison Table</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1132d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101322; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232948; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #323b67; 
+        }
+        
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#232948] px-4 sm:px-10 py-3 bg-background-light dark:bg-background-dark z-50 sticky top-0">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined text-[24px]">music_note</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Dance Academy</h2>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-700 transition-colors">
+<span class="truncate">Log In</span>
+</button>
+</header>
+<main class="flex-1 flex justify-center w-full">
+<div class="w-full max-w-[480px] flex flex-col border-x border-slate-200 dark:border-[#232948] bg-background-light dark:bg-background-dark shadow-2xl relative">
+<!-- Hero / Title Section -->
+<div class="p-6 pb-2 text-center">
+<h1 class="text-3xl font-bold tracking-tight mb-2">Choose Your Rhythm</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Select the plan that fits your dance journey.</p>
+</div>
+<!-- Sticky Segmented Control -->
+<div class="sticky top-[65px] z-40 bg-background-light dark:bg-background-dark px-4 py-3 border-b border-slate-200 dark:border-[#232948]">
+<div class="flex p-1 bg-slate-200 dark:bg-[#191e33] rounded-xl overflow-x-auto no-scrollbar snap-x">
+<!-- Tab 1 -->
+<label class="flex-1 min-w-[90px] cursor-pointer snap-start">
+<input class="peer sr-only" name="plan" type="radio" value="explorador"/>
+<div class="h-10 flex items-center justify-center rounded-lg text-sm font-bold text-slate-500 dark:text-[#929bc9] transition-all peer-checked:bg-background-light dark:peer-checked:bg-[#2e3650] peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Explorador
+                        </div>
+</label>
+<!-- Tab 2 -->
+<label class="flex-1 min-w-[90px] cursor-pointer snap-start">
+<input class="peer sr-only" name="plan" type="radio" value="pack"/>
+<div class="h-10 flex items-center justify-center rounded-lg text-sm font-bold text-slate-500 dark:text-[#929bc9] transition-all peer-checked:bg-background-light dark:peer-checked:bg-[#2e3650] peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Pack
+                        </div>
+</label>
+<!-- Tab 3 -->
+<label class="flex-1 min-w-[90px] cursor-pointer snap-start">
+<input checked="" class="peer sr-only" name="plan" type="radio" value="pro"/>
+<div class="h-10 flex items-center justify-center rounded-lg text-sm font-bold text-slate-500 dark:text-[#929bc9] transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md relative overflow-hidden">
+<span class="relative z-10">Pro</span>
+<!-- Shine effect for Pro -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite] peer-checked:block hidden"></div>
+</div>
+</label>
+<!-- Tab 4 -->
+<label class="flex-1 min-w-[90px] cursor-pointer snap-start">
+<input class="peer sr-only" name="plan" type="radio" value="studio"/>
+<div class="h-10 flex items-center justify-center rounded-lg text-sm font-bold text-slate-500 dark:text-[#929bc9] transition-all peer-checked:bg-background-light dark:peer-checked:bg-[#2e3650] peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Studio
+                        </div>
+</label>
+</div>
+</div>
+<!-- Pricing Summary Card -->
+<div class="px-4 py-6 bg-slate-100 dark:bg-[#15192b]">
+<div class="flex flex-col gap-4 text-center">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-3">
+                            Most Popular
+                        </div>
+<div class="flex items-baseline justify-center gap-1">
+<span class="text-4xl font-extrabold tracking-tight">$29.99</span>
+<span class="text-lg text-slate-500 dark:text-slate-400 font-medium">/month</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Unlimited access to all dance styles and advanced tools.</p>
+</div>
+<button class="w-full bg-primary hover:bg-blue-600 text-white font-bold h-12 rounded-xl text-base shadow-lg shadow-primary/25 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+                        Start 7-Day Free Trial
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-xs text-slate-400 dark:text-slate-500">Cancel anytime. No hidden fees.</p>
+</div>
+</div>
+<!-- Features List (Accordion Style) -->
+<div class="flex flex-col pb-20">
+<!-- Category: Content -->
+<div class="sticky top-[138px] z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-3 border-b border-slate-200 dark:border-[#232948] flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">video_library</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#929bc9]">Content Access</h3>
+</div>
+<div class="flex flex-col divide-y divide-slate-200 dark:divide-[#232948]">
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Dance Classes</span>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span>Unlimited</span>
+<span class="material-symbols-outlined text-[24px] filled">check_circle</span>
+</div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Encyclopedia Access</span>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[24px] filled">check_circle</span>
+</div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Live Workshops</span>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-600">
+<span class="text-sm font-medium">Add-on</span>
+<span class="material-symbols-outlined text-[24px]">add_circle</span>
+</div>
+</div>
+</div>
+<!-- Category: Tools -->
+<div class="sticky top-[138px] z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-3 border-y border-slate-200 dark:border-[#232948] flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-primary text-[20px]">handyman</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#929bc9]">Tools &amp; Features</h3>
+</div>
+<div class="flex flex-col divide-y divide-slate-200 dark:divide-[#232948]">
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Offline Mode</span>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[24px] filled">check_circle</span>
+</div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Mirror Mode</span>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[24px] filled">check_circle</span>
+</div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Video Quality</span>
+</div>
+<div class="text-sm font-bold text-slate-900 dark:text-white bg-slate-200 dark:bg-[#232948] px-2 py-1 rounded">
+                            4K Ultra HD
+                        </div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group opacity-50">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium line-through">Choreography Builder</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-600">
+<span class="material-symbols-outlined text-[24px]">cancel</span>
+</div>
+</div>
+</div>
+<!-- Category: Perks -->
+<div class="sticky top-[138px] z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-3 border-y border-slate-200 dark:border-[#232948] flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-primary text-[20px]">diamond</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#929bc9]">VIP Perks</h3>
+</div>
+<div class="flex flex-col divide-y divide-slate-200 dark:divide-[#232948]">
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Support Level</span>
+</div>
+<div class="text-sm font-bold text-primary">
+                            Priority
+                        </div>
+</div>
+<!-- Feature Row -->
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-[#191e33] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-base font-medium">Merch Discount</span>
+</div>
+<div class="text-sm font-bold text-slate-900 dark:text-white bg-green-500/20 text-green-500 px-2 py-1 rounded">
+                            15% OFF
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer for mobile view context -->
+<footer class="w-full border-t border-slate-200 dark:border-[#232948] bg-background-light dark:bg-background-dark py-8 text-center text-sm text-slate-500">
+<div class="flex justify-center gap-4 mb-4">
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<p>© 2024 Dance Academy. All rights reserved.</p>
+</footer>
+</body></html>

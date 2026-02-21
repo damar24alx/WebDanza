@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Academy - Daily Challenges</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#7b25f4",
+              "primary-light": "#9d5df7",
+              "background-light": "#f7f5f8",
+              "background-dark": "#181023",
+              "surface-dark": "#231834",
+              "accent-neon": "#00f0ff",
+              "accent-hot": "#ff00d4",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            boxShadow: {
+                'neon': '0 0 10px rgba(123, 37, 244, 0.5), 0 0 20px rgba(123, 37, 244, 0.3)',
+                'neon-accent': '0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: "Noto Sans", sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: "Space Grotesk", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-slate-200 dark:border-b-[#322249] bg-white/90 dark:bg-[#181023]/90 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Dance Academy</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 sm:gap-8 items-center">
+<!-- Stats Group -->
+<div class="hidden md:flex gap-2 items-center bg-surface-dark/50 p-1 pr-4 rounded-full border border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Streak</span>
+<span class="text-xs font-bold leading-none">12 Days</span>
+</div>
+</div>
+<div class="hidden md:flex gap-2 items-center bg-surface-dark/50 p-1 pr-4 rounded-full border border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-accent-neon/20 text-accent-neon">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Level 12</span>
+<span class="text-xs font-bold leading-none">2,450 XP</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-2">
+<button class="relative flex items-center justify-center size-10 rounded-full hover:bg-slate-100 dark:hover:bg-[#322249] transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent-hot rounded-full"></span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/50" data-alt="User profile avatar of a smiling young woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmDcQOuG-BOdVgsZMwn2euF0sNQ12ukliKLvoQBe-wHmkMNU4KfUEkuR5lJlsjYsPEZo0_SH5IpCnKV9U6NpyGQaJVZety0ks72FQOpSTXc_yFS0mcGauk7PfG6kNrajW0MijOLKMKix5nVBf8T5taTfrrdSTbdUPqETjqEI6AGfvyalUL8fcPzpHvDTOedVCQa2H4-o7o_E9QCiKB3EbBXC01IGFbyXu9Yl9BbTVGzQf06yXC6rpYXHD_R_2X6-TK84MFnvYjO-Y");'></div>
+</div>
+</header>
+<main class="flex-grow flex justify-center py-6 px-4 sm:px-6 lg:px-8">
+<div class="max-w-md w-full flex flex-col gap-6">
+<!-- Mobile Stats (Visible only on small screens) -->
+<div class="flex md:hidden justify-between gap-3">
+<div class="flex flex-1 gap-3 items-center bg-surface-dark p-3 rounded-xl border border-white/5 shadow-lg">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary shadow-neon">
+<span class="material-symbols-outlined text-[24px]">local_fire_department</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Streak</p>
+<p class="text-lg font-bold font-display leading-none">12 Days</p>
+</div>
+</div>
+<div class="flex flex-1 gap-3 items-center bg-surface-dark p-3 rounded-xl border border-white/5 shadow-lg">
+<div class="flex items-center justify-center size-10 rounded-full bg-accent-neon/20 text-accent-neon">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">XP</p>
+<p class="text-lg font-bold font-display leading-none">2,450</p>
+</div>
+</div>
+</div>
+<!-- Hero Countdown Section -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-dark border border-white/5 p-6 shadow-xl">
+<!-- Background Decoration -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-neon/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col items-center text-center gap-4">
+<div>
+<h1 class="text-2xl font-bold font-display tracking-tight mb-1">Daily Challenges</h1>
+<p class="text-slate-400 text-sm">Resetting in</p>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col bg-background-dark/80 backdrop-blur-sm p-3 rounded-lg min-w-[64px] border border-white/10">
+<span class="text-2xl font-bold font-display text-accent-neon">04</span>
+<span class="text-[10px] uppercase text-slate-500 font-bold">Hours</span>
+</div>
+<span class="text-2xl font-bold self-center -mt-4">:</span>
+<div class="flex flex-col bg-background-dark/80 backdrop-blur-sm p-3 rounded-lg min-w-[64px] border border-white/10">
+<span class="text-2xl font-bold font-display text-white">32</span>
+<span class="text-[10px] uppercase text-slate-500 font-bold">Mins</span>
+</div>
+<span class="text-2xl font-bold self-center -mt-4">:</span>
+<div class="flex flex-col bg-background-dark/80 backdrop-blur-sm p-3 rounded-lg min-w-[64px] border border-white/10">
+<span class="text-2xl font-bold font-display text-white">45</span>
+<span class="text-[10px] uppercase text-slate-500 font-bold">Secs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Challenges List -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-lg font-bold font-display">Your Missions</h3>
+<span class="text-xs text-primary font-bold bg-primary/10 px-2 py-1 rounded">1/3 Completed</span>
+</div>
+<!-- Card 1: The Daily Step -->
+<article class="group relative overflow-hidden rounded-xl bg-surface-dark border border-white/5 hover:border-primary/50 transition-all duration-300">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Urban dancer performing a freeze move in a gritty warehouse" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwpxrFR-97-9SkPd83tbPELAg7OSehO2FA3suaSww2Tl__9jfcQG1FbpQFzRUajL2Nl0gvhf35Fi7PE4XTUBIyXmgwYRkoGjt7iT2wAti-uR5R2uBF0-cDTgrShauca2TlvZNWJqlxE3mWErZOGktY-GR5yjjBhRdvlaxiOpVSPb-xokgqBNIs4q2ncqHOpSPUaqfkmKAw-Ny12Ngap092952Ze1nsCzb8YlioXGPI0Z8uI8QqRX0q8O5LMbLVgbAEC76oXhySvTo')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/90 to-transparent"></div>
+<div class="relative p-5 flex items-center justify-between gap-4">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">Video</span>
+<span class="text-accent-neon text-xs font-bold">+50 XP</span>
+</div>
+<h4 class="text-lg font-bold font-display text-white truncate">The Daily Step</h4>
+<p class="text-sm text-slate-400 truncate">Watch "The Running Man" breakdown</p>
+</div>
+<button class="flex-shrink-0 size-12 rounded-full bg-primary text-white flex items-center justify-center shadow-neon hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Practice Session -->
+<article class="group relative overflow-hidden rounded-xl bg-surface-dark border border-white/5 hover:border-accent-hot/50 transition-all duration-300">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Silhouette of a dancer practicing in front of a mirror with neon lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBOi00wE0w5-soT8ZVxkeVc6losUcrz_vyxD6q-l15VCwEg5XFVNA_o_BGYq4j-JQbGHOJnwL_mKH4EvaSWIfaHQH2NGooLCdnWKEhgEddmD3lyIKqvaGw-k1RLWPCoX0h-Zm_BcOwOfVWOgXHlKy6F5rEv-t2XRzIyMpExL1a93wEXhdX-W0it-0eKmZkCwLFOPNKOsHc7iZX7j-y0X-Y6qBHl0OG2tpialkxhAyCyGt3bnR58IVrKCeKm23ERVEUSURxJBRfBf4')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/90 to-transparent"></div>
+<div class="relative p-5 flex items-center justify-between gap-4">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-accent-hot text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">Drill</span>
+<span class="text-accent-neon text-xs font-bold">+100 XP</span>
+</div>
+<h4 class="text-lg font-bold font-display text-white truncate">Practice Session</h4>
+<p class="text-sm text-slate-400 truncate">Complete 15 mins of Popping</p>
+</div>
+<button class="flex-shrink-0 size-12 rounded-full bg-surface-dark border-2 border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">timer</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Style Quiz (Completed State) -->
+<article class="relative overflow-hidden rounded-xl bg-surface-dark/50 border border-white/5 opacity-80">
+<div class="absolute inset-0 opacity-10 bg-cover bg-center grayscale" data-alt="Vintage boombox on concrete representing hip hop history" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUfc6oBt8uqU1_Z80u_BYLZl4TFcycW2ioZbs43Xg5rvwwF-EPIrfW9E0-czkZxqoeI9V7JP6y26KKJXu9L6HNEiYsxlZmYjMmeFdouYVYYicH4bPmIQ_Jdeyy_qO_cBVXtrUiyQ6vgvQRJ5KCkVZV0oNsO3pRx_ciYfP4AyIZ54xT7VCUTXxX8X324d3RvSO6ktefxkTMebRWBYwzoKVALL50wBOP_147ikneI6iMfGvGkl9fKO2KYV9UMnKLVG8L_LEuoKvc5X8')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/95 to-transparent"></div>
+<div class="relative p-5 flex items-center justify-between gap-4">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-slate-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">Quiz</span>
+<span class="text-slate-400 text-xs font-bold decoration-line-through">30 XP</span>
+</div>
+<h4 class="text-lg font-bold font-display text-slate-300 truncate">Origins of Break</h4>
+<p class="text-sm text-slate-500 truncate">History knowledge check</p>
+</div>
+<div class="flex-shrink-0 size-12 rounded-full bg-green-500/20 text-green-500 border border-green-500/50 flex items-center justify-center">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+</article>
+</section>
+<!-- Weekly Bonus Chest -->
+<section class="mt-auto pt-4 pb-8">
+<div class="relative bg-gradient-to-br from-[#2a1e3e] to-[#1a1225] rounded-2xl p-6 border border-primary/20 shadow-neon">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-lg font-bold font-display text-white">Weekly Chest</h3>
+<p class="text-xs text-primary-light">4/5 Days Completed</p>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-accent-hot blur-xl opacity-20 rounded-full"></div>
+<span class="material-symbols-outlined text-4xl text-accent-hot relative z-10 animate-pulse">featured_seasonal_and_gifts</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="relative h-4 bg-background-dark rounded-full overflow-hidden border border-white/5">
+<div class="absolute top-0 left-0 h-full w-[80%] bg-gradient-to-r from-primary to-accent-hot shadow-[0_0_10px_rgba(255,0,212,0.5)]"></div>
+<!-- Ticks -->
+<div class="absolute inset-0 flex justify-between px-[10%]">
+<div class="w-0.5 h-full bg-background-dark/30"></div>
+<div class="w-0.5 h-full bg-background-dark/30"></div>
+<div class="w-0.5 h-full bg-background-dark/30"></div>
+<div class="w-0.5 h-full bg-background-dark/30"></div>
+</div>
+</div>
+<p class="text-center text-[10px] text-slate-400 mt-2">Complete tomorrow's challenges to unlock!</p>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Mobile Nav (Simulated for desktop view) -->
+<nav class="sticky bottom-0 z-40 bg-[#181023] border-t border-white/5 px-6 py-3 flex justify-around items-center md:hidden">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-medium">Learn</span>
+</a>
+<a class="relative -top-6 bg-primary size-14 rounded-full flex items-center justify-center text-white shadow-neon border-4 border-[#181023]" href="#">
+<span class="material-symbols-outlined">play_arrow</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary hover:text-primary-light transition-colors" href="#">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="text-[10px] font-medium">Tasks</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

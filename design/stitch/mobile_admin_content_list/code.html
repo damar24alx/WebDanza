@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Admin Content List</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1132d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                        "card-dark": "#1e1e24",
+                        "surface-dark": "#15171e",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Custom scrollbar for horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center">
+<!-- Main Mobile Container Wrapper -->
+<div class="w-full max-w-[480px] min-h-screen bg-surface-dark shadow-2xl border-x border-slate-800 flex flex-col relative">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-slate-800">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-lg font-bold leading-tight">Content Library</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-card-dark hover:bg-slate-800 text-white rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 border-2 border-primary" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD3tlP2YjlFeWQSFSmGMDhuwkP82BypLTqIr8oI_SloSMX8FN5dmCK4QfiVLSMVGdgoWQTPfYc74ISFqrj83xQHVLwsHMFBhvsqfjbmuTPNfXKHe-fX5zBFZg6pJX7TEd8xRE-6zAmm0rapQgzz9NGYXaKS0NxITmzFDjvHalKO8TQXOZyrRymXDOF9Vr8qacR7nw9zJC3Rs7kG8EHjKe3tciC2n3bsShfIvGDxG-ueu-Q35oidGPcn7ARpp6unmdGGj4gcONkv-_s");'></div>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 pb-3">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full p-3 pl-10 text-sm text-white bg-card-dark border border-slate-700 rounded-xl focus:ring-primary focus:border-primary placeholder-slate-500 transition-all shadow-sm" placeholder="Search styles, moves, lessons..." type="text"/>
+</div>
+</div>
+<!-- Filter Chips (Carousel) -->
+<div class="flex gap-2 overflow-x-auto px-4 pb-3 no-scrollbar select-none">
+<button class="flex-shrink-0 px-4 py-1.5 bg-primary text-white text-sm font-medium rounded-full shadow-lg shadow-primary/20 transition-transform active:scale-95">All</button>
+<button class="flex-shrink-0 px-4 py-1.5 bg-card-dark border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-medium rounded-full transition-colors active:bg-slate-800">Styles</button>
+<button class="flex-shrink-0 px-4 py-1.5 bg-card-dark border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-medium rounded-full transition-colors active:bg-slate-800">Moves</button>
+<button class="flex-shrink-0 px-4 py-1.5 bg-card-dark border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-medium rounded-full transition-colors active:bg-slate-800">Lessons</button>
+<button class="flex-shrink-0 px-4 py-1.5 bg-card-dark border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-medium rounded-full transition-colors active:bg-slate-800">Drafts</button>
+</div>
+</header>
+<!-- Content List -->
+<main class="flex-1 overflow-y-auto p-4 space-y-3 pb-24">
+<!-- Section Header -->
+<div class="flex justify-between items-center mb-2">
+<h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Recently Updated</h2>
+<button class="text-xs text-primary font-medium hover:text-blue-400">View History</button>
+</div>
+<!-- Card 1: Style (Ready) -->
+<article class="bg-card-dark rounded-xl p-3 flex gap-3 shadow-md border border-slate-800 hover:border-primary/50 transition-colors group relative cursor-pointer">
+<div class="size-16 rounded-lg bg-cover bg-center flex-shrink-0 relative overflow-hidden" data-alt="Abstract colorful dance movement" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACCg5gScdVeUugaSeQl3pEnHgRZfNvL7j4fB9Wu-rFmPBkTdtsUMhLnbnsnX0tLprSK9pvDDIAvbUGbS5QHhN7PYHR4LLVsFM1c4-ISIKrC8aH-5WbUI2ZFAGQGb0XYUBS5r9UbqiQDDqEveUJ4BgX3MVUGfKbkp0nwaPlcqzUaPxOFtMUf-yCZAWWtYSuAAuIglGacyT8m8I2gSnnqP79pzdDPNY5sepEAgTCpuL6voaXXsOFsEYiABS9-S_dLG-hmaGicNwV72w')">
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-base truncate pr-2">Salsa Basic Step</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg cursor-pointer hover:text-white">more_vert</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-wide border border-green-500/20">Ready</span>
+<span class="text-slate-500 text-xs">•</span>
+<span class="text-slate-400 text-xs truncate">Style • Beginner</span>
+</div>
+<p class="text-slate-500 text-xs mt-1">Updated Oct 24, 2023</p>
+</div>
+</article>
+<!-- Card 2: Move (Draft) -->
+<article class="bg-card-dark rounded-xl p-3 flex gap-3 shadow-md border border-slate-800 hover:border-primary/50 transition-colors group relative cursor-pointer">
+<div class="size-16 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0 text-slate-500">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-base truncate pr-2">Cuban Motion Drill</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg cursor-pointer hover:text-white">more_vert</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-[10px] font-bold uppercase tracking-wide border border-yellow-500/20">Draft</span>
+<span class="text-slate-500 text-xs">•</span>
+<span class="text-slate-400 text-xs truncate">Move • Intermediate</span>
+</div>
+<p class="text-slate-500 text-xs mt-1">Updated Oct 23, 2023</p>
+</div>
+</article>
+<!-- Card 3: Lesson (Ready) -->
+<article class="bg-card-dark rounded-xl p-3 flex gap-3 shadow-md border border-slate-800 hover:border-primary/50 transition-colors group relative cursor-pointer">
+<div class="size-16 rounded-lg bg-cover bg-center flex-shrink-0 relative overflow-hidden" data-alt="Close up of ballet shoes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOqybkKxp-DJG51c7aDjPesenUOh7DZ1V4r9MWfVVPs_4PUDJdAoc-l7t6HYHNjHi3sePdkc6Td62ZPuzgKShQt11EBNn0ERpf35ikdzilEAVH30sIVSMwjHzdBr4w6HzV60aHjykXtlmqeoog38CjKBx8Z26_DlFeReooz2CMj5In0ZUHCf0MqKFptGwcUGFN0WrK7eF4X9H7jvJKam88Ogf05BeXpxiUQOVvXWFLcFa-HTFcv2tDUJDGklk5picfBTVFTI47LZY')">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-base truncate pr-2">Intro to Bachata</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg cursor-pointer hover:text-white">more_vert</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-wide border border-green-500/20">Ready</span>
+<span class="text-slate-500 text-xs">•</span>
+<span class="text-slate-400 text-xs truncate">Lesson • 15 mins</span>
+</div>
+<p class="text-slate-500 text-xs mt-1">Updated Oct 22, 2023</p>
+</div>
+</article>
+<!-- Card 4: Move (Ready) -->
+<article class="bg-card-dark rounded-xl p-3 flex gap-3 shadow-md border border-slate-800 hover:border-primary/50 transition-colors group relative cursor-pointer">
+<div class="size-16 rounded-lg bg-cover bg-center flex-shrink-0 relative overflow-hidden" data-alt="People dancing in dark room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgCkFmbNooSrIULEtkKa1TX9U3t0k9cUmI0N1BaYp795oFPfdEm-LrDAFm4qIUtAnsErR0A529fIPeY8rI39B_xg2hj7s0RjUlpv2TL6uQMAJX6_sLkwksq54Rz81aN7o2R1GZ2PeKmkSeU0vddOe9qi6aTb9NIwzp6nxvu6bcprZNaV5QmWRe41rMIR-aPRbXcZQJH7X6F8BFZLIvUQaRRDlzCv2Jusdwb0T8M1ijHTAhtvksocuZpPTuZxgxEB-GmowEoHziZqc')">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-base truncate pr-2">Advanced Spins</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg cursor-pointer hover:text-white">more_vert</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-wide border border-green-500/20">Ready</span>
+<span class="text-slate-500 text-xs">•</span>
+<span class="text-slate-400 text-xs truncate">Move • Advanced</span>
+</div>
+<p class="text-slate-500 text-xs mt-1">Updated Oct 20, 2023</p>
+</div>
+</article>
+<!-- Card 5: Draft Lesson -->
+<article class="bg-card-dark rounded-xl p-3 flex gap-3 shadow-md border border-slate-800 hover:border-primary/50 transition-colors group relative cursor-pointer opacity-80">
+<div class="size-16 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0 text-slate-500">
+<span class="material-symbols-outlined text-3xl">play_circle</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-base truncate pr-2">Kizomba 101</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg cursor-pointer hover:text-white">more_vert</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 text-[10px] font-bold uppercase tracking-wide border border-slate-600">Draft</span>
+<span class="text-slate-500 text-xs">•</span>
+<span class="text-slate-400 text-xs truncate">Lesson • Untitled</span>
+</div>
+<p class="text-slate-500 text-xs mt-1">Updated Oct 18, 2023</p>
+</div>
+</article>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="absolute bottom-24 right-4 z-40 bg-primary hover:bg-blue-600 text-white rounded-2xl p-4 shadow-xl shadow-primary/30 transition-transform hover:scale-105 active:scale-95 flex items-center gap-2 group">
+<span class="material-symbols-outlined">add</span>
+<span class="font-bold pr-1">New</span>
+</button>
+<!-- Simulated Bottom Navigation -->
+<nav class="absolute bottom-0 w-full bg-background-dark border-t border-slate-800 pb-5 pt-3 px-6 flex justify-between items-end z-50">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary transition-colors">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary">list_alt</span>
+<span class="text-[10px] font-medium text-primary">Content</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">group</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary transition-colors">Users</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">settings</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary transition-colors">Settings</span>
+</button>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dance Encyclopedia - Mobile Auth</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7b25f4",
+                        "primary-hover": "#6a1ed6",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#171022",
+                        "surface-dark": "#231b30",
+                        "surface-input": "#2d243a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d243a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7b25f4; 
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display antialiased min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<!-- Ambient Background with Blur -->
+<div class="absolute inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&amp;w=2574&amp;auto=format&amp;fit=crop')] bg-cover bg-center blur-3xl scale-110 brightness-50 contrast-125" data-alt="Abstract blurred colorful dance lights"></div>
+<div class="absolute inset-0 bg-background-dark/80 mix-blend-multiply"></div>
+</div>
+<!-- Mobile Container Wrapper -->
+<div class="relative z-10 w-full max-w-[420px] bg-background-dark rounded-2xl shadow-2xl border border-white/5 flex flex-col overflow-hidden max-h-[90vh] overflow-y-auto">
+<!-- Hero Section -->
+<div class="relative h-48 w-full shrink-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Female ballet dancer silhouette in purple light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQxbj1S2kNW31PxAKlswLzEoCHasndDB2Yvdo7ls6eP69KI9rqetQYufC9ULqgr0y6aFNGxNBYW_IgRdXbwL9jGd7csCm7D2omI3njG-unA5YnwBOsXtCfDcQI2jUyvIVTBhJmMVC0zU7O6rEjwdkQwO8xOIbTLxhZPHI3F2xBuZHhk1v7NhyFoE1opqWMh_Kg5Ybp6p4fhXwuxBfL2E5GFRTMCbQCzkkVwqYz-ivBqr3r1H0fh55eUKayDGDcMzfD9AJUqL4V60M');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+</div>
+<div class="absolute bottom-4 left-6 right-6">
+<h1 class="text-white text-3xl font-bold tracking-tight mb-1">Dance<span class="text-primary">Encyclopedia</span></h1>
+<p class="text-slate-400 text-sm font-medium">Master the art of movement.</p>
+</div>
+</div>
+<!-- Auth Content -->
+<div class="flex-1 px-6 pb-8 pt-4">
+<!-- Toggle Switch -->
+<div class="bg-surface-dark p-1 rounded-xl flex mb-8 border border-white/5">
+<button class="flex-1 py-2.5 text-sm font-semibold rounded-lg bg-primary text-white shadow-lg transition-all text-center">
+                    Log In
+                </button>
+<button class="flex-1 py-2.5 text-sm font-semibold rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all text-center">
+                    Sign Up
+                </button>
+</div>
+<div class="space-y-5">
+<!-- Welcome Title -->
+<div>
+<h2 class="text-white text-2xl font-bold">Welcome back</h2>
+<p class="text-slate-400 text-sm mt-1">Please enter your details to sign in.</p>
+</div>
+<!-- Form Fields -->
+<form class="space-y-4" onsubmit="event.preventDefault()">
+<div class="space-y-1.5">
+<label class="text-slate-300 text-sm font-medium ml-1">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-surface-input border border-transparent focus:border-primary/50 text-white text-base rounded-xl py-4 pl-12 pr-4 outline-none ring-0 placeholder:text-slate-600 transition-all focus:bg-surface-dark focus:shadow-[0_0_0_4px_rgba(123,37,244,0.1)]" placeholder="dancer@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-slate-300 text-sm font-medium ml-1">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-surface-input border border-transparent focus:border-primary/50 text-white text-base rounded-xl py-4 pl-12 pr-12 outline-none ring-0 placeholder:text-slate-600 transition-all focus:bg-surface-dark focus:shadow-[0_0_0_4px_rgba(123,37,244,0.1)]" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<div class="flex justify-end pt-1">
+<a class="text-primary hover:text-primary-hover text-sm font-medium transition-colors" href="#">Forgot Password?</a>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/25 transition-all mt-4 flex items-center justify-center gap-2">
+                        Start Dancing
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-white/10"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-background-dark px-2 text-slate-500">Or continue with</span>
+</div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-3 gap-3">
+<button class="flex items-center justify-center h-14 bg-surface-input hover:bg-surface-dark border border-white/5 rounded-xl transition-all hover:border-white/10 group">
+<svg aria-hidden="true" class="w-6 h-6 fill-white group-hover:scale-110 transition-transform" data-alt="Apple Logo" viewbox="0 0 24 24">
+<path d="M12.0002 2C6.47732 2 2.00018 6.47715 2.00018 12C2.00018 17.5228 6.47732 22 12.0002 22C17.523 22 22.0002 17.5228 22.0002 12C22.0002 6.47715 17.523 2 12.0002 2ZM14.9452 14.8028C14.7214 15.0267 14.4282 15.1524 14.1116 15.1524H10.1507C9.83411 15.1524 9.54087 15.0267 9.31704 14.8028L7.13113 12.6169C6.90731 12.3931 6.78156 12.0999 6.78156 11.7833C6.78156 11.4667 6.90731 11.1735 7.13113 10.9496L9.31704 8.76375C9.54087 8.53992 9.83411 8.41417 10.1507 8.41417H14.1116C14.4282 8.41417 14.7214 8.53992 14.9452 8.76375L17.1311 10.9496C17.355 11.1735 17.4807 11.4667 17.4807 11.7833C17.4807 12.0999 17.355 12.3931 17.1311 12.6169L14.9452 14.8028Z" fill-opacity="0"></path>
+<path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-.68-.32-1.42-.4-2.09-.53-.67 0-1.39.11-2.07.53-.94.57-2.18.49-3.23-.46-4.52-4.06-3.8-10.97 1.34-11.23 1.36.11 2.27.77 2.92.83.69-.03 1.94-.96 3.28-.79 1.36.13 2.39.75 3.03 1.62-2.73 1.5-2.22 5.09.43 6.13-.57 1.54-1.37 2.89-2.23 3.5zm-3.44-15.3c.53-1.6 2.36-2.92 4.14-2.92.11 1.66-1.57 3.32-3.1 3.56-.56-.03-1.25-.19-1.04-.64z"></path>
+</svg>
+</button>
+<button class="flex items-center justify-center h-14 bg-surface-input hover:bg-surface-dark border border-white/5 rounded-xl transition-all hover:border-white/10 group">
+<svg aria-hidden="true" class="w-6 h-6 group-hover:scale-110 transition-transform" data-alt="Google Logo" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+</button>
+<button class="flex items-center justify-center h-14 bg-surface-input hover:bg-surface-dark border border-white/5 rounded-xl transition-all hover:border-white/10 group">
+<svg aria-hidden="true" class="w-6 h-6 fill-[#1877F2] group-hover:scale-110 transition-transform" data-alt="Facebook Logo" viewbox="0 0 24 24">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+</button>
+</div>
+<!-- Footer Text -->
+<p class="text-center text-slate-400 text-sm mt-6">
+                    Don't have an account? <a class="text-primary hover:text-white font-semibold transition-colors" href="#">Sign up</a>
+</p>
+</div>
+</div>
+<!-- Bottom Safe Area Indicator (iOS style simulation) -->
+<div class="h-1.5 w-32 bg-slate-700 rounded-full mx-auto mb-3 opacity-50 shrink-0"></div>
+</div>
+</body></html>
