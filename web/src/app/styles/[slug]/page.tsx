@@ -2,16 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Clock3, Music3, Route, Sparkle, Target } from "lucide-react";
 import { AppShell } from "@/components/layout";
-import { LockedState } from "@/components/state/SystemStates";
-import { Badge, Button, Card, CardContent, CardTitle, Progress } from "@/components/ui";
+import { LockedState } from "@/components/states";
+import { Badge, Button, Card, CardContent, CardTitle, Progress, Tabs } from "@/components/ui";
 import { coursesMock, getStyleBySlug, getSubstylesByStyle, movesMock } from "@/mocks";
 
-export default function StyleDetailPage({
+export default async function StyleDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const style = getStyleBySlug(params.slug);
+  const { slug } = await params;
+  const style = getStyleBySlug(slug);
 
   if (!style) {
     notFound();
@@ -24,13 +25,12 @@ export default function StyleDetailPage({
   return (
     <AppShell fullWidth>
       <article className="mx-auto w-full max-w-7xl space-y-8 px-4 sm:px-6">
-        <section className="relative overflow-hidden rounded-3xl border border-[var(--border-1)] bg-[var(--surface-1)] p-8 sm:p-10">
-          <div className={`absolute inset-0 bg-gradient-to-br ${style.image} opacity-20`} />
+        <section className="relative min-h-[420px] overflow-hidden rounded-3xl border border-[var(--border-1)] bg-[var(--surface-1)] p-8 sm:p-10">
+          <div className={`absolute inset-0 bg-gradient-to-br ${style.image} opacity-30`} />
+          <div className="hero-overlay absolute inset-0 opacity-75" />
           <div className="relative z-10 max-w-3xl">
             <Badge variant="primary">{style.category}</Badge>
-            <h1 className="mt-4 text-5xl font-black tracking-tight text-white sm:text-7xl">
-              {style.name}
-            </h1>
+            <h1 className="mt-4 text-5xl font-black tracking-tight text-white sm:text-7xl">{style.name}</h1>
             <p className="mt-4 text-base text-[var(--text-2)] sm:text-lg">{style.summary}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/styles">
@@ -42,6 +42,17 @@ export default function StyleDetailPage({
             </div>
           </div>
         </section>
+
+        <Tabs
+          activeValue="overview"
+          items={[
+            { label: "Overview", value: "overview" },
+            { label: "History", value: "history" },
+            { label: "Technique", value: "technique" },
+            { label: "Musicality", value: "musicality" },
+            { label: "Learning Path", value: "path" },
+          ]}
+        />
 
         <section className="grid gap-6 lg:grid-cols-3">
           <Card className="lg:col-span-2">
@@ -87,7 +98,7 @@ export default function StyleDetailPage({
                   <Link
                     key={move.slug}
                     href={`/moves/${move.slug}`}
-                    className="block rounded-xl border border-[var(--border-1)] p-3 hover:bg-white/5"
+                    className="block rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] p-3 hover:bg-white/5"
                   >
                     <p className="font-semibold text-white">{move.name}</p>
                     <p className="mt-1 text-xs text-[var(--text-2)]">{move.summary}</p>
@@ -100,7 +111,7 @@ export default function StyleDetailPage({
             <CardContent>
               <CardTitle className="flex items-center gap-2">
                 <Music3 size={18} className="text-[var(--color-primary-soft)]" />
-                Understanding the Beat
+                Understanding the 4/4 Beat
               </CardTitle>
               <ul className="mt-4 space-y-2 text-sm text-[var(--text-2)]">
                 {style.principles.map((principle) => (
@@ -141,8 +152,8 @@ export default function StyleDetailPage({
             </CardContent>
           </Card>
           <LockedState
-            title="Módulo 2 bloqueado"
-            subtitle="Completa House Foundations para desbloquear variaciones avanzadas."
+            title="Modulo 2 bloqueado"
+            description="Completa House Foundations para desbloquear variaciones avanzadas."
           />
         </section>
       </article>

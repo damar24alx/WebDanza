@@ -14,10 +14,35 @@ export default function RecoveryPage() {
                 Introduce tu correo y enviaremos un enlace para recuperar el acceso.
               </p>
             </div>
-            <Input icon={<Mail size={16} />} placeholder="Correo electrónico" />
-            <Button className="w-full">Send Recovery Link</Button>
+
+            <form className="space-y-3" noValidate>
+              <div className="space-y-2">
+                <label
+                  htmlFor="recovery-email"
+                  className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                >
+                  Correo electronico
+                </label>
+                <Input
+                  id="recovery-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  icon={<Mail size={16} />}
+                  aria-describedby="recovery-email-help"
+                />
+                <p id="recovery-email-help" className="text-xs text-[var(--text-3)]">
+                  Te enviaremos un enlace de recuperacion si la cuenta existe.
+                </p>
+              </div>
+
+              <Button className="w-full" type="submit">
+                Send Recovery Link
+              </Button>
+            </form>
+
             <p className="text-xs text-[var(--text-3)]">
-              ¿Recordaste tu contraseña?{" "}
+              Recordaste tu contrasena?{" "}
               <Link href="/auth/login" className="text-[var(--color-primary-soft)] hover:text-white">
                 Volver al login
               </Link>
@@ -32,9 +57,9 @@ export default function RecoveryPage() {
               Check your mail
             </p>
             <p className="mt-2 text-sm text-emerald-100/80">
-              Si el correo existe, recibirás instrucciones en los próximos minutos.
+              Si el correo existe, recibiras instrucciones en los proximos minutos.
             </p>
-            <Button variant="outline" className="mt-5 self-start" leftIcon={<RefreshCcw size={15} />}>
+            <Button variant="outline" className="mt-5 self-start" leftIcon={<RefreshCcw size={15} />} type="button">
               Reenviar enlace
             </Button>
           </CardContent>

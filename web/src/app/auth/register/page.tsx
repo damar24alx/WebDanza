@@ -22,24 +22,119 @@ export default function RegisterPage() {
           <CardContent className="space-y-5">
             <div>
               <h2 className="text-4xl font-black text-white">Join the Movement</h2>
-              <p className="mt-2 text-sm text-[var(--text-2)]">
-                Regístrate y comienza tu ruta guiada.
-              </p>
+              <p className="mt-2 text-sm text-[var(--text-2)]">Registrate y comienza tu ruta guiada.</p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Input icon={<UserRound size={16} />} placeholder="Nombre" />
-              <Input icon={<UserRound size={16} />} placeholder="Apellido" />
-            </div>
-            <Input icon={<Mail size={16} />} placeholder="Correo electrónico" />
-            <Input icon={<KeyRound size={16} />} type="password" placeholder="Contraseña" />
-            <Input icon={<KeyRound size={16} />} type="password" placeholder="Confirmar contraseña" />
-            <Button className="w-full" rightIcon={<ArrowRight size={16} />}>
-              Create Account
-            </Button>
+
+            <form className="space-y-4" noValidate>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="register-first-name"
+                    className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                  >
+                    Nombre
+                  </label>
+                  <Input
+                    id="register-first-name"
+                    name="firstName"
+                    autoComplete="given-name"
+                    icon={<UserRound size={16} />}
+                    aria-describedby="register-first-name-help"
+                  />
+                  <p id="register-first-name-help" className="text-xs text-[var(--text-3)]">
+                    Tu nombre para el certificado.
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="register-last-name"
+                    className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                  >
+                    Apellido
+                  </label>
+                  <Input
+                    id="register-last-name"
+                    name="lastName"
+                    autoComplete="family-name"
+                    icon={<UserRound size={16} />}
+                    aria-describedby="register-last-name-help"
+                  />
+                  <p id="register-last-name-help" className="text-xs text-[var(--text-3)]">
+                    Como quieres que aparezca en tu perfil.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="register-email"
+                  className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                >
+                  Correo electronico
+                </label>
+                <Input
+                  id="register-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  icon={<Mail size={16} />}
+                  aria-describedby="register-email-help"
+                />
+                <p id="register-email-help" className="text-xs text-[var(--text-3)]">
+                  Te enviaremos notificaciones de progreso a este correo.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="register-password"
+                  className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                >
+                  Contrasena
+                </label>
+                <Input
+                  id="register-password"
+                  name="password"
+                  type="password"
+                  autoComplete="new-password"
+                  icon={<KeyRound size={16} />}
+                  aria-describedby="register-password-help"
+                />
+                <p id="register-password-help" className="text-xs text-[var(--text-3)]">
+                  Usa minimo 8 caracteres.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="register-password-confirm"
+                  className="block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-3)]"
+                >
+                  Confirmar contrasena
+                </label>
+                <Input
+                  id="register-password-confirm"
+                  name="passwordConfirm"
+                  type="password"
+                  autoComplete="new-password"
+                  icon={<KeyRound size={16} />}
+                  aria-describedby="register-password-confirm-help"
+                />
+                <p id="register-password-confirm-help" className="text-xs text-[var(--text-3)]">
+                  Debe coincidir con la contrasena principal.
+                </p>
+              </div>
+
+              <Button className="w-full" rightIcon={<ArrowRight size={16} />} type="submit">
+                Create Account
+              </Button>
+            </form>
+
             <p className="text-xs text-[var(--text-3)]">
-              ¿Ya tienes cuenta?{" "}
+              Ya tienes cuenta?{" "}
               <Link href="/auth/login" className="text-[var(--color-primary-soft)] hover:text-white">
-                Inicia sesión
+                Inicia sesion
               </Link>
             </p>
           </CardContent>

@@ -1,7 +1,15 @@
 import Link from "next/link";
-import { Award, CalendarClock, Flame, Gauge, PlayCircle, Trophy } from "lucide-react";
+import {
+  Award,
+  CalendarClock,
+  Flame,
+  Gauge,
+  PlayCircle,
+  Trophy,
+  Zap,
+} from "lucide-react";
 import { AppShell, Sidebar } from "@/components/layout";
-import { LockedState } from "@/components/state/SystemStates";
+import { LockedState } from "@/components/states";
 import { Badge, Button, Card, CardContent, Progress } from "@/components/ui";
 import { coursesMock, getCourseBySlug, userMock } from "@/mocks";
 
@@ -26,7 +34,7 @@ export default function MePage() {
           <header className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
             <h1 className="text-4xl font-bold text-white">My Dashboard</h1>
             <p className="mt-2 text-sm text-[var(--text-2)]">
-              Bienvenida, {userMock.name}. Continúa tu progreso donde te quedaste.
+              Welcome back, {userMock.name}. Keep your momentum and finish your active path.
             </p>
           </header>
 
@@ -45,20 +53,25 @@ export default function MePage() {
               </h2>
               {activeCourse ? (
                 <div className="mt-4 rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] p-4">
-                  <p className="text-2xl font-bold text-white">{activeCourse.title}</p>
-                  <p className="mt-1 text-sm text-[var(--text-2)]">{activeCourse.summary}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-2xl font-bold text-white">{activeCourse.title}</p>
+                      <p className="mt-1 text-sm text-[var(--text-2)]">{activeCourse.summary}</p>
+                    </div>
+                    <Badge variant="primary">{activeCourse.level}</Badge>
+                  </div>
                   <Progress className="mt-4" value={activeCourse.progressPercent} label="Progreso curso" />
                   <Link href={`/learn/${activeCourse.slug}`}>
-                    <Button className="mt-4">Reanudar</Button>
+                    <Button className="mt-4">Continue Learning</Button>
                   </Link>
                 </div>
               ) : (
-                <LockedState title="Sin curso activo" subtitle="Inicia una ruta desde la academia." />
+                <LockedState title="Sin curso activo" description="Inicia una ruta desde la academia." />
               )}
             </CardContent>
           </Card>
 
-          <div className="grid gap-6 xl:grid-cols-2">
+          <div className="grid gap-6 xl:grid-cols-[1.1fr,1fr]">
             <Card>
               <CardContent>
                 <h2 className="text-xl font-bold text-white">My Courses</h2>
@@ -76,24 +89,46 @@ export default function MePage() {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent>
-                <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-white">
-                  <Trophy size={18} className="text-amber-300" />
-                  Recent Badges
-                </h2>
-                <div className="space-y-2">
-                  {userMock.badges.map((badge) => (
-                    <div
-                      key={badge}
-                      className="rounded-lg border border-[var(--border-1)] bg-[var(--surface-2)] px-3 py-2 text-sm text-[var(--text-2)]"
-                    >
-                      {badge}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <div className="space-y-6">
+              <Card>
+                <CardContent>
+                  <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-white">
+                    <Trophy size={18} className="text-amber-300" />
+                    Recent Badges
+                  </h2>
+                  <div className="space-y-2">
+                    {userMock.badges.map((badge) => (
+                      <div
+                        key={badge}
+                        className="rounded-lg border border-[var(--border-1)] bg-[var(--surface-2)] px-3 py-2 text-sm text-[var(--text-2)]"
+                      >
+                        {badge}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent>
+                  <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-white">
+                    <Zap size={17} className="text-[var(--color-primary-soft)]" />
+                    Activity
+                  </h2>
+                  <ul className="space-y-2 text-sm text-[var(--text-2)]">
+                    <li className="rounded-lg border border-[var(--border-1)] px-3 py-2">
+                      Completed lesson: Rock Fundamentals
+                    </li>
+                    <li className="rounded-lg border border-[var(--border-1)] px-3 py-2">
+                      Earned badge: Footwork Focus
+                    </li>
+                    <li className="rounded-lg border border-[var(--border-1)] px-3 py-2">
+                      Certificate issued: House Foundations
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
       </div>

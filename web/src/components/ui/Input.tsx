@@ -7,9 +7,9 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 export function Input({ className, icon, ...props }: InputProps) {
   return (
-    <label
+    <div
       className={cn(
-        "flex h-11 items-center gap-2 rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] px-3 text-sm transition-colors focus-within:border-[var(--color-primary)]",
+        "flex h-11 items-center gap-2 rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] px-3 text-sm transition-colors focus-within:border-[var(--color-primary)] focus-within:ring-2 focus-within:ring-[var(--color-primary)]/35",
         className,
       )}
     >
@@ -18,6 +18,6 @@ export function Input({ className, icon, ...props }: InputProps) {
         className="w-full border-none bg-transparent text-[var(--text-1)] placeholder:text-[var(--text-3)] focus:outline-none"
         {...props}
       />
-    </label>
+    </div>
   );
 }

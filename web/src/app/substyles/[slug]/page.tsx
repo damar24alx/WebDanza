@@ -5,12 +5,13 @@ import { LockedState } from "@/components/state/SystemStates";
 import { Badge, Card, CardContent, Tabs } from "@/components/ui";
 import { getStyleBySlug, getSubstyleBySlug, movesMock } from "@/mocks";
 
-export default function SubstyleDetailPage({
+export default async function SubstyleDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const substyle = getSubstyleBySlug(params.slug);
+  const { slug } = await params;
+  const substyle = getSubstyleBySlug(slug);
 
   if (!substyle) {
     notFound();

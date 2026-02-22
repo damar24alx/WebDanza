@@ -5,12 +5,13 @@ import { AppShell } from "@/components/layout";
 import { Badge, Button, Card, CardContent, CardTitle } from "@/components/ui";
 import { getMoveBySlug, stylesMock } from "@/mocks";
 
-export default function MoveDetailPage({
+export default async function MoveDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const move = getMoveBySlug(params.slug);
+  const { slug } = await params;
+  const move = getMoveBySlug(slug);
 
   if (!move) {
     notFound();
@@ -21,19 +22,17 @@ export default function MoveDetailPage({
   return (
     <AppShell>
       <article className="space-y-8">
-        <section className="rounded-3xl border border-[var(--border-1)] bg-[var(--surface-1)] p-8">
+        <section className="hero-overlay rounded-3xl border border-[var(--border-1)] p-8">
           <Link href="/moves" className="mb-5 inline-flex">
             <Button variant="ghost" leftIcon={<ArrowLeft size={16} />}>
-              Volver al diccionario
+              Back to dictionary
             </Button>
           </Link>
           <div className="grid gap-6 lg:grid-cols-[1.3fr,1fr]">
             <div>
               <Badge variant="primary">{move.family}</Badge>
-              <h1 className="mt-4 text-4xl font-black tracking-tight text-white md:text-5xl">
-                {move.name}
-              </h1>
-              <p className="mt-3 text-sm text-[var(--text-2)] md:text-base">{move.summary}</p>
+              <h1 className="mt-4 text-4xl font-black tracking-tight text-white md:text-5xl">{move.name}</h1>
+              <p className="mt-3 max-w-2xl text-sm text-[var(--text-2)] md:text-base">{move.summary}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {styles.map((style) => (
                   <Badge key={style.slug} variant="neutral">
@@ -42,19 +41,19 @@ export default function MoveDetailPage({
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl bg-[var(--surface-2)] p-4">
-              <div className="h-full rounded-xl bg-gradient-to-br from-[var(--color-primary)]/60 to-cyan-500/25" />
+            <div className="rounded-2xl border border-white/15 bg-black/20 p-4">
+              <div className="h-full min-h-[220px] rounded-xl bg-gradient-to-br from-[var(--color-primary)]/70 to-cyan-500/35" />
             </div>
           </div>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1.5fr,1fr]">
+        <section className="grid gap-6 lg:grid-cols-[1.55fr,1fr]">
           <Card>
             <CardContent>
               <CardTitle>Step-by-Step Technique</CardTitle>
               <ol className="mt-4 space-y-3">
                 {move.stepByStep.map((step, index) => (
-                  <li key={step} className="rounded-xl border border-[var(--border-1)] p-4">
+                  <li key={step} className="rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] p-4">
                     <p className="text-xs font-bold uppercase tracking-[0.1em] text-[var(--text-3)]">
                       Step {index + 1}
                     </p>
@@ -80,18 +79,6 @@ export default function MoveDetailPage({
             <Card>
               <CardContent>
                 <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-[var(--text-3)]">
-                  <Music4 size={14} />
-                  Move Info
-                </p>
-                <p className="text-sm text-[var(--text-2)]">Tipo: {move.moveType}</p>
-                <p className="text-sm text-[var(--text-2)]">Dificultad: {move.difficulty}</p>
-                <p className="text-sm text-[var(--text-2)]">BPM ideal: {move.bpmRange}</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent>
-                <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-[var(--text-3)]">
                   <Flame size={14} />
                   Variations
                 </p>
@@ -99,6 +86,18 @@ export default function MoveDetailPage({
                   <p className="rounded-lg border border-[var(--border-1)] px-3 py-2">Shuffle diagonal</p>
                   <p className="rounded-lg border border-[var(--border-1)] px-3 py-2">Shuffle heel-toe</p>
                 </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent>
+                <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-[var(--text-3)]">
+                  <Music4 size={14} />
+                  Move Info
+                </p>
+                <p className="text-sm text-[var(--text-2)]">Tipo: {move.moveType}</p>
+                <p className="text-sm text-[var(--text-2)]">Dificultad: {move.difficulty}</p>
+                <p className="text-sm text-[var(--text-2)]">BPM ideal: {move.bpmRange}</p>
               </CardContent>
             </Card>
           </div>
@@ -123,12 +122,12 @@ export default function MoveDetailPage({
             <CardContent>
               <CardTitle className="flex items-center gap-2">
                 <Info size={18} className="text-[var(--color-primary-soft)]" />
-                Recomendación técnica
+                Technical Note
               </CardTitle>
               <p className="mt-4 text-sm text-[var(--text-2)]">
-                Practica con metrónomo en bloques de 4x8 para estabilizar la ejecución y evitar desalineación de torso.
+                Practica con metronomo en bloques de 4x8 para estabilizar ejecucion y evitar desalineacion.
               </p>
-              <Button className="mt-5">Marcar como practicado</Button>
+              <Button className="mt-5">Mark as practiced</Button>
             </CardContent>
           </Card>
         </section>
