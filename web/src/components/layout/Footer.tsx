@@ -23,26 +23,38 @@ export function Footer() {
             <div className="mt-4 space-y-2 text-sm text-[var(--text-2)]">
               <Link href="/styles" className="block hover:text-white">Enciclopedia</Link>
               <Link href="/learn" className="block hover:text-white">Academia</Link>
-              <Link href="/moves" className="block hover:text-white">Instructores</Link>
+              <Link href="/instructors" className="block hover:text-white">Instructores</Link>
             </div>
           </div>
 
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--text-3)]">Soporte</p>
             <div className="mt-4 space-y-2 text-sm text-[var(--text-2)]">
-              <Link href="/search" className="block hover:text-white">Centro de ayuda</Link>
-              <Link href="/pricing" className="block hover:text-white">Terminos del servicio</Link>
-              <Link href="/pricing" className="block hover:text-white">Privacidad</Link>
+              <Link href="/help" className="block hover:text-white">Centro de ayuda</Link>
+              <Link href="/legal/terms" className="block hover:text-white">Terminos del servicio</Link>
+              <Link href="/legal/privacy" className="block hover:text-white">Privacidad</Link>
             </div>
           </div>
 
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--text-3)]">Conectar</p>
             <div className="mt-4 flex items-center gap-4 text-[var(--text-2)]">
-              <a href="#" aria-label="X" className="hover:text-white">
+              <a
+                href="https://x.com/danceacademy"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="X"
+                className="hover:text-white"
+              >
                 <Twitter size={18} />
               </a>
-              <a href="#" aria-label="Instagram" className="hover:text-white">
+              <a
+                href="https://instagram.com/danceacademy"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Instagram"
+                className="hover:text-white"
+              >
                 <Instagram size={18} />
               </a>
             </div>
@@ -53,7 +65,7 @@ export function Footer() {
           <p>© 2026 Dance Academy. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
             <Link href="/sitemap.xml" className="hover:text-white">Mapa del sitio</Link>
-            <Link href="/pricing" className="hover:text-white">Cookies</Link>
+            <Link href="/legal/cookies" className="hover:text-white">Cookies</Link>
           </div>
         </div>
       </div>

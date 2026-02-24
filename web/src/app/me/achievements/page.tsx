@@ -1,10 +1,14 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Flame, Lock, Trophy } from "lucide-react";
 import { AppShell, Sidebar } from "@/components/layout";
 import { Badge, Button, Card, CardContent, Progress } from "@/components/ui";
 import { requireAuthenticatedUser } from "@/server/auth/current-user";
 import { getUserAchievementsSummary } from "@/server/db/achievements";
 import { getUserDashboardSummary } from "@/server/db/profile";
+
+type AchievementsSearchParams = Promise<{
+  savedMove?: string;
+}>;
 
 function toneClass(unlocked: boolean) {
   if (unlocked) {
@@ -14,8 +18,14 @@ function toneClass(unlocked: boolean) {
   return "from-slate-700 to-slate-900";
 }
 
-export default async function AchievementsPage() {
+export default async function AchievementsPage({
+  searchParams,
+}: {
+  searchParams: AchievementsSearchParams;
+}) {
   const user = await requireAuthenticatedUser();
+  const params = await searchParams;
+  const savedMove = (params.savedMove ?? "").trim();
   const [achievements, summary] = await Promise.all([
     getUserAchievementsSummary(user.id),
     getUserDashboardSummary(user.id),
@@ -36,6 +46,12 @@ export default async function AchievementsPage() {
         />
 
         <section className="min-w-0 flex-1 space-y-6">
+          {savedMove ? (
+            <div className="rounded-xl border border-emerald-500/35 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+              Move guardado desde mapa: <span className="font-semibold text-white">{savedMove}</span>
+            </div>
+          ) : null}
+
           <section className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6 md:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -120,3 +136,4 @@ export default async function AchievementsPage() {
     </AppShell>
   );
 }
+

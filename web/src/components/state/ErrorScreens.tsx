@@ -1,6 +1,7 @@
-﻿import Link from "next/link";
-import { ArrowLeft, RefreshCcw, WifiOff } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, WifiOff } from "lucide-react";
 import { Button, Card, CardContent } from "@/components/ui";
+import { RetryActionButton } from "@/components/state/RetryActionButton";
 
 export function NotFoundView() {
   return (
@@ -39,11 +40,7 @@ export function AppErrorView() {
             Ocurrio un error del sistema. Puedes reintentar o volver al inicio.
           </p>
           <div className="mt-6 flex justify-center gap-3">
-            <Link href="/error">
-                <Button variant="outline" leftIcon={<RefreshCcw size={15} />} type="button">
-                Reintentar
-                </Button>
-            </Link>
+            <RetryActionButton />
             <Link href="/">
               <Button>Ir al inicio</Button>
             </Link>
@@ -53,3 +50,4 @@ export function AppErrorView() {
     </main>
   );
 }
+
