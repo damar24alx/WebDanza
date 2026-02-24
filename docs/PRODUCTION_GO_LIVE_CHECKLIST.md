@@ -1,6 +1,6 @@
 ﻿# Checklist Go-Live Produccion
 
-Fecha de corte: 2026-02-23
+Fecha de corte: 2026-02-24
 Estado global: DONE
 
 ## Criterio de estado
@@ -52,6 +52,13 @@ Estado global: DONE
 | Constraints de integridad en progreso/conexiones/certificados | DONE | migraciones `20260222103000_*`, `20260222154500_*`, `20260223193000_*` |
 | Scripts de auditoria y reparacion de integridad | DONE | `web/scripts/db/audit-integrity.ts`, `web/scripts/db/repair-integrity.ts` |
 | Politica operativa de backup/restore probada | DONE | drill ejecutado y documentado en `docs/PRODUCTION_BACKUP_RESTORE_DRILL_2026-02-23.md`, script `web/scripts/ops/backup-restore-drill.ts` |
+
+## Cobertura de contenido MVP
+
+| Item | Estado | Evidencia |
+|---|---|---|
+| Minimo de estilos publicados (>=10) | DONE | `web/scripts/db/audit-mvp-content.ts`, `npm run db:audit-mvp-content` |
+| Minimo de cursos publicados por estilo publicado (>=1) | DONE | `web/scripts/db/audit-mvp-content.ts`, `web/tests/integration/catalog.integration.test.ts` |
 
 ## Operacion, observabilidad y despliegue
 

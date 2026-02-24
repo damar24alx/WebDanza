@@ -61,6 +61,55 @@ after(async () => {
 });
 
 describe("catalog repositories (integration)", () => {
+  test("seed keeps minimum published MVP coverage for styles and courses", async () => {
+    const publishedStyles = await db.style.findMany({
+      where: {
+        isArchived: false,
+        publishedStatus: "published",
+      },
+      select: {
+        id: true,
+        slug: true,
+      },
+    });
+
+    assert.ok(
+      publishedStyles.length >= 10,
+      `Expected at least 10 published styles, got ${publishedStyles.length}.`,
+    );
+
+    const publishedCourseCounts = await db.course.groupBy({
+      by: ["styleId"],
+      where: {
+        publishedStatus: "published",
+        styleId: {
+          not: null,
+        },
+      },
+      _count: {
+        _all: true,
+      },
+    });
+
+    const courseCountByStyleId = new Map<string, number>();
+    for (const row of publishedCourseCounts) {
+      if (!row.styleId) {
+        continue;
+      }
+      courseCountByStyleId.set(row.styleId, row._count._all);
+    }
+
+    const stylesWithoutPublishedCourse = publishedStyles
+      .filter((style) => (courseCountByStyleId.get(style.id) ?? 0) < 1)
+      .map((style) => style.slug);
+
+    assert.deepEqual(
+      stylesWithoutPublishedCourse,
+      [],
+      `Expected at least 1 published course per published style. Missing: ${stylesWithoutPublishedCourse.join(", ")}`,
+    );
+  });
+
   test("returns only published styles in public catalog", async () => {
     const styles = await getStylesCatalog();
     assert.ok(styles.length >= 5);

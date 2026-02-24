@@ -13,7 +13,7 @@
     "lint": "node -e \"require('fs').mkdirSync('test-results',{recursive:true})\" && eslint .",
     "test:smoke": "playwright test",
     "test:integration": "tsx --test tests/integration/**/*.test.ts",
-    "quality:release": "npm run lint && npx tsc --noEmit && npm run build && npm run test:integration && npm run db:audit-integrity && npm run test:smoke && npm audit --omit=dev && npx prisma validate && npx prisma migrate status",
+    "quality:release": "npm run lint && npx tsc --noEmit && npm run build && npm run test:integration && npm run db:audit-integrity && npm run db:audit-mvp-content && npm run test:smoke && npm audit --omit=dev && npx prisma validate && npx prisma migrate status",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
@@ -23,6 +23,7 @@
     "db:reset": "prisma migrate reset",
     "db:audit-integrity": "tsx scripts/db/audit-integrity.ts",
     "db:repair-integrity": "tsx scripts/db/repair-integrity.ts",
+    "db:audit-mvp-content": "tsx scripts/db/audit-mvp-content.ts",
     "ops:secret-manager-check": "tsx scripts/ops/secret-manager-check.ts",
     "ops:backup-restore-drill": "tsx scripts/ops/backup-restore-drill.ts"
   },

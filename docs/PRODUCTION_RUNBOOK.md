@@ -1,6 +1,6 @@
 ﻿# Runbook Operativo - Produccion
 
-Fecha: 2026-02-23
+Fecha: 2026-02-24
 Aplicacion: `web/`
 
 ## 1) Prerrequisitos
@@ -37,6 +37,8 @@ npm run lint
 npx tsc --noEmit
 npm run build
 npm run test:integration
+npm run db:audit-integrity
+npm run db:audit-mvp-content
 npm run test:smoke
 npm audit --omit=dev
 ```
@@ -61,6 +63,18 @@ npx prisma migrate status
 
 ```bash
 npm run db:audit-integrity
+```
+
+### Auditoria de cobertura MVP
+
+```bash
+npm run db:audit-mvp-content
+```
+
+Modo estricto opcional (incluye umbral de moves por estilo):
+
+```bash
+npm run db:audit-mvp-content -- --strict
 ```
 
 ### Reparacion segura

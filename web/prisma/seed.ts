@@ -68,8 +68,9 @@ const styleSeed = [
     imageGradient: "from-orange-500/85 to-rose-900",
     movementPrinciples: ["Toprock", "Downrock", "Freeze control"],
     musicalityBasics: "95-115 BPM con cortes ritmicos intensos.",
-    historicalCulturalContext: "PLACEHOLDER: requiere citations para publicar.",
-    publishedStatus: EditorialStatus.review,
+    historicalCulturalContext:
+      "Nacido en comunidades urbanas como lenguaje de batalla y expresion atletica.",
+    publishedStatus: EditorialStatus.published,
   },
   {
     slug: "contemporary",
@@ -121,6 +122,48 @@ const styleSeed = [
     movementPrinciples: ["Isolations", "Lines", "Performance quality"],
     musicalityBasics: "Trabajo marcado por acentos y cambios de dinamica.",
     historicalCulturalContext: "Conexion con musica popular y teatro musical.",
+    publishedStatus: EditorialStatus.published,
+  },
+  {
+    slug: "bachata",
+    name: "Bachata",
+    summary: "Conexion en pareja, control de peso y musicalidad latina social.",
+    categoryPrimary: "Social",
+    level: Difficulty.beginner,
+    classesCount: 26,
+    imageGradient: "from-amber-500/80 to-red-900",
+    movementPrinciples: ["Paso basico", "Transferencia de peso", "Conexion de frame"],
+    musicalityBasics: "Ritmo 4/4 con acentos marcados en frase corta.",
+    historicalCulturalContext:
+      "Desarrollo social en Republica Dominicana y evolucion contemporanea global.",
+    publishedStatus: EditorialStatus.published,
+  },
+  {
+    slug: "afro-dance",
+    name: "Afro Dance",
+    summary: "Groove poliritmico con enfasis en torso, rebote y expresion comunitaria.",
+    categoryPrimary: "Ritual/Celebrativa",
+    level: Difficulty.intermediate,
+    classesCount: 21,
+    imageGradient: "from-emerald-500/80 to-teal-950",
+    movementPrinciples: ["Grounding", "Polyrhythm", "Call and response"],
+    musicalityBasics: "Trabajo por capas ritmicas y acentos corporales.",
+    historicalCulturalContext:
+      "Raices en danzas sociales africanas y su dialogo con escenas urbanas contemporaneas.",
+    publishedStatus: EditorialStatus.published,
+  },
+  {
+    slug: "folclorico-latino",
+    name: "Folclorico Latino",
+    summary: "Bloque inicial de tradiciones sociales latinoamericanas para base cultural.",
+    categoryPrimary: "Folclorica",
+    level: Difficulty.beginner,
+    classesCount: 18,
+    imageGradient: "from-orange-500/80 to-amber-950",
+    movementPrinciples: ["Patrones regionales", "Base ritmica", "Contexto cultural"],
+    musicalityBasics: "Compases tradicionales segun region y practica social.",
+    historicalCulturalContext:
+      "Conjunto inicial de danzas regionales con enfoque pedagogico y trazabilidad de origen.",
     publishedStatus: EditorialStatus.published,
   },
   {
@@ -503,6 +546,116 @@ const courseSeed = [
   },
 ];
 
+async function ensurePublishedStyleStarterCourses(
+  styleIdBySlug: Map<string, string>,
+  lessonIdBySlug: Map<string, string>,
+  courseIdBySlug: Map<string, string>,
+) {
+  const coveredStyleSlugs = new Set(courseSeed.map((course) => course.styleSlug));
+  const publishedStylesWithoutCourse = styleSeed.filter(
+    (style) => style.publishedStatus === EditorialStatus.published && !coveredStyleSlugs.has(style.slug),
+  );
+
+  for (const style of publishedStylesWithoutCourse) {
+    const styleId = styleIdBySlug.get(style.slug);
+    if (!styleId) {
+      continue;
+    }
+
+    const lessonSlug = `${style.slug}-starter-basics`;
+    const courseSlug = `${style.slug}-starter-path`;
+
+    const lesson = await prisma.lesson.upsert({
+      where: { slug: lessonSlug },
+      update: {
+        title: `${style.name}: Basicos`,
+        objective: `Aterrizar fundamentos tecnicos para iniciar ruta de ${style.name}.`,
+        level: style.level,
+        durationMin: 20,
+        lessonType: LessonType.drill,
+        steps: [
+          "Calentamiento tecnico guiado.",
+          "Patrones base del estilo.",
+          "Aplicacion con frase musical corta.",
+        ],
+        successCriteria: [
+          "Mantiene timing estable.",
+          "Ejecuta transicion principal con control.",
+          "Completa secuencia sin detenerse.",
+        ],
+        publishedStatus: EditorialStatus.published,
+      },
+      create: {
+        slug: lessonSlug,
+        title: `${style.name}: Basicos`,
+        objective: `Aterrizar fundamentos tecnicos para iniciar ruta de ${style.name}.`,
+        level: style.level,
+        durationMin: 20,
+        lessonType: LessonType.drill,
+        steps: [
+          "Calentamiento tecnico guiado.",
+          "Patrones base del estilo.",
+          "Aplicacion con frase musical corta.",
+        ],
+        successCriteria: [
+          "Mantiene timing estable.",
+          "Ejecuta transicion principal con control.",
+          "Completa secuencia sin detenerse.",
+        ],
+        publishedStatus: EditorialStatus.published,
+      },
+    });
+
+    lessonIdBySlug.set(lessonSlug, lesson.id);
+
+    const course = await prisma.course.upsert({
+      where: { slug: courseSlug },
+      update: {
+        styleId,
+        title: `${style.name} Starter Path`,
+        summary: `Ruta inicial para iniciar ${style.name} con una base tecnica reproducible.`,
+        targetLevel: style.level,
+        durationHours: 2,
+        completionRule: CourseCompletionRule.all_lessons,
+        certificateEligible: false,
+        publishedStatus: EditorialStatus.published,
+      },
+      create: {
+        styleId,
+        slug: courseSlug,
+        title: `${style.name} Starter Path`,
+        summary: `Ruta inicial para iniciar ${style.name} con una base tecnica reproducible.`,
+        targetLevel: style.level,
+        durationHours: 2,
+        completionRule: CourseCompletionRule.all_lessons,
+        certificateEligible: false,
+        publishedStatus: EditorialStatus.published,
+      },
+    });
+
+    courseIdBySlug.set(courseSlug, course.id);
+
+    await prisma.courseLesson.upsert({
+      where: {
+        courseId_lessonId: {
+          courseId: course.id,
+          lessonId: lesson.id,
+        },
+      },
+      update: {
+        orderIndex: 1,
+        gateStatus: LessonGateStatus.active,
+      },
+      create: {
+        courseId: course.id,
+        lessonId: lesson.id,
+        orderIndex: 1,
+        gateStatus: LessonGateStatus.active,
+      },
+    });
+  }
+}
+
 async function seedStyles() {
   const styleIdBySlug = new Map<string, string>();
 
@@ -738,6 +891,8 @@ async function seedCourses(styleIdBySlug: Map<string, string>, moveIdBySlug: Map
       });
     }
   }
+
+  await ensurePublishedStyleStarterCourses(styleIdBySlug, lessonIdBySlug, courseIdBySlug);
 
   const shuffleMoveId = moveIdBySlug.get("the-shuffle");
   const rockLessonId = lessonIdBySlug.get("rock-fundamentals");
@@ -1159,20 +1314,32 @@ async function seedMediaAndCitations() {
     });
   }
 
-  if (hipHopStyle) {
+  const stylesForCitation = await prisma.style.findMany({
+    where: {
+      OR: [
+        { publishedStatus: EditorialStatus.published },
+        { slug: "hip-hop" },
+      ],
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  for (const style of stylesForCitation) {
     await prisma.citationLink.upsert({
       where: {
         citationId_entityType_entityId: {
           citationId: citation.id,
           entityType: "style",
-          entityId: hipHopStyle.id,
+          entityId: style.id,
         },
       },
       update: {},
       create: {
         citationId: citation.id,
         entityType: "style",
-        entityId: hipHopStyle.id,
+        entityId: style.id,
       },
     });
   }

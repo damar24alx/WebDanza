@@ -83,6 +83,9 @@ jobs:
       - name: DB integrity audit
         run: npm run db:audit-integrity
 
+      - name: MVP content coverage audit
+        run: npm run db:audit-mvp-content
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
