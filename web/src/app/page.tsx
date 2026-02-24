@@ -89,7 +89,10 @@ export default async function HomePage() {
         </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
-          <h1 className="text-5xl font-black tracking-tight text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.55)] sm:text-7xl">
+          <h1
+            data-testid="home-hero-title"
+            className="text-5xl font-black tracking-tight text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.55)] sm:text-7xl"
+          >
             Domina el movimiento
           </h1>
           <p className="mt-4 max-w-3xl text-lg text-[var(--text-2)] drop-shadow-[0_3px_16px_rgba(0,0,0,0.4)] sm:text-2xl">

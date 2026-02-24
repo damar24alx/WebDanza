@@ -1,10 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { hashPassword } from "@/server/auth/password";
+import { wantsJsonResponse } from "@/server/http/response";
 import { validateSameOrigin } from "@/server/security/csrf";
+import { consumeRateLimit } from "@/server/security/rate-limit";
 import { createSessionToken, sessionCookieOptions } from "@/server/auth/session";
 import { logEvent } from "@/server/observability/logger";
 import { validateRegisterInput } from "@/server/validation/auth";
+
+const REGISTER_IP_LIMIT = {
+  limit: 12,
+  windowMs: 10 * 60 * 1000,
+};
+
+const REGISTER_EMAIL_LIMIT = {
+  limit: 6,
+  windowMs: 10 * 60 * 1000,
+};
+
+function getRequestIp(request: NextRequest) {
+  const xff = request.headers.get("x-forwarded-for");
+  if (xff) {
+    return xff.split(",")[0]?.trim() || "unknown";
+  }
+  const xRealIp = request.headers.get("x-real-ip");
+  if (xRealIp) {
+    return xRealIp.trim();
+  }
+  return request.headers.get("cf-connecting-ip")?.trim() || "unknown";
+}
 
 function withError(
   request: NextRequest,
@@ -14,8 +38,29 @@ function withError(
     lastName?: string;
     email?: string;
     fieldErrors?: Record<string, string[]>;
+    status?: number;
+    retryAfterSeconds?: number;
   },
 ) {
+  const retryAfterValue =
+    typeof payload.retryAfterSeconds === "number" && payload.retryAfterSeconds > 0
+      ? `${payload.retryAfterSeconds}`
+      : null;
+
+  if (wantsJsonResponse(request)) {
+    return NextResponse.json(
+      {
+        ok: false,
+        formError: payload.message,
+        fieldErrors: payload.fieldErrors ?? {},
+      },
+      {
+        status: payload.status ?? 422,
+        headers: retryAfterValue ? { "Retry-After": retryAfterValue } : undefined,
+      },
+    );
+  }
+
   const url = new URL("/auth/register", request.url);
   url.searchParams.set("error", payload.message);
   if (payload.firstName) {
@@ -44,7 +89,12 @@ function withError(
     url.searchParams.set("passwordConfirmError", payload.fieldErrors.passwordConfirm[0]);
   }
 
-  return NextResponse.redirect(url, { status: 303 });
+  const response = NextResponse.redirect(url, { status: 303 });
+  if (retryAfterValue) {
+    response.headers.set("Retry-After", retryAfterValue);
+  }
+
+  return response;
 }
 
 export async function POST(request: NextRequest) {
@@ -84,6 +134,45 @@ export async function POST(request: NextRequest) {
       lastName,
       email,
       fieldErrors: parsedInput.fieldErrors,
+      status: 422,
+    });
+  }
+
+  const ip = getRequestIp(request);
+  const ipAttempt = await consumeRateLimit(`register:ip:${ip}`, REGISTER_IP_LIMIT);
+  if (!ipAttempt.allowed) {
+    logEvent("warn", "auth.register.rate_limited_ip", {
+      path: requestPath,
+      email: parsedInput.data.email,
+      retryAfterSeconds: ipAttempt.retryAfterSeconds,
+    });
+    return withError(request, {
+      message: `Demasiados intentos. Intenta nuevamente en ${ipAttempt.retryAfterSeconds}s.`,
+      firstName: parsedInput.data.firstName,
+      lastName: parsedInput.data.lastName,
+      email: parsedInput.data.email,
+      status: 429,
+      retryAfterSeconds: ipAttempt.retryAfterSeconds,
+    });
+  }
+
+  const accountAttempt = await consumeRateLimit(
+    `register:account:${parsedInput.data.email}:${ip}`,
+    REGISTER_EMAIL_LIMIT,
+  );
+  if (!accountAttempt.allowed) {
+    logEvent("warn", "auth.register.rate_limited_account", {
+      path: requestPath,
+      email: parsedInput.data.email,
+      retryAfterSeconds: accountAttempt.retryAfterSeconds,
+    });
+    return withError(request, {
+      message: `Demasiados intentos. Intenta nuevamente en ${accountAttempt.retryAfterSeconds}s.`,
+      firstName: parsedInput.data.firstName,
+      lastName: parsedInput.data.lastName,
+      email: parsedInput.data.email,
+      status: 429,
+      retryAfterSeconds: accountAttempt.retryAfterSeconds,
     });
   }
 
@@ -105,6 +194,7 @@ export async function POST(request: NextRequest) {
       firstName: parsedInput.data.firstName,
       lastName: parsedInput.data.lastName,
       email: parsedInput.data.email,
+      status: 422,
     });
   }
 
