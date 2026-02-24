@@ -38,7 +38,7 @@ export function Navbar({ session }: { session: NavbarSessionUser }) {
   const navItems = buildNavItems(session);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border-1)] bg-[color:rgba(10,11,22,0.88)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2">
           <span className="grid size-9 place-items-center rounded-lg bg-[var(--color-primary)] text-white">

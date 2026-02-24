@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --surface-0: #080911;
-  --surface-1: #121522;
-  --surface-2: #1a1f31;
-  --border-1: #2d344e;
+  --surface-0: #131022;
+  --surface-1: #1a1530;
+  --surface-2: #211c3a;
+  --border-1: #3d355b;
   --text-1: #f3f5ff;
   --text-2: #c9d0e7;
   --text-3: #8e99bd;
@@ -19,6 +19,8 @@
 @theme inline {
   --font-display: var(--font-heading);
   --font-body: var(--font-body);
+  --color-background-light: #131022;
+  --color-background-dark: #0f0c1c;
 }
 
 * {
@@ -33,10 +35,7 @@ body {
 
 body {
   color: var(--text-1);
-  background:
-    radial-gradient(900px 500px at 100% -10%, rgba(109, 76, 255, 0.22), transparent),
-    radial-gradient(800px 400px at -20% 10%, rgba(24, 177, 255, 0.15), transparent),
-    var(--surface-0);
+  background: #131022;
   font-family: var(--font-body);
   overflow-x: hidden;
 }

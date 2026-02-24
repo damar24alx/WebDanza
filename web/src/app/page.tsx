@@ -135,37 +135,39 @@ export default async function HomePage() {
           </div>
 
           {continueCourse ? (
-            <div className="group grid overflow-hidden rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] md:grid-cols-[1.5fr,1fr]">
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3">
-                  <Badge variant="primary">Curso</Badge>
-                  <span className="text-xs text-[var(--text-3)]">visto hace 2 horas</span>
+            <div className="group overflow-hidden rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)]">
+              <div className="grid md:grid-cols-[minmax(0,1.45fr)_minmax(280px,0.95fr)]">
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-3">
+                    <Badge variant="primary">Curso</Badge>
+                    <span className="text-xs text-[var(--text-3)]">visto hace 2 horas</span>
+                  </div>
+
+                  <h3 className="mt-4 text-4xl font-black leading-tight text-white">{continueCourse.title}</h3>
+                  <p className="mt-2 text-lg text-[var(--text-2)]">
+                    Leccion activa: {continueCourse.lessons[0]?.title ?? "Sin lecciones"}
+                  </p>
+
+                  <Progress className="mt-7 max-w-lg" value={continueCourse.progressPercent} label="Progreso" />
+
+                  <div className="mt-7">
+                    <Link href={buildCourseResumeHref(continueCourse)}>
+                      <Button className="rounded-lg px-7" rightIcon={<ArrowRight size={16} />}>
+                        Reanudar leccion
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
 
-                <h3 className="mt-4 text-4xl font-black leading-tight text-white">{continueCourse.title}</h3>
-                <p className="mt-2 text-lg text-[var(--text-2)]">
-                  Leccion activa: {continueCourse.lessons[0]?.title ?? "Sin lecciones"}
-                </p>
-
-                <Progress className="mt-7 max-w-lg" value={continueCourse.progressPercent} label="Progreso" />
-
-                <div className="mt-7">
-                  <Link href={buildCourseResumeHref(continueCourse)}>
-                    <Button className="rounded-lg px-7" rightIcon={<ArrowRight size={16} />}>
-                      Reanudar leccion
-                    </Button>
-                  </Link>
+                <div className="relative hidden min-h-full md:block">
+                  <Image
+                    src={HOME_CONTINUE_IMAGE_URL}
+                    alt="Dancer practicing movement control in studio"
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-black/15 via-black/35 to-[var(--surface-1)]/45" />
                 </div>
-              </div>
-
-              <div className="relative min-h-[230px]">
-                <Image
-                  src={HOME_CONTINUE_IMAGE_URL}
-                  alt="Dancer practicing movement control in studio"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-black/10 via-black/25 to-[var(--surface-1)]/40" />
               </div>
             </div>
           ) : (
