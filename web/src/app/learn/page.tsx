@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   Clock3,
   Flame,
@@ -10,7 +11,17 @@ import {
 import { AppShell } from "@/components/layout";
 import { EmptyState } from "@/components/states";
 import { Badge, Button, Card, CardContent, Input, Progress } from "@/components/ui";
-import { coursesMock, getStyleBySlug, stylesMock } from "@/mocks";
+import { getCurrentUser } from "@/server/auth/current-user";
+import {
+  getCoursesCatalog,
+  getStyleLookup,
+  getStylesCatalog,
+} from "@/server/db/catalog";
+
+export const metadata: Metadata = {
+  title: "Aprendizaje | Dance Academy",
+  description: "Explora rutas guiadas por estilo, nivel y progreso.",
+};
 
 type LearnSearchParams = Promise<{
   q?: string;
@@ -18,17 +29,37 @@ type LearnSearchParams = Promise<{
   style?: string;
 }>;
 
+function buildCourseResumeHref(course: {
+  slug: string;
+  resumeLessonSlug?: string | null;
+  resumeStepIndex?: number | null;
+}) {
+  if (!course.resumeLessonSlug) {
+    return `/learn/${course.slug}`;
+  }
+
+  const stepQuery =
+    typeof course.resumeStepIndex === "number" ? `&step=${course.resumeStepIndex}` : "";
+  return `/learn/${course.slug}?lesson=${encodeURIComponent(course.resumeLessonSlug)}${stepQuery}`;
+}
+
 export default async function LearnPage({
   searchParams,
 }: {
   searchParams: LearnSearchParams;
 }) {
   const params = await searchParams;
+  const currentUser = await getCurrentUser();
+  const [courses, styles, styleLookup] = await Promise.all([
+    getCoursesCatalog(currentUser?.id),
+    getStylesCatalog(),
+    getStyleLookup(),
+  ]);
   const query = (params.q ?? "").trim().toLowerCase();
   const selectedLevel = (params.level ?? "all").toLowerCase();
   const selectedStyle = (params.style ?? "all").toLowerCase();
 
-  const filteredCourses = coursesMock.filter((course) => {
+  const filteredCourses = courses.filter((course) => {
     const matchesQuery =
       !query ||
       course.title.toLowerCase().includes(query) ||
@@ -41,7 +72,10 @@ export default async function LearnPage({
     return matchesQuery && matchesLevel && matchesStyle;
   });
 
-  const featuredCourse = filteredCourses[0];
+  const featuredCourse =
+    filteredCourses.find((course) => course.progressPercent > 0 && course.progressPercent < 100) ??
+    filteredCourses.find((course) => course.progressPercent > 0) ??
+    filteredCourses[0];
   const levels = ["all", "beginner", "intermediate", "advanced"];
 
   return (
@@ -50,33 +84,37 @@ export default async function LearnPage({
         <section className="hero-overlay relative overflow-hidden rounded-3xl border border-[var(--border-1)] p-8 md:p-12">
           <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-2)]">
             <Flame size={14} />
-            Trending Now
+            En tendencia
           </div>
           <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-tight text-white md:text-6xl">
-            Structured Courses for Real Progress
+            Rutas estructuradas para progreso real
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-[var(--text-2)] md:text-base">
-            Rutas guiadas para dominar tecnica, musicalidad y vocabulario con hitos medibles.
+            Aprende tecnica, musicalidad y vocabulario con metas medibles y secuencia clara.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button leftIcon={<GraduationCap size={16} />}>Comenzar ruta</Button>
-            <Button variant="outline" leftIcon={<Layers3 size={16} />}>
-              Explorar catalogo
-            </Button>
+            <Link href="/learn?level=beginner">
+              <Button leftIcon={<GraduationCap size={16} />}>Comenzar ruta</Button>
+            </Link>
+            <Link href="/styles">
+              <Button variant="outline" leftIcon={<Layers3 size={16} />}>
+                Explorar catalogo
+              </Button>
+            </Link>
           </div>
         </section>
 
         <section className="grid gap-5 md:grid-cols-[1.2fr,1fr,1fr,1fr]">
           <Card className="md:col-span-1">
             <CardContent>
-              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-3)]">Continue Watching</p>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-3)]">Continuar ahora</p>
               {featuredCourse ? (
                 <div className="mt-3 rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] p-3">
                   <p className="text-sm font-semibold text-white">{featuredCourse.title}</p>
                   <Progress className="mt-3" value={featuredCourse.progressPercent} />
-                  <Link href={`/learn/${featuredCourse.slug}`}>
+                  <Link href={buildCourseResumeHref(featuredCourse)}>
                     <Button size="sm" className="mt-3 w-full" leftIcon={<PlayCircle size={14} />}>
-                      Resume
+                      Reanudar
                     </Button>
                   </Link>
                 </div>
@@ -85,19 +123,19 @@ export default async function LearnPage({
               )}
             </CardContent>
           </Card>
-          <StatCard label="Rutas activas" value={`${coursesMock.length}`} />
+          <StatCard label="Rutas activas" value={`${courses.length}`} />
           <StatCard
             label="Horas disponibles"
-            value={`${coursesMock.reduce((sum, course) => sum + course.durationHours, 0)}h`}
+            value={`${courses.reduce((sum, course) => sum + course.durationHours, 0)}h`}
           />
           <StatCard
             label="Certificables"
-            value={`${coursesMock.filter((course) => course.certificateEligible).length}`}
+            value={`${courses.filter((course) => course.certificateEligible).length}`}
           />
         </section>
 
         <section className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
-          <h2 className="text-2xl font-bold text-white">Explore Courses</h2>
+          <h2 className="text-2xl font-bold text-white">Explorar cursos</h2>
           <form className="mt-4 grid gap-3 md:grid-cols-[1fr,170px,170px,auto]">
             <Input icon={<Search size={16} />} placeholder="Buscar cursos..." name="q" defaultValue={params.q} />
             <select
@@ -105,8 +143,8 @@ export default async function LearnPage({
               name="style"
               defaultValue={selectedStyle}
             >
-              <option value="all">All Styles</option>
-              {stylesMock.map((style) => (
+              <option value="all">Todos los estilos</option>
+              {styles.map((style) => (
                 <option key={style.slug} value={style.slug}>
                   {style.name}
                 </option>
@@ -119,17 +157,17 @@ export default async function LearnPage({
             >
               {levels.map((level) => (
                 <option key={level} value={level}>
-                  {level === "all" ? "All Levels" : level}
+                  {level === "all" ? "Todos los niveles" : level}
                 </option>
               ))}
             </select>
-            <Button type="submit">Apply</Button>
+            <Button type="submit">Aplicar</Button>
           </form>
 
           <div className="mt-4 flex flex-wrap gap-2">
-            {selectedStyle !== "all" ? <Badge variant="primary">Style: {selectedStyle}</Badge> : null}
-            {selectedLevel !== "all" ? <Badge variant="neutral">Level: {selectedLevel}</Badge> : null}
-            {query ? <Badge variant="neutral">Search: {query}</Badge> : null}
+            {selectedStyle !== "all" ? <Badge variant="primary">Estilo: {selectedStyle}</Badge> : null}
+            {selectedLevel !== "all" ? <Badge variant="neutral">Nivel: {selectedLevel}</Badge> : null}
+            {query ? <Badge variant="neutral">Busqueda: {query}</Badge> : null}
             <Link href="/learn">
               <Button variant="ghost" size="sm">
                 Limpiar
@@ -140,7 +178,7 @@ export default async function LearnPage({
 
         {filteredCourses.length === 0 ? (
           <EmptyState
-            title="No courses found"
+            title="No se encontraron cursos"
             description="No hay cursos para esos filtros. Ajusta la busqueda y vuelve a intentar."
             ctaHref="/learn"
           />
@@ -148,13 +186,15 @@ export default async function LearnPage({
           <>
             <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {filteredCourses.map((course) => {
-                const style = getStyleBySlug(course.styleSlug);
+                const style = styleLookup.get(course.styleSlug);
+                const resumeHref = buildCourseResumeHref(course);
+                const isInProgress = course.progressPercent > 0 && course.progressPercent < 100;
                 return (
                   <Card key={course.slug} className="h-full">
                     <CardContent>
                       <div className="h-36 rounded-xl bg-gradient-to-br from-[var(--color-primary)]/55 to-cyan-500/25" />
                       <div className="mt-4 flex items-center justify-between">
-                        <Badge variant="primary">{style?.name ?? "Style"}</Badge>
+                        <Badge variant="primary">{style?.name ?? "Estilo"}</Badge>
                         <span className="flex items-center gap-1 text-xs text-[var(--text-3)]">
                           <Clock3 size={13} />
                           {course.durationHours}h
@@ -163,9 +203,9 @@ export default async function LearnPage({
                       <h3 className="mt-3 text-xl font-bold text-white">{course.title}</h3>
                       <p className="mt-1 text-sm text-[var(--text-2)]">{course.summary}</p>
                       <div className="mt-4 flex items-center justify-between">
-                        <p className="text-xs text-[var(--text-3)]">{course.lessons.length} lessons</p>
-                        <Link href={`/learn/${course.slug}`}>
-                          <Button size="sm">Abrir curso</Button>
+                        <p className="text-xs text-[var(--text-3)]">{course.lessons.length} lecciones</p>
+                        <Link href={resumeHref}>
+                          <Button size="sm">{isInProgress ? "Continuar curso" : "Abrir curso"}</Button>
                         </Link>
                       </div>
                     </CardContent>
@@ -175,7 +215,7 @@ export default async function LearnPage({
             </section>
 
             <section>
-              <h2 className="mb-4 text-2xl font-bold text-white">Trending This Week</h2>
+              <h2 className="mb-4 text-2xl font-bold text-white">Lo mas visto esta semana</h2>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {filteredCourses.slice(0, 4).map((course) => (
                   <div

@@ -1,12 +1,5 @@
-import {
-  BadgeCheck,
-  Check,
-  Crown,
-  Medal,
-  ShieldCheck,
-  Sparkles,
-  Users2,
-} from "lucide-react";
+﻿import Link from "next/link";
+import { BadgeCheck, Check, Crown, Medal, ShieldCheck, Sparkles, Users2 } from "lucide-react";
 import { AppShell } from "@/components/layout";
 import { Badge, Button, Card, CardContent } from "@/components/ui";
 import { pricingMock } from "@/mocks";
@@ -47,6 +40,20 @@ const proReasons = [
   "Ruta de progreso y desbloqueo por modulos",
   "Certificados verificables por curso elegible",
 ];
+
+function getPlanHref(planId: string) {
+  if (planId === "explorer") {
+    return "/styles";
+  }
+  if (planId === "style-pack") {
+    return "/styles?level=intermediate";
+  }
+  if (planId === "pro") {
+    return "/learn";
+  }
+
+  return "#team-setup";
+}
 
 export default function PricingPage() {
   return (
@@ -96,9 +103,11 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full" variant={plan.highlight ? "primary" : "outline"}>
-                  {plan.cta}
-                </Button>
+                <Link href={getPlanHref(plan.id)}>
+                  <Button className="w-full" variant={plan.highlight ? "primary" : "outline"} type="button">
+                    {plan.cta}
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
@@ -135,7 +144,9 @@ export default function PricingPage() {
                 <FeatureChip icon={<Medal size={16} />} text="Listo para portfolio y CV" />
                 <FeatureChip icon={<ShieldCheck size={16} />} text="Emision controlada en MVP" />
               </div>
-              <Button className="mt-6">Comenzar ruta certificable</Button>
+              <Link href="/learn">
+                <Button className="mt-6" type="button">Comenzar ruta certificable</Button>
+              </Link>
             </CardContent>
           </Card>
         </section>
@@ -168,7 +179,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-4xl rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
+        <section id="faq" className="mx-auto max-w-4xl rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
           <h2 className="mb-6 text-center text-3xl font-bold text-white">Frequently Asked Questions</h2>
           <div className="space-y-3">
             <FaqItem
@@ -186,7 +197,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
+        <section id="team-setup" className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
           <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
             <div>
               <h3 className="text-2xl font-bold text-white">Need a team setup?</h3>
@@ -194,7 +205,9 @@ export default function PricingPage() {
                 Configuracion Studio para escuelas y crews con multiples estudiantes.
               </p>
             </div>
-            <Button leftIcon={<Users2 size={16} />}>Contactar ventas</Button>
+            <a href="mailto:sales@dance-academy.local?subject=Studio%20Plan%20Inquiry">
+              <Button leftIcon={<Users2 size={16} />} type="button">Contactar ventas</Button>
+            </a>
           </div>
         </section>
       </div>

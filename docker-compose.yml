@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: proyecto-danza-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: danza_mvp
+      POSTGRES_USER: danza
+      POSTGRES_PASSWORD: danza
+    ports:
+      - "5432:5432"
+    volumes:
+      - danza_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U danza -d danza_mvp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  danza_pgdata:

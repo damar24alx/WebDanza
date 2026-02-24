@@ -1,9 +1,14 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Activity, Disc3, Flame, Lock } from "lucide-react";
 import { AppShell } from "@/components/layout";
 import { LockedState } from "@/components/state/SystemStates";
 import { Badge, Card, CardContent, Tabs } from "@/components/ui";
-import { getStyleBySlug, getSubstyleBySlug, movesMock } from "@/mocks";
+import {
+  getMovesCatalog,
+  getStyleDetailBySlug,
+  getSubstyleDetailBySlug,
+} from "@/server/db/catalog";
 
 export default async function SubstyleDetailPage({
   params,
@@ -11,20 +16,23 @@ export default async function SubstyleDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const substyle = getSubstyleBySlug(slug);
+  const substyle = await getSubstyleDetailBySlug(slug);
 
   if (!substyle) {
     notFound();
   }
 
-  const parentStyle = getStyleBySlug(substyle.styleSlug);
-  const relatedMoves = movesMock.filter((move) => move.styleSlugs.includes(substyle.styleSlug));
+  const [parentStyle, moves] = await Promise.all([
+    getStyleDetailBySlug(substyle.styleSlug),
+    getMovesCatalog(),
+  ]);
+  const relatedMoves = moves.filter((move) => move.styleSlugs.includes(substyle.styleSlug));
 
   return (
     <AppShell>
       <article className="space-y-8">
         <section className="rounded-3xl border border-[var(--border-1)] bg-[var(--surface-1)] p-8">
-          <Badge variant="primary">{parentStyle?.name ?? "Substyle"}</Badge>
+          <Badge variant="primary">{parentStyle?.name ?? "Subestilo"}</Badge>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
             {substyle.name}
           </h1>
@@ -35,26 +43,26 @@ export default async function SubstyleDetailPage({
             className="mt-6"
             activeValue="overview"
             items={[
-              { label: "Overview", value: "overview" },
-              { label: "Technique", value: "technique" },
-              { label: "History", value: "history" },
-              { label: "Practice", value: "practice" },
+              { label: "Resumen", value: "overview", href: "#overview" },
+              { label: "Tecnica", value: "technique", href: "#technique" },
+              { label: "Historia", value: "history", href: "#history" },
+              { label: "Practica", value: "practice", href: "#practice" },
             ]}
           />
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-3">
+        <section id="overview" className="grid gap-6 lg:grid-cols-3">
           <Card>
-            <CardContent>
+            <CardContent id="history">
               <p className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
                 <Disc3 size={18} className="text-[var(--color-primary-soft)]" />
-                Origin
+                Origen
               </p>
               <p className="text-sm text-[var(--text-2)]">{substyle.origin}</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent>
+            <CardContent id="practice">
               <p className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
                 <Activity size={18} className="text-[var(--color-primary-soft)]" />
                 Playlist BPM
@@ -73,10 +81,10 @@ export default async function SubstyleDetailPage({
           </Card>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-2">
+        <section id="technique" className="grid gap-6 lg:grid-cols-2">
           <Card>
             <CardContent>
-              <h2 className="text-2xl font-bold text-white">Technical Focus</h2>
+              <h2 className="text-2xl font-bold text-white">Enfoque tecnico</h2>
               <ul className="mt-4 space-y-2">
                 {substyle.focus.map((item) => (
                   <li
@@ -91,16 +99,17 @@ export default async function SubstyleDetailPage({
           </Card>
           <Card>
             <CardContent>
-              <h2 className="text-2xl font-bold text-white">Moves asociados</h2>
+              <h2 className="text-2xl font-bold text-white">Movimientos asociados</h2>
               <div className="mt-4 space-y-3">
                 {relatedMoves.slice(0, 3).map((move) => (
-                  <div
+                  <Link
                     key={move.slug}
-                    className="rounded-lg border border-[var(--border-1)] px-3 py-2 text-sm"
+                    href={`/moves/${move.slug}`}
+                    className="block rounded-lg border border-[var(--border-1)] px-3 py-2 text-sm hover:bg-white/5"
                   >
                     <p className="font-semibold text-white">{move.name}</p>
                     <p className="mt-1 text-[var(--text-2)]">{move.summary}</p>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </CardContent>
@@ -108,15 +117,15 @@ export default async function SubstyleDetailPage({
         </section>
 
         <LockedState
-          title="Step 3 bloqueado"
-          subtitle="Debes completar la práctica guiada de sincronización antes de entrar al módulo de freestyle."
+          title="Paso 3 bloqueado"
+          subtitle="Debes completar la practica guiada de sincronizacion antes de entrar al modulo de freestyle."
           className="max-w-xl"
         />
 
         <div className="rounded-2xl border border-[var(--border-1)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-3)]">
           <p className="flex items-center gap-2">
             <Lock size={14} />
-            Estado editorial: contenido apto para UI estática, pendiente de validación de citations históricas.
+            Estado editorial: contenido apto para UI estatica, pendiente de validacion de citations historicas.
           </p>
         </div>
       </article>

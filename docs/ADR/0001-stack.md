@@ -11,7 +11,7 @@ Adoptar stack:
 - Next.js (App Router) + TypeScript
 - TailwindCSS
 - PostgreSQL + Prisma
-- NextAuth en Fase 1
+- Auth JWT HttpOnly propia en Fase 1 (evaluable migracion futura a Auth.js)
 
 ## Razonamiento
 - Next.js App Router permite SSR/SSG/hibrido util para SEO y rendimiento inicial.

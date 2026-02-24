@@ -4,7 +4,7 @@
 - Next.js (App Router) + TypeScript
 - TailwindCSS
 - PostgreSQL + Prisma
-- NextAuth (arranca en Fase 1)
+- Auth JWT HttpOnly propia (arranca en Fase 1)
 - Media MVP por links externos (YouTube/Vimeo) con entidad `Media`
 
 ## 1.1) Defaults operativos cerrados

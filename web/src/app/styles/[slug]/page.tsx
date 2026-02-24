@@ -1,10 +1,63 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Clock3, Music3, Route, Sparkle, Target } from "lucide-react";
 import { AppShell } from "@/components/layout";
 import { LockedState } from "@/components/states";
 import { Badge, Button, Card, CardContent, CardTitle, Progress, Tabs } from "@/components/ui";
-import { coursesMock, getStyleBySlug, getSubstylesByStyle, movesMock } from "@/mocks";
+import {
+  getCoursesCatalog,
+  getMovesCatalog,
+  getStyleDetailBySlug,
+  getSubstylesByStyleSlug,
+} from "@/server/db/catalog";
+
+const SITE_NAME = "Dance Academy";
+
+function getBaseUrl() {
+  return process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3000";
+}
+
+function buildAbsoluteUrl(path: string) {
+  return new URL(path, getBaseUrl()).toString();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const style = await getStyleDetailBySlug(slug);
+
+  if (!style) {
+    return {
+      title: `Estilo no encontrado | ${SITE_NAME}`,
+      description: "El estilo solicitado no esta disponible.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const canonical = buildAbsoluteUrl(`/styles/${style.slug}`);
+  return {
+    title: `${style.name} | Estilo de danza | ${SITE_NAME}`,
+    description: style.summary,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: `${style.name} | ${SITE_NAME}`,
+      description: style.summary,
+      siteName: SITE_NAME,
+    },
+  };
+}
 
 export default async function StyleDetailPage({
   params,
@@ -12,20 +65,33 @@ export default async function StyleDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const style = getStyleBySlug(slug);
+  const style = await getStyleDetailBySlug(slug);
 
   if (!style) {
     notFound();
   }
 
-  const substyles = getSubstylesByStyle(style.slug);
-  const relatedMoves = movesMock.filter((move) => move.styleSlugs.includes(style.slug));
-  const styleCourses = coursesMock.filter((course) => course.styleSlug === style.slug);
+  const [substyles, moves, courses] = await Promise.all([
+    getSubstylesByStyleSlug(style.slug),
+    getMovesCatalog(),
+    getCoursesCatalog(),
+  ]);
+  const relatedMoves = moves.filter((move) => move.styleSlugs.includes(style.slug));
+  const styleCourses = courses.filter((course) => course.styleSlug === style.slug);
 
   return (
     <AppShell fullWidth>
       <article className="mx-auto w-full max-w-7xl space-y-8 px-4 sm:px-6">
         <section className="relative min-h-[420px] overflow-hidden rounded-3xl border border-[var(--border-1)] bg-[var(--surface-1)] p-8 sm:p-10">
+          {style.imageUrl ? (
+            <Image
+              src={style.imageUrl}
+              alt={`${style.name} dance style cover`}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : null}
           <div className={`absolute inset-0 bg-gradient-to-br ${style.image} opacity-30`} />
           <div className="hero-overlay absolute inset-0 opacity-75" />
           <div className="relative z-10 max-w-3xl">
@@ -46,27 +112,27 @@ export default async function StyleDetailPage({
         <Tabs
           activeValue="overview"
           items={[
-            { label: "Overview", value: "overview" },
-            { label: "History", value: "history" },
-            { label: "Technique", value: "technique" },
-            { label: "Musicality", value: "musicality" },
-            { label: "Learning Path", value: "path" },
+            { label: "Resumen", value: "overview", href: "#overview" },
+            { label: "Historia", value: "history", href: "#history" },
+            { label: "Tecnica", value: "technique", href: "#technique" },
+            { label: "Musicalidad", value: "musicality", href: "#musicality" },
+            { label: "Ruta", value: "path", href: "#path" },
           ]}
         />
 
-        <section className="grid gap-6 lg:grid-cols-3">
-          <Card className="lg:col-span-2">
+        <section id="overview" className="grid gap-6 lg:grid-cols-3">
+          <Card id="history" className="lg:col-span-2">
             <CardContent className="space-y-4">
-              <CardTitle>The Warehouse Roots</CardTitle>
+              <CardTitle>Origenes y contexto</CardTitle>
               <p className="text-sm text-[var(--text-2)]">{style.history}</p>
-              <p className="text-sm text-[var(--text-2)]">
+              <p id="musicality" className="text-sm text-[var(--text-2)]">
                 Musicalidad base: <span className="font-semibold text-[var(--text-1)]">{style.musicality}</span>
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent>
-              <CardTitle>Substyles</CardTitle>
+              <CardTitle>Subestilos</CardTitle>
               <div className="mt-4 space-y-2">
                 {substyles.length ? (
                   substyles.map((substyle) => (
@@ -79,19 +145,19 @@ export default async function StyleDetailPage({
                     </Link>
                   ))
                 ) : (
-                  <p className="text-sm text-[var(--text-3)]">Sin substyles cargados.</p>
+                  <p className="text-sm text-[var(--text-3)]">Sin subestilos cargados.</p>
                 )}
               </div>
             </CardContent>
           </Card>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-2">
+        <section id="technique" className="grid gap-6 lg:grid-cols-2">
           <Card>
             <CardContent>
               <CardTitle className="flex items-center gap-2">
                 <Sparkle size={18} className="text-[var(--color-primary-soft)]" />
-                Core Techniques
+                Tecnicas base
               </CardTitle>
               <div className="mt-4 space-y-3">
                 {relatedMoves.slice(0, 3).map((move) => (
@@ -111,7 +177,7 @@ export default async function StyleDetailPage({
             <CardContent>
               <CardTitle className="flex items-center gap-2">
                 <Music3 size={18} className="text-[var(--color-primary-soft)]" />
-                Understanding the 4/4 Beat
+                Entendiendo el pulso 4/4
               </CardTitle>
               <ul className="mt-4 space-y-2 text-sm text-[var(--text-2)]">
                 {style.principles.map((principle) => (
@@ -124,12 +190,12 @@ export default async function StyleDetailPage({
           </Card>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-3">
+        <section id="path" className="grid gap-6 lg:grid-cols-3">
           <Card className="lg:col-span-2">
             <CardContent>
               <CardTitle className="flex items-center gap-2">
                 <Target size={18} className="text-[var(--color-primary-soft)]" />
-                Learning Path
+                Ruta de aprendizaje
               </CardTitle>
               <div className="mt-5 space-y-4">
                 {styleCourses.map((course) => (

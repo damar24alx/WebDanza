@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import { WebVitalsReporter } from "@/components/observability/WebVitalsReporter";
 import "./globals.css";
 
 const heading = Space_Grotesk({
@@ -16,7 +17,7 @@ const body = Manrope({
 
 export const metadata: Metadata = {
   title: "Dance Academy",
-  description: "UI estática MVP para plataforma de danza",
+  description: "Plataforma educativa de danza: estilos, tecnica, progreso y certificaciones.",
 };
 
 export default function RootLayout({
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${heading.variable} ${body.variable} font-body`}>{children}</body>
+      <body className={`${heading.variable} ${body.variable} font-body`}>
+        <WebVitalsReporter />
+        {children}
+      </body>
     </html>
   );
 }

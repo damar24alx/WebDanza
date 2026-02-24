@@ -8,6 +8,7 @@ type ModalProps = {
   title: string;
   description?: string;
   children?: ReactNode;
+  onClose?: () => void;
   onCloseLabel?: string;
   className?: string;
 };
@@ -17,6 +18,7 @@ export function Modal({
   title,
   description,
   children,
+  onClose,
   onCloseLabel = "Cerrar",
   className,
 }: ModalProps) {
@@ -42,13 +44,16 @@ export function Modal({
           <button
             className="rounded-lg p-1 text-[var(--text-3)] transition-colors hover:bg-white/10 hover:text-[var(--text-1)]"
             type="button"
+            onClick={onClose}
+            disabled={!onClose}
+            aria-disabled={!onClose}
           >
             <X size={18} />
           </button>
         </div>
         <div>{children}</div>
         <div className="mt-6 flex justify-end">
-          <Button variant="outline" type="button">
+          <Button variant="outline" type="button" onClick={onClose} disabled={!onClose}>
             {onCloseLabel}
           </Button>
         </div>

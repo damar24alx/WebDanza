@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Filter, Search, SlidersHorizontal } from "lucide-react";
 import { AppShell } from "@/components/layout";
 import { EmptyState } from "@/components/states";
 import { Badge, Button, Input } from "@/components/ui";
-import { stylesMock } from "@/mocks";
+import { getStylesCatalog } from "@/server/db/catalog";
 
 type StylesSearchParams = Promise<{
   q?: string;
@@ -20,6 +21,7 @@ export default async function StylesPage({
   searchParams: StylesSearchParams;
 }) {
   const params = await searchParams;
+  const styles = await getStylesCatalog();
   const query = (params.q ?? "").trim().toLowerCase();
   const selectedCategory = (params.category ?? "all").toLowerCase();
   const selectedLevel = (params.level ?? "all").toLowerCase();
@@ -27,7 +29,7 @@ export default async function StylesPage({
     ? (params.sort ?? "recommended").toLowerCase()
     : "recommended";
 
-  const filteredStyles = stylesMock
+  const filteredStyles = styles
     .filter((style) => {
       const matchesQuery =
         !query ||
@@ -54,57 +56,82 @@ export default async function StylesPage({
 
   const categories = [
     "all",
-    ...new Set(stylesMock.map((style) => style.category.toLowerCase())),
+    ...new Set(styles.map((style) => style.category.toLowerCase())),
   ];
   const levels = ["all", "beginner", "intermediate", "advanced"];
+  const buildHref = (next: Partial<{ q: string; category: string; level: string; sort: string }>) => {
+    const qValue = (next.q ?? params.q ?? "").trim();
+    const categoryValue = (next.category ?? selectedCategory).toLowerCase();
+    const levelValue = (next.level ?? selectedLevel).toLowerCase();
+    const sortValue = (next.sort ?? selectedSort).toLowerCase();
+    const search = new URLSearchParams();
+
+    if (qValue) {
+      search.set("q", qValue);
+    }
+    if (categoryValue !== "all") {
+      search.set("category", categoryValue);
+    }
+    if (levelValue !== "all") {
+      search.set("level", levelValue);
+    }
+    if (sortValue !== "recommended") {
+      search.set("sort", sortValue);
+    }
+
+    const queryString = search.toString();
+    return queryString ? `/styles?${queryString}` : "/styles";
+  };
 
   return (
     <AppShell fullWidth className="max-w-[1440px]">
       <div className="mx-auto flex w-full max-w-[1380px] gap-6">
-        <aside className="hidden w-72 shrink-0 rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-5 lg:block">
+        <aside id="styles-filters" className="hidden w-72 shrink-0 rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-5 lg:block">
           <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">Filters</h2>
+            <h2 className="text-xl font-bold text-white">Filtros</h2>
             <Link href="/styles" className="text-xs font-semibold text-[var(--color-primary-soft)]">
-              Reset
+              Reiniciar
             </Link>
           </div>
 
           <div className="space-y-6">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-3)]">
-                Categories
+                Categorias
               </p>
               <div className="space-y-2">
                 {categories.map((category) => (
-                  <p
+                  <Link
                     key={category}
-                    className={`rounded-lg px-3 py-2 text-sm ${
+                    href={buildHref({ category })}
+                    className={`block w-full rounded-lg px-3 py-2 text-sm ${
                       selectedCategory === category
                         ? "bg-[var(--color-primary)]/15 text-[var(--color-primary-soft)]"
-                        : "text-[var(--text-2)]"
+                        : "text-[var(--text-2)] hover:bg-white/5 hover:text-[var(--text-1)]"
                     }`}
                   >
-                    {category === "all" ? "Any Category" : category}
-                  </p>
+                    {category === "all" ? "Cualquier categoria" : category}
+                  </Link>
                 ))}
               </div>
             </div>
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-3)]">
-                Skill Level
+                Nivel
               </p>
               <div className="space-y-2">
                 {levels.map((level) => (
-                  <p
+                  <Link
                     key={level}
-                    className={`rounded-lg px-3 py-2 text-sm ${
+                    href={buildHref({ level })}
+                    className={`block w-full rounded-lg px-3 py-2 text-sm ${
                       selectedLevel === level
                         ? "bg-[var(--color-primary)]/15 text-[var(--color-primary-soft)]"
-                        : "text-[var(--text-2)]"
+                        : "text-[var(--text-2)] hover:bg-white/5 hover:text-[var(--text-1)]"
                     }`}
                   >
-                    {level === "all" ? "Any Level" : level}
-                  </p>
+                    {level === "all" ? "Cualquier nivel" : level}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -113,22 +140,27 @@ export default async function StylesPage({
 
         <section className="min-w-0 flex-1">
           <div className="mb-6 lg:hidden">
-            <Button variant="outline" leftIcon={<SlidersHorizontal size={16} />}>
-              Filters & Sort
-            </Button>
+            <Link href="#styles-filter-form">
+              <Button variant="outline" leftIcon={<SlidersHorizontal size={16} />} type="button">
+                Filtros y orden
+              </Button>
+            </Link>
           </div>
 
           <header className="mb-8 rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)] p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <h1 className="text-4xl font-black tracking-tight text-white">Explore Dance Styles</h1>
+                <h1 className="text-4xl font-black tracking-tight text-white">Explora estilos de danza</h1>
                 <p className="mt-2 max-w-2xl text-sm text-[var(--text-2)]">
-                  Discover your rhythm across street, studio and classical dance.
+                  Encuentra tu ritmo entre danza urbana, academia y estilos clasicos.
                 </p>
               </div>
 
-              <form className="grid w-full gap-3 md:grid-cols-[1fr,170px,170px,170px,auto] lg:max-w-5xl">
-                <Input icon={<Search size={16} />} placeholder="Search styles..." name="q" defaultValue={params.q} />
+              <form
+                id="styles-filter-form"
+                className="grid w-full gap-3 md:grid-cols-[1fr,170px,170px,170px,auto] lg:max-w-5xl"
+              >
+                <Input icon={<Search size={16} />} placeholder="Buscar estilos..." name="q" defaultValue={params.q} />
                 <select
                   className="h-11 rounded-xl border border-[var(--border-1)] bg-[var(--surface-2)] px-3 text-sm text-[var(--text-2)]"
                   name="category"
@@ -136,7 +168,7 @@ export default async function StylesPage({
                 >
                   {categories.map((category) => (
                     <option key={category} value={category}>
-                      {category === "all" ? "All Categories" : category}
+                      {category === "all" ? "Todas las categorias" : category}
                     </option>
                   ))}
                 </select>
@@ -147,7 +179,7 @@ export default async function StylesPage({
                 >
                   {levels.map((level) => (
                     <option key={level} value={level}>
-                      {level === "all" ? "All Levels" : level}
+                      {level === "all" ? "Todos los niveles" : level}
                     </option>
                   ))}
                 </select>
@@ -156,25 +188,25 @@ export default async function StylesPage({
                   name="sort"
                   defaultValue={selectedSort}
                 >
-                  <option value="recommended">Recommended</option>
-                  <option value="most-popular">Most Popular</option>
-                  <option value="alphabetical">Alphabetical</option>
+                  <option value="recommended">Recomendado</option>
+                  <option value="most-popular">Mas popular</option>
+                  <option value="alphabetical">Alfabetico</option>
                 </select>
-                <Button type="submit">Apply</Button>
+                <Button type="submit">Aplicar</Button>
               </form>
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
               {selectedCategory !== "all" ? (
-                <Badge variant="primary">Category: {selectedCategory}</Badge>
+                <Badge variant="primary">Categoria: {selectedCategory}</Badge>
               ) : null}
               {selectedLevel !== "all" ? (
-                <Badge variant="neutral">Level: {selectedLevel}</Badge>
+                <Badge variant="neutral">Nivel: {selectedLevel}</Badge>
               ) : null}
-              {query ? <Badge variant="neutral">Search: {query}</Badge> : null}
+              {query ? <Badge variant="neutral">Busqueda: {query}</Badge> : null}
               <Link href="/styles">
                 <Button variant="ghost" size="sm" leftIcon={<Filter size={15} />}>
-                  Clear all
+                  Limpiar
                 </Button>
               </Link>
             </div>
@@ -182,7 +214,7 @@ export default async function StylesPage({
 
           {filteredStyles.length === 0 ? (
             <EmptyState
-              title="No styles found"
+              title="No se encontraron estilos"
               description="No hay resultados para esos filtros. Prueba otra combinacion."
               ctaHref="/styles"
             />
@@ -193,7 +225,19 @@ export default async function StylesPage({
                   key={style.slug}
                   className="group relative flex h-[390px] flex-col justify-end overflow-hidden rounded-2xl border border-[var(--border-1)] bg-[var(--surface-1)]"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${style.image} opacity-85 transition-transform duration-500 group-hover:scale-105`} />
+                  <div className="absolute inset-0">
+                    {style.imageUrl ? (
+                      <Image
+                        src={style.imageUrl}
+                        alt={`${style.name} dance style`}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : null}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${style.image} opacity-75 transition-transform duration-500 group-hover:scale-105`}
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
                   <div className="relative z-10 p-5">
                     <div className="mb-3 flex items-center justify-between">
@@ -204,9 +248,9 @@ export default async function StylesPage({
                     </div>
                     <h2 className="text-3xl font-black leading-tight text-white">{style.name}</h2>
                     <p className="mt-2 line-clamp-2 text-sm text-white/80">{style.summary}</p>
-                    <p className="mt-3 text-xs text-white/70">{style.classesCount} classes</p>
+                    <p className="mt-3 text-xs text-white/70">{style.classesCount} clases</p>
                     <Link href={`/styles/${style.slug}`}>
-                      <Button className="mt-4 w-full">Explore Style</Button>
+                      <Button className="mt-4 w-full">Explorar estilo</Button>
                     </Link>
                   </div>
                 </article>

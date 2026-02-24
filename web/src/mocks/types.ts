@@ -12,6 +12,7 @@ export type StyleMock = {
   musicality: string;
   history: string;
   image: string;
+  imageUrl?: string;
 };
 
 export type SubstyleMock = {
@@ -36,18 +37,32 @@ export type MoveMock = {
   styleSlugs: string[];
   stepByStep: string[];
   commonMistakes: Array<{ issue: string; correction: string }>;
+  media: MediaAssetMock[];
+  coverImageUrl?: string;
 };
 
 export type CourseLessonMock = {
+  id?: string;
   slug: string;
   title: string;
   durationMin: number;
   status: "done" | "active" | "locked";
   objective: string;
   takeaways: string[];
+  steps: Array<{
+    index: number;
+    label: string;
+    completed: boolean;
+  }>;
+  completedSteps: number;
+  totalSteps: number;
+  percent: number;
+  nextStepIndex: number | null;
+  citations?: CitationAssetMock[];
 };
 
 export type CourseMock = {
+  id?: string;
   slug: string;
   title: string;
   summary: string;
@@ -57,6 +72,29 @@ export type CourseMock = {
   lessons: CourseLessonMock[];
   certificateEligible: boolean;
   progressPercent: number;
+  resumeLessonSlug?: string | null;
+  resumeStepIndex?: number | null;
+  media: MediaAssetMock[];
+  citations?: CitationAssetMock[];
+};
+
+export type MediaAssetMock = {
+  id: string;
+  provider: "youtube" | "vimeo" | "other";
+  rightsStatus: "unknown" | "ok_to_embed" | "restricted" | "blocked";
+  url: string;
+  title: string;
+  durationSec: number | null;
+  role: string | null;
+};
+
+export type CitationAssetMock = {
+  id: string;
+  sourceType: string;
+  title: string;
+  author: string | null;
+  year: number | null;
+  url: string | null;
 };
 
 export type PricingPlanMock = {

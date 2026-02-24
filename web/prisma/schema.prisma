@@ -1,0 +1,504 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EditorialStatus {
+  draft
+  review
+  ready
+  published
+}
+
+enum Difficulty {
+  beginner
+  intermediate
+  advanced
+}
+
+enum ProgressStatus {
+  not_started
+  in_progress
+  completed
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  REVIEWER
+  STUDENT
+}
+
+enum MediaProvider {
+  youtube
+  vimeo
+  other
+}
+
+enum RightsStatus {
+  unknown
+  ok_to_embed
+  restricted
+  blocked
+}
+
+enum SourceType {
+  book
+  article
+  website
+  interview
+  archive
+  video
+  academic_paper
+  other
+}
+
+enum EntityType {
+  style
+  substyle
+  move
+  lesson
+  course
+  connection
+}
+
+enum NodeType {
+  style
+  substyle
+  move
+}
+
+enum ConnectionType {
+  influence
+  derived
+  fusion
+  migration
+}
+
+enum LessonType {
+  drill
+  combo
+  theory
+  assessment
+}
+
+enum CourseCompletionRule {
+  all_lessons
+  percent_90
+}
+
+enum CertificateStatus {
+  active
+  revoked
+}
+
+enum CertificateEventType {
+  issued
+  reissued
+  revoked
+  restored
+}
+
+enum LessonGateStatus {
+  done
+  active
+  locked
+}
+
+model User {
+  id           String         @id @default(uuid()) @db.Uuid
+  email        String         @unique
+  name         String
+  passwordHash String?
+  role         UserRole       @default(STUDENT)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  progresses   UserProgress[]
+  certificates Certificate[]
+  certificateEvents CertificateEvent[] @relation("CertificateEventActor")
+  passwordResetTokens PasswordResetToken[]
+  lessonStepProgresses UserLessonStepProgress[]
+}
+
+model Style {
+  id                        String          @id @default(uuid()) @db.Uuid
+  slug                      String          @unique
+  name                      String
+  summary                   String
+  categoryPrimary           String
+  level                     Difficulty      @default(beginner)
+  featuredTag               String?
+  classesCount              Int             @default(0)
+  imageGradient             String?
+  historicalCulturalContext String?
+  pedagogyOverview          String?
+  movementPrinciples        String[]
+  musicalityBasics          String?
+  vocabularyCoreJson        Json?
+  publishedStatus           EditorialStatus @default(draft)
+  isArchived                Boolean         @default(false)
+  version                   Int             @default(1)
+  createdAt                 DateTime        @default(now())
+  updatedAt                 DateTime        @updatedAt
+  substyles                 Substyle[]
+  moveStyles                MoveStyle[]
+  courseList                Course[]
+  node                      Node?
+}
+
+model Substyle {
+  id                        String          @id @default(uuid()) @db.Uuid
+  styleId                   String          @db.Uuid
+  slug                      String          @unique
+  name                      String
+  summary                   String
+  historicalCulturalContext String?
+  technicalFocus            String[]
+  musicalFocus              String?
+  vocabularyFocusJson       Json?
+  origin                    String?
+  playlistBpm               String?
+  vibe                      String?
+  publishedStatus           EditorialStatus @default(draft)
+  isArchived                Boolean         @default(false)
+  version                   Int             @default(1)
+  createdAt                 DateTime        @default(now())
+  updatedAt                 DateTime        @updatedAt
+  style                     Style           @relation(fields: [styleId], references: [id], onDelete: Cascade)
+  moveSubstyles             MoveSubstyle[]
+  node                      Node?
+}
+
+model Move {
+  id                   String                 @id @default(uuid()) @db.Uuid
+  slug                 String                 @unique
+  name                 String
+  summary              String
+  moveType             String
+  difficulty           Difficulty
+  family               String?
+  bpmRange             String?
+  bodyMechanics        String?
+  stepByStep           Json?
+  commonMistakes       Json?
+  corrections          Json?
+  safetyNotes          String?
+  publishedStatus      EditorialStatus        @default(draft)
+  isArchived           Boolean                @default(false)
+  version              Int                    @default(1)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  moveStyles           MoveStyle[]
+  moveSubstyles        MoveSubstyle[]
+  lessonMoves          LessonMove[]
+  moveTechniqueConcept MoveTechniqueConcept[]
+  moveMusicConcept     MoveMusicConcept[]
+  node                 Node?
+}
+
+model Lesson {
+  id              String          @id @default(uuid()) @db.Uuid
+  slug            String          @unique
+  title           String
+  objective       String
+  level           Difficulty
+  durationMin     Int
+  lessonType      LessonType      @default(drill)
+  steps           Json?
+  successCriteria Json?
+  publishedStatus EditorialStatus @default(draft)
+  version         Int             @default(1)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  lessonMoves     LessonMove[]
+  courseLessons   CourseLesson[]
+  userProgresses  UserProgress[]
+  stepProgresses  UserLessonStepProgress[]
+}
+
+model Course {
+  id                  String               @id @default(uuid()) @db.Uuid
+  styleId             String?              @db.Uuid
+  slug                String               @unique
+  title               String
+  summary             String
+  targetLevel         Difficulty
+  durationHours       Int                  @default(1)
+  learningOutcomes    Json?
+  completionRule      CourseCompletionRule @default(all_lessons)
+  certificateEligible Boolean              @default(false)
+  publishedStatus     EditorialStatus      @default(draft)
+  version             Int                  @default(1)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  style               Style?               @relation(fields: [styleId], references: [id], onDelete: SetNull)
+  courseLessons       CourseLesson[]
+  userProgresses      UserProgress[]
+  certificates        Certificate[]
+}
+
+model Media {
+  id           String        @id @default(uuid()) @db.Uuid
+  provider     MediaProvider
+  url          String        @unique
+  title        String
+  durationSec  Int?
+  rightsStatus RightsStatus
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  mediaLinks   MediaLink[]
+}
+
+model Citation {
+  id            String         @id @default(uuid()) @db.Uuid
+  sourceType    SourceType
+  title         String
+  author        String?
+  year          Int?
+  url           String?
+  accessedAt    DateTime?
+  claimScope    String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  citationLinks CitationLink[]
+}
+
+model UserProgress {
+  id          String         @id @default(uuid()) @db.Uuid
+  userId      String         @db.Uuid
+  lessonId    String?        @db.Uuid
+  courseId    String?        @db.Uuid
+  status      ProgressStatus @default(not_started)
+  percent     Int            @default(0)
+  startedAt   DateTime?
+  completedAt DateTime?
+  updatedAt   DateTime       @updatedAt
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson?        @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  course      Course?        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([lessonId])
+  @@index([courseId])
+  @@unique([userId, lessonId])
+  @@unique([userId, courseId])
+}
+
+model UserLessonStepProgress {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  lessonId    String   @db.Uuid
+  stepIndex   Int
+  completedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId, stepIndex])
+  @@index([userId, lessonId])
+  @@index([lessonId])
+}
+
+model Certificate {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @db.Uuid
+  courseId        String   @db.Uuid
+  status          CertificateStatus @default(active)
+  revokedAt       DateTime?
+  revokedReason   String?
+  issuedAt        DateTime @default(now())
+  certificateCode String   @unique
+  metadataJson    Json?
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course          Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  events          CertificateEvent[]
+
+  @@unique([userId, courseId])
+  @@index([status, issuedAt])
+}
+
+model CertificateEvent {
+  id            String               @id @default(uuid()) @db.Uuid
+  certificateId String               @db.Uuid
+  actorUserId   String?              @db.Uuid
+  actorRole     UserRole?
+  eventType     CertificateEventType
+  previousCode  String?
+  nextCode      String?
+  reason        String?
+  createdAt     DateTime             @default(now())
+  certificate   Certificate          @relation(fields: [certificateId], references: [id], onDelete: Cascade)
+  actorUser     User?                @relation("CertificateEventActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([certificateId, createdAt])
+  @@index([actorUserId, createdAt])
+}
+
+model TechniqueConcept {
+  id                   String                 @id @default(uuid()) @db.Uuid
+  slug                 String                 @unique
+  name                 String
+  definition           String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  moveTechniqueConcept MoveTechniqueConcept[]
+}
+
+model MusicConcept {
+  id               String             @id @default(uuid()) @db.Uuid
+  slug             String             @unique
+  name             String
+  definition       String
+  bpmMin           Int?
+  bpmMax           Int?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  moveMusicConcept MoveMusicConcept[]
+}
+
+model Node {
+  id         String       @id @default(uuid()) @db.Uuid
+  nodeType   NodeType
+  styleId    String?      @unique @db.Uuid
+  substyleId String?      @unique @db.Uuid
+  moveId     String?      @unique @db.Uuid
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  style      Style?       @relation(fields: [styleId], references: [id], onDelete: Cascade)
+  substyle   Substyle?    @relation(fields: [substyleId], references: [id], onDelete: Cascade)
+  move       Move?        @relation(fields: [moveId], references: [id], onDelete: Cascade)
+  edgesFrom  Connection[] @relation("ConnectionFromNode")
+  edgesTo    Connection[] @relation("ConnectionToNode")
+}
+
+model Connection {
+  id             String         @id @default(uuid()) @db.Uuid
+  fromNodeId     String         @db.Uuid
+  toNodeId       String         @db.Uuid
+  connectionType ConnectionType
+  strength       Int?
+  note           String?
+  startPeriod    String?
+  endPeriod      String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  fromNode       Node           @relation("ConnectionFromNode", fields: [fromNodeId], references: [id], onDelete: Cascade)
+  toNode         Node           @relation("ConnectionToNode", fields: [toNodeId], references: [id], onDelete: Cascade)
+
+  @@unique([fromNodeId, toNodeId, connectionType])
+  @@index([fromNodeId])
+  @@index([toNodeId])
+}
+
+model MoveStyle {
+  moveId    String @db.Uuid
+  styleId   String @db.Uuid
+  relevance Int    @default(1)
+  move      Move   @relation(fields: [moveId], references: [id], onDelete: Cascade)
+  style     Style  @relation(fields: [styleId], references: [id], onDelete: Cascade)
+
+  @@id([moveId, styleId])
+}
+
+model MoveSubstyle {
+  moveId     String   @db.Uuid
+  substyleId String   @db.Uuid
+  relevance  Int      @default(1)
+  move       Move     @relation(fields: [moveId], references: [id], onDelete: Cascade)
+  substyle   Substyle @relation(fields: [substyleId], references: [id], onDelete: Cascade)
+
+  @@id([moveId, substyleId])
+}
+
+model LessonMove {
+  lessonId   String @db.Uuid
+  moveId     String @db.Uuid
+  orderIndex Int
+  lesson     Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  move       Move   @relation(fields: [moveId], references: [id], onDelete: Cascade)
+
+  @@id([lessonId, moveId])
+  @@unique([lessonId, orderIndex])
+}
+
+model CourseLesson {
+  courseId   String           @db.Uuid
+  lessonId   String           @db.Uuid
+  orderIndex Int
+  gateStatus LessonGateStatus @default(locked)
+  course     Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lesson     Lesson           @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@id([courseId, lessonId])
+  @@unique([courseId, orderIndex])
+}
+
+model MoveTechniqueConcept {
+  moveId             String           @db.Uuid
+  techniqueConceptId String           @db.Uuid
+  move               Move             @relation(fields: [moveId], references: [id], onDelete: Cascade)
+  techniqueConcept   TechniqueConcept @relation(fields: [techniqueConceptId], references: [id], onDelete: Cascade)
+
+  @@id([moveId, techniqueConceptId])
+}
+
+model MoveMusicConcept {
+  moveId         String       @db.Uuid
+  musicConceptId String       @db.Uuid
+  move           Move         @relation(fields: [moveId], references: [id], onDelete: Cascade)
+  musicConcept   MusicConcept @relation(fields: [musicConceptId], references: [id], onDelete: Cascade)
+
+  @@id([moveId, musicConceptId])
+}
+
+model MediaLink {
+  id         String     @id @default(uuid()) @db.Uuid
+  mediaId    String     @db.Uuid
+  entityType EntityType
+  entityId   String
+  role       String?
+  createdAt  DateTime   @default(now())
+  media      Media      @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([mediaId, entityType, entityId])
+  @@index([entityType, entityId])
+}
+
+model CitationLink {
+  id         String     @id @default(uuid()) @db.Uuid
+  citationId String     @db.Uuid
+  entityType EntityType
+  entityId   String
+  createdAt  DateTime   @default(now())
+  citation   Citation   @relation(fields: [citationId], references: [id], onDelete: Cascade)
+
+  @@unique([citationId, entityType, entityId])
+  @@index([entityType, entityId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+  @@index([expiresAt])
+}
+
+model RateLimitEntry {
+  key       String   @id
+  count     Int      @default(0)
+  resetAt   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([resetAt])
+}

@@ -3,20 +3,39 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bell, Menu, Music2 } from "lucide-react";
+import type { UserRole } from "@prisma/client";
 import { cn } from "@/lib/cn";
 
-const navItems = [
-  { href: "/", label: "Inicio" },
-  { href: "/styles", label: "Styles" },
-  { href: "/moves", label: "Moves" },
-  { href: "/learn", label: "Learn" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/me", label: "Mi Panel" },
-  { href: "/admin", label: "Admin" },
-];
+type NavbarSessionUser = {
+  role: UserRole;
+  name: string;
+} | null;
 
-export function Navbar() {
+function buildNavItems(session: NavbarSessionUser) {
+  const items = [
+    { href: "/", label: "Inicio" },
+    { href: "/search", label: "Buscar" },
+    { href: "/styles", label: "Estilos" },
+    { href: "/moves", label: "Movimientos" },
+    { href: "/learn", label: "Aprender" },
+    { href: "/maps", label: "Mapas" },
+    { href: "/pricing", label: "Precios" },
+  ];
+
+  if (session?.role === "ADMIN") {
+    items.push({ href: "/admin", label: "Admin" });
+  }
+
+  if (session) {
+    items.push({ href: "/me", label: "Mi Panel" });
+  }
+
+  return items;
+}
+
+export function Navbar({ session }: { session: NavbarSessionUser }) {
   const pathname = usePathname();
+  const navItems = buildNavItems(session);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-1)] bg-[color:rgba(10,11,22,0.88)] backdrop-blur-xl">
@@ -54,19 +73,32 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            className="hidden rounded-lg p-2 text-[var(--text-3)] transition-colors hover:bg-white/10 hover:text-[var(--text-1)] sm:inline-flex"
-            type="button"
-            aria-label="Notificaciones"
-          >
-            <Bell size={18} />
-          </button>
-          <Link
-            href="/auth/login"
-            className="hidden rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-strong)] sm:inline-flex"
-          >
-            Ingresar
-          </Link>
+          {session ? (
+            <>
+              <Link
+                href="/me"
+                className="hidden rounded-lg p-2 text-[var(--text-3)] transition-colors hover:bg-white/10 hover:text-[var(--text-1)] sm:inline-flex"
+                aria-label="Notificaciones"
+              >
+                <Bell size={18} />
+              </Link>
+              <form action="/api/auth/logout" method="post" className="hidden sm:block">
+                <button
+                  type="submit"
+                  className="rounded-lg border border-[var(--border-1)] px-4 py-2 text-sm font-semibold text-[var(--text-2)] transition-colors hover:bg-white/5 hover:text-[var(--text-1)]"
+                >
+                  Salir
+                </button>
+              </form>
+            </>
+          ) : (
+            <Link
+              href="/auth/login"
+              className="hidden rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-strong)] sm:inline-flex"
+            >
+              Ingresar
+            </Link>
+          )}
           <details className="relative md:hidden">
             <summary className="list-none rounded-lg p-2 text-[var(--text-2)] hover:bg-white/10">
               <Menu size={19} />
@@ -81,6 +113,16 @@ export function Navbar() {
                   {item.label}
                 </Link>
               ))}
+              {session ? (
+                <form action="/api/auth/logout" method="post" className="mt-1">
+                  <button
+                    type="submit"
+                    className="block w-full rounded-lg px-3 py-2 text-left text-sm text-[var(--text-2)] hover:bg-white/5 hover:text-[var(--text-1)]"
+                  >
+                    Salir
+                  </button>
+                </form>
+              ) : null}
             </div>
           </details>
         </div>

@@ -13,7 +13,7 @@ Principios de producto:
 
 Resultado esperado del MVP (Fase 1):
 - Un usuario puede explorar 10 estilos iniciales.
-- Puede abrir movimientos clave, ver media enlazada (YouTube/Vimeo), practicar y registrar progreso.
+- Puede abrir movimientos clave, ver media interna, practicar y registrar progreso.
 - Puede completar una ruta inicial y obtener un certificado MVP.
 
 ## 2) Publico objetivo
@@ -43,14 +43,14 @@ En alcance:
 - Catalogo inicial de 10 estilos y subestilos base.
 - Diccionario de Moves con tags estandar.
 - Lessons y Courses iniciales orientados a progresion Beginner -> Intermediate.
-- Entidad Media basada en links externos (YouTube/Vimeo).
+- Entidad Media basada en rutas internas de la plataforma (`/media/...`).
 - Citas/fuentes obligatorias para afirmaciones historicas o culturales.
 - Seguimiento de UserProgress y Certificate MVP.
 - SEO tecnico basico, performance base y observabilidad minima.
 
 Fuera de alcance en Fase 1:
 - Mapa/timeline/grafo visual interactivo (Fase 2).
-- Streaming propio/CDN propio de video.
+- Streaming en vivo propio/CDN avanzado de video.
 - Noticias y comunidad.
 - Marketplace de instructores.
 - Edicion colaborativa abierta al publico.
@@ -68,7 +68,7 @@ Fuera de alcance en Fase 1:
 |---|---|---|
 | Costo de tokens/IA en pipeline editorial | Alto | Limitar IA a asistencia editorial, cachear salidas, cuotas por flujo, revisar ROI mensual. |
 | Escala de base de datos y consultas | Medio/Alto | Prisma + Postgres con indices desde MVP, paginacion, monitoreo de queries lentas. |
-| Derechos de media (copyright/licencias) | Alto | MVP solo links embebidos con politicas claras, metadata de fuente, proceso de takedown. |
+| Derechos de media (copyright/licencias) | Alto | MVP con media interna y `rightsStatus` obligatorio, metadata de origen y proceso de takedown. |
 | Moderacion de contenido | Alto | Flujo editorial con READY/NOT READY, roles y aprobacion previa a publicacion. |
 | Inconsistencia terminologica | Medio | Taxonomia y templates obligatorios, glosario, revisiones por Content QA. |
 | Deuda tecnica temprana | Medio | PRs pequenos, ADRs por decisiones de arquitectura, Definition of Done estricta. |
@@ -92,8 +92,8 @@ Fuera de alcance en Fase 1:
 ## 9) Restricciones tecnicas fijadas
 - Frontend: Next.js (App Router) + TypeScript + TailwindCSS.
 - Backend de datos: PostgreSQL + Prisma.
-- Auth: NextAuth en Fase 1.
-- Media MVP: links externos + entidad Media lista para migrar a storage/CDN.
+- Auth: sesion JWT HttpOnly propia en Fase 1 (con opcion de migrar a NextAuth/Auth.js mas adelante).
+- Media MVP: rutas internas + entidad `Media` lista para evolucionar a storage/CDN.
 
 ## 10) Notas de rigor de contenido
 - No registrar "hechos historicos especificos" sin Citation/Source.
@@ -107,4 +107,4 @@ Fuera de alcance en Fase 1:
 - Admin en MVP: con roles `Admin`, `Editor`, `Reviewer` (uso interno inicial).
 - Base de datos local: Docker (recomendado) como estandar del equipo.
 - Certificado MVP: vista web + codigo verificable; PDF se difiere a fase posterior.
-- Fuente de videos MVP: solo links externos + politica `rightsStatus` obligatoria.
+- Fuente de videos MVP: solo media interna + politica `rightsStatus` obligatoria.

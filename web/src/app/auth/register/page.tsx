@@ -2,14 +2,41 @@ import Link from "next/link";
 import { ArrowRight, KeyRound, Mail, UserRound } from "lucide-react";
 import { Badge, Button, Card, CardContent, Input } from "@/components/ui";
 
-export default function RegisterPage() {
+type RegisterSearchParams = Promise<{
+  error?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  firstNameError?: string;
+  lastNameError?: string;
+  emailError?: string;
+  passwordError?: string;
+  passwordConfirmError?: string;
+}>;
+
+export default async function RegisterPage({
+  searchParams,
+}: {
+  searchParams: RegisterSearchParams;
+}) {
+  const params = await searchParams;
+  const error = (params.error ?? "").trim();
+  const firstName = (params.firstName ?? "").trim();
+  const lastName = (params.lastName ?? "").trim();
+  const email = (params.email ?? "").trim();
+  const firstNameError = (params.firstNameError ?? "").trim();
+  const lastNameError = (params.lastNameError ?? "").trim();
+  const emailError = (params.emailError ?? "").trim();
+  const passwordError = (params.passwordError ?? "").trim();
+  const passwordConfirmError = (params.passwordConfirmError ?? "").trim();
+
   return (
     <main className="grid min-h-screen bg-[var(--surface-0)] lg:grid-cols-[1fr,1.2fr]">
       <section className="hero-overlay relative hidden p-10 lg:flex lg:flex-col lg:justify-between">
         <div>
-          <Badge variant="primary">Join the movement</Badge>
+          <Badge variant="primary">Unete al movimiento</Badge>
           <h1 className="mt-5 max-w-md text-5xl font-black leading-tight text-white">
-            Build your dance path from day one.
+            Construye tu camino en la danza desde el dia uno.
           </h1>
         </div>
         <p className="max-w-sm text-sm text-[var(--text-2)]">
@@ -21,11 +48,11 @@ export default function RegisterPage() {
         <Card className="w-full max-w-xl">
           <CardContent className="space-y-5">
             <div>
-              <h2 className="text-4xl font-black text-white">Join the Movement</h2>
+              <h2 className="text-4xl font-black text-white">Unete al movimiento</h2>
               <p className="mt-2 text-sm text-[var(--text-2)]">Registrate y comienza tu ruta guiada.</p>
             </div>
 
-            <form className="space-y-4" noValidate>
+            <form className="space-y-4" noValidate action="/api/auth/register" method="post">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label
@@ -37,6 +64,7 @@ export default function RegisterPage() {
                   <Input
                     id="register-first-name"
                     name="firstName"
+                    defaultValue={firstName}
                     autoComplete="given-name"
                     icon={<UserRound size={16} />}
                     aria-describedby="register-first-name-help"
@@ -44,6 +72,7 @@ export default function RegisterPage() {
                   <p id="register-first-name-help" className="text-xs text-[var(--text-3)]">
                     Tu nombre para el certificado.
                   </p>
+                  {firstNameError ? <p className="text-xs text-rose-300">{firstNameError}</p> : null}
                 </div>
 
                 <div className="space-y-2">
@@ -56,6 +85,7 @@ export default function RegisterPage() {
                   <Input
                     id="register-last-name"
                     name="lastName"
+                    defaultValue={lastName}
                     autoComplete="family-name"
                     icon={<UserRound size={16} />}
                     aria-describedby="register-last-name-help"
@@ -63,6 +93,7 @@ export default function RegisterPage() {
                   <p id="register-last-name-help" className="text-xs text-[var(--text-3)]">
                     Como quieres que aparezca en tu perfil.
                   </p>
+                  {lastNameError ? <p className="text-xs text-rose-300">{lastNameError}</p> : null}
                 </div>
               </div>
 
@@ -77,6 +108,7 @@ export default function RegisterPage() {
                   id="register-email"
                   name="email"
                   type="email"
+                  defaultValue={email}
                   autoComplete="email"
                   icon={<Mail size={16} />}
                   aria-describedby="register-email-help"
@@ -84,6 +116,7 @@ export default function RegisterPage() {
                 <p id="register-email-help" className="text-xs text-[var(--text-3)]">
                   Te enviaremos notificaciones de progreso a este correo.
                 </p>
+                {emailError ? <p className="text-xs text-rose-300">{emailError}</p> : null}
               </div>
 
               <div className="space-y-2">
@@ -104,6 +137,7 @@ export default function RegisterPage() {
                 <p id="register-password-help" className="text-xs text-[var(--text-3)]">
                   Usa minimo 8 caracteres.
                 </p>
+                {passwordError ? <p className="text-xs text-rose-300">{passwordError}</p> : null}
               </div>
 
               <div className="space-y-2">
@@ -124,12 +158,20 @@ export default function RegisterPage() {
                 <p id="register-password-confirm-help" className="text-xs text-[var(--text-3)]">
                   Debe coincidir con la contrasena principal.
                 </p>
+                {passwordConfirmError ? (
+                  <p className="text-xs text-rose-300">{passwordConfirmError}</p>
+                ) : null}
               </div>
 
               <Button className="w-full" rightIcon={<ArrowRight size={16} />} type="submit">
-                Create Account
+                Crear cuenta
               </Button>
             </form>
+            {error ? (
+              <p className="rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-xs text-rose-200">
+                {error}
+              </p>
+            ) : null}
 
             <p className="text-xs text-[var(--text-3)]">
               Ya tienes cuenta?{" "}

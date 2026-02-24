@@ -1,6 +1,6 @@
 ﻿# ADR 0003 - Estrategia de media MVP (links externos) y migracion futura
 
-- Estado: Aceptado
+- Estado: Superseded por ADR 0007
 - Fecha: 2026-02-21
 
 ## Contexto

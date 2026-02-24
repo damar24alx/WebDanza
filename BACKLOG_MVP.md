@@ -40,6 +40,7 @@
 ### E1-S4 - Busqueda global MVP
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Implementar busqueda por nombre/slug para Style, Move, Lesson y Course.
 - Criterios de aceptacion:
 - Busqueda devuelve resultados agrupados por entidad.
@@ -132,12 +133,12 @@
 - Muestra moves prerrequisito y progresiones si existen.
 - Dependencias: E3-S1, E2-S4.
 
-### E3-S3 - Integracion Media por links externos
+### E3-S3 - Integracion Media interna
 - Prioridad: Must
 - Estimacion: M
-- Descripcion: Asociar Media (YouTube/Vimeo) a Moves/Lessons/Courses.
+- Descripcion: Asociar Media interna (`/media/...`) a Moves/Lessons/Courses.
 - Criterios de aceptacion:
-- Solo acepta URLs validas para providers permitidos.
+- Solo acepta rutas internas validas bajo `/media/...`.
 - Si link esta bloqueado, UI muestra fallback y motivo.
 - Metadata minima de media queda persistida.
 - `rightsStatus` obligatorio con valores permitidos: unknown, ok_to_embed, restricted, blocked.
@@ -146,6 +147,7 @@
 ### E3-S4 - Gestion de Citation y Source
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Permitir crear citas y vincularlas a entidades de contenido.
 - Criterios de aceptacion:
 - Formulario exige campos minimos de Citation.
@@ -168,6 +170,7 @@
 ### E4-S1 - Vista de Lesson con objetivo y checklist
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Implementar pagina de Lesson con objetivo, pasos, moves vinculados y checklist de logro.
 - Criterios de aceptacion:
 - Se muestra objetivo medible y criterios de exito.
@@ -178,6 +181,7 @@
 ### E4-S2 - Ruta de Course secuenciada
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Presentar lessons en orden y bloquear avance si no cumple regla minima definida.
 - Criterios de aceptacion:
 - Orden de lessons respeta `CourseLesson.orderIndex`.
@@ -188,6 +192,7 @@
 ### E4-S3 - Persistencia de UserProgress
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Registrar avance por lesson y course por usuario autenticado.
 - Criterios de aceptacion:
 - UserProgress se crea/actualiza al completar checklist.
@@ -198,6 +203,7 @@
 ### E4-S4 - Continuar donde quedaste
 - Prioridad: Must
 - Estimacion: S
+- Estado: DONE (2026-02-23)
 - Descripcion: Mostrar CTA para reanudar ultima lesson/course incompleto.
 - Criterios de aceptacion:
 - Home de usuario muestra ultimo progreso `in_progress`.
@@ -208,6 +214,7 @@
 ### E4-S5 - Tablero simple de progreso personal
 - Prioridad: Nice to have
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Agregar vista resumida por estilo, curso y nivel alcanzado.
 - Criterios de aceptacion:
 - Muestra cursos completados y en curso.
@@ -220,9 +227,11 @@
 ### E5-S1 - Regla de elegibilidad a certificado
 - Prioridad: Must
 - Estimacion: S
-- Descripcion: Definir y aplicar regla MVP para emitir certificado por curso.
+- Estado: DONE (2026-02-23)
+- Descripcion: Definir y aplicar regla MVP para emitir certificado por curso segun `completionRule`.
 - Criterios de aceptacion:
-- Certificado se habilita solo si curso completo al 100%.
+- Si `completionRule=all_lessons`, certificado se habilita con 100%.
+- Si `completionRule=percent_90`, certificado se habilita con >=90%.
 - Curso debe tener `certificateEligible=true`.
 - Regla documentada en codigo y docs.
 - Dependencias: E4-S2, E4-S3.
@@ -230,6 +239,7 @@
 ### E5-S2 - Emision de Certificate con codigo unico
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Crear registro de certificado y codigo verificable.
 - Criterios de aceptacion:
 - `certificateCode` unico generado automaticamente.
@@ -240,6 +250,7 @@
 ### E5-S3 - Vista de certificado MVP
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Mostrar pagina de certificado con datos minimos del logro.
 - Criterios de aceptacion:
 - La pagina muestra usuario, curso, fecha y codigo.
@@ -251,6 +262,7 @@
 ### E5-S4 - Logros MVP (badges basicos)
 - Prioridad: Nice to have
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Anadir badges por hitos iniciales (primer lesson, primer curso, constancia).
 - Criterios de aceptacion:
 - Badges se otorgan por reglas deterministicas.
@@ -261,6 +273,7 @@
 ### E5-S5 - Reemision/revocacion admin de certificado
 - Prioridad: Nice to have
 - Estimacion: S
+- Estado: DONE (2026-02-23)
 - Descripcion: Permitir al admin reemitir o revocar certificados por incidencia.
 - Criterios de aceptacion:
 - Admin puede cambiar estado activo/revocado.
@@ -273,6 +286,7 @@
 ### E6-S1 - Metadatos SEO por entidad
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Generar title/description/canonical para Style, Move, Lesson y Course.
 - Criterios de aceptacion:
 - Cada pagina publicada tiene metadatos no vacios.
@@ -283,6 +297,7 @@
 ### E6-S2 - Sitemap y robots MVP
 - Prioridad: Must
 - Estimacion: S
+- Estado: DONE (2026-02-23)
 - Descripcion: Exponer sitemap dinamico y robots segun entorno.
 - Criterios de aceptacion:
 - Sitemap incluye solo contenido `published`.
@@ -293,6 +308,7 @@
 ### E6-S3 - Presupuesto de performance base
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Definir y vigilar presupuesto inicial de carga en paginas core.
 - Criterios de aceptacion:
 - Presupuesto documentado (LCP, TTFB, JS size).
@@ -303,6 +319,7 @@
 ### E6-S4 - Observabilidad minima (logs + errores)
 - Prioridad: Must
 - Estimacion: M
+- Estado: DONE (2026-02-23)
 - Descripcion: Implementar logging estructurado y captura de errores en flujos core.
 - Criterios de aceptacion:
 - Errores criticos quedan trazables con contexto minimo.
@@ -313,6 +330,7 @@
 ### E6-S5 - KPIs MVP en panel simple
 - Prioridad: Nice to have
 - Estimacion: S
+- Estado: DONE (2026-02-23)
 - Descripcion: Exponer metricas iniciales de activacion, retencion y completion.
 - Criterios de aceptacion:
 - Panel muestra 3 KPIs definidos en Project Brief.
@@ -320,7 +338,106 @@
 - Fuente de calculo documentada.
 - Dependencias: E4-S3, E6-S4.
 
+## WORKSTREAM 1A.1: Hardening de UI post-cierre 1A (no bloquea 1B)
+
+Contexto:
+- Fase 1A se cierra funcionalmente segun `docs/PHASE1A_CLOSEOUT.md`.
+- Este workstream mantiene trazabilidad de pendientes visuales/tecnicos de frontend sin bloquear DB/Prisma.
+
+### E1A-S1 - Paridad visual fina vs Stitch en rutas core
+- Prioridad: Nice to have
+- Estimacion: M
+- Descripcion: Ajustar spacing, jerarquia visual y microdetalles para acercar cada pantalla core a su `screen.png`.
+- Criterios de aceptacion:
+- Revision por ruta (`/`, `/styles`, `/moves`, `/learn`, `/pricing`, `/admin`, auth) con checklist visual completado.
+- No hay cambios de comportamiento funcional en filtros, estados ni navegacion.
+- Evidencia visual antes/despues documentada.
+- Dependencias: Cierre funcional de Fase 1A.
+
+### E1A-S2 - Consolidacion de componentes de estado
+- Prioridad: Nice to have
+- Estimacion: S
+- Descripcion: Unificar `web/src/components/state` y `web/src/components/states` para evitar duplicidad.
+- Criterios de aceptacion:
+- Existe una sola fuente de verdad para componentes de estado.
+- Imports y rutas quedan consistentes en `web/src/app`.
+- Lint/build/smoke permanecen en verde.
+- Dependencias: E1A-S1.
+
+### E1A-S3 - Pruebas UI adicionales de estados
+- Prioridad: Nice to have
+- Estimacion: M
+- Descripcion: Expandir pruebas automatizadas para validar estados `loading`, `empty`, `error`, `locked` en rutas core.
+- Criterios de aceptacion:
+- Suite automatizada adicional cubre al menos rutas de listados y player.
+- Se documenta alcance de cobertura y limites.
+- CI/local reportan resultados reproducibles.
+- Dependencias: E1A-S2.
+
+### E1A-S4 - Implementacion de rutas Future de Stitch
+- Prioridad: Nice to have
+- Estimacion: M
+- Descripcion: Implementar rutas `Future` de `design/ROUTING_MAP.md` sin mezclar con cambios de datos.
+- Criterios de aceptacion:
+- Existen rutas `/maps/lineage`, `/maps/steps`, `/me/achievements`.
+- Se define componente reusable para `advanced_dance_video_controls` (placeholder funcional).
+- Navegacion interna no introduce enlaces rotos.
+- Dependencias: E1A-S1.
+
 ## Orden sugerido de ejecucion (alto nivel)
 1. E2-S1 -> E2-S2 -> E2-S4 -> E3-S1/E3-S2 -> E4-S1/E4-S2 -> E4-S3 -> E5-S1/E5-S2.
 2. En paralelo controlado: E1-S1/E1-S2 + E6-S1/E6-S2.
 3. Nice to have solo despues de cerrar Must criticos.
+
+## EPICA 7: Go-Live y endurecimiento operacional
+
+### E7-S1 - Checklist de produccion trazable
+- Prioridad: Must
+- Estimacion: S
+- Estado: DONE (2026-02-23)
+- Descripcion: consolidar checklist de salida con evidencia por item.
+- Criterios de aceptacion:
+- Existe archivo unico de checklist con estado `DONE/PARTIAL/BLOCKED`.
+- Cada item referencia evidencia tecnica real en repo.
+- Dependencias: E6-S4.
+
+### E7-S2 - Runbook operativo (arranque, migraciones, rollback, health)
+- Prioridad: Must
+- Estimacion: S
+- Estado: DONE (2026-02-23)
+- Descripcion: documentar operacion minima para despliegue y soporte.
+- Criterios de aceptacion:
+- Incluye comandos de arranque y migracion.
+- Incluye estrategia de rollback basica y health checks.
+- Dependencias: E2-S2, E6-S4.
+
+### E7-S3 - Hardening de integridad de base de datos
+- Prioridad: Must
+- Estimacion: M
+- Estado: DONE (2026-02-23)
+- Descripcion: agregar controles y scripts de auditoria/reparacion para consistencia de datos.
+- Criterios de aceptacion:
+- Existen scripts audit/repair ejecutables.
+- Se agregan constraints de integridad adicionales en migracion.
+- Dependencias: E2-S1, E2-S2.
+
+### E7-S4 - Pipeline CI de gates de produccion
+- Prioridad: Must
+- Estimacion: M
+- Estado: DONE (2026-02-23)
+- Descripcion: ejecutar gates tecnicos en CI para push/PR.
+- Criterios de aceptacion:
+- Workflow corre lint, typecheck, build, integration y smoke.
+- Incluye servicios de DB y Redis para pruebas.
+- Dependencias: E6-S4.
+
+### E7-S5 - Cierre de pendientes externos de infraestructura
+- Prioridad: Must
+- Estimacion: M
+- Estado: DONE (2026-02-23)
+- Descripcion: completar secretos gestionados, observabilidad central y simulacro backup/restore.
+- Criterios de aceptacion:
+- Secretos en secret manager con rotacion definida.
+- Logs/metricas centralizados con alertas basicas.
+- Restore probado en staging.
+- Dependencias: E7-S1, E7-S2.

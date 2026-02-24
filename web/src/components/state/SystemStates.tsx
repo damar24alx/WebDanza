@@ -1,3 +1,4 @@
+﻿import Link from "next/link";
 import { Lock, RefreshCcw, SearchX, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
@@ -5,7 +6,7 @@ import { cn } from "@/lib/cn";
 
 export function LoadingState({
   title = "Cargando contenido",
-  subtitle = "Estamos preparando la siguiente sección de aprendizaje...",
+  subtitle = "Estamos preparando la siguiente seccion de aprendizaje...",
   className,
 }: {
   title?: string;
@@ -53,14 +54,16 @@ export function EmptyState({
 }
 
 export function ErrorState({
-  title = "Conexión interrumpida",
-  subtitle = "No se pudo completar la operación. Inténtalo de nuevo.",
+  title = "Conexion interrumpida",
+  subtitle = "No se pudo completar la operacion. Intentalo de nuevo.",
   buttonLabel = "Reintentar",
+  retryHref = "/",
   className,
 }: {
   title?: string;
   subtitle?: string;
   buttonLabel?: string;
+  retryHref?: string;
   className?: string;
 }) {
   return (
@@ -71,14 +74,11 @@ export function ErrorState({
         </div>
         <h3 className="text-2xl font-bold text-[var(--text-1)]">{title}</h3>
         <p className="mt-2 max-w-sm text-sm text-[var(--text-2)]">{subtitle}</p>
-        <Button
-          variant="outline"
-          className="mt-6"
-          leftIcon={<RefreshCcw size={16} />}
-          type="button"
-        >
-          {buttonLabel}
-        </Button>
+        <Link href={retryHref} className="mt-6">
+          <Button variant="outline" leftIcon={<RefreshCcw size={16} />} type="button">
+            {buttonLabel}
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );
@@ -86,7 +86,7 @@ export function ErrorState({
 
 export function LockedState({
   title = "Contenido bloqueado",
-  subtitle = "Completa el módulo previo para desbloquear esta sección.",
+  subtitle = "Completa el modulo previo para desbloquear esta seccion.",
   className,
 }: {
   title?: string;
