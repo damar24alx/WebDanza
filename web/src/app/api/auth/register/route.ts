@@ -18,6 +18,19 @@ const REGISTER_EMAIL_LIMIT = {
   windowMs: 10 * 60 * 1000,
 };
 
+function safeRedirectPath(rawValue: unknown, fallback: string) {
+  if (typeof rawValue !== "string") {
+    return fallback;
+  }
+
+  const value = rawValue.trim();
+  if (!value.startsWith("/") || value.startsWith("//")) {
+    return fallback;
+  }
+
+  return value;
+}
+
 function getRequestIp(request: NextRequest) {
   const xff = request.headers.get("x-forwarded-for");
   if (xff) {
@@ -37,6 +50,7 @@ function withError(
     firstName?: string;
     lastName?: string;
     email?: string;
+    redirectTo?: string;
     fieldErrors?: Record<string, string[]>;
     status?: number;
     retryAfterSeconds?: number;
@@ -71,6 +85,9 @@ function withError(
   }
   if (payload.email) {
     url.searchParams.set("email", payload.email);
+  }
+  if (payload.redirectTo) {
+    url.searchParams.set("next", payload.redirectTo);
   }
 
   if (payload.fieldErrors?.firstName?.[0]) {
@@ -110,6 +127,7 @@ export async function POST(request: NextRequest) {
   }
 
   const formData = await request.formData();
+  const redirectTo = safeRedirectPath(formData.get("redirectTo"), "/me");
   const parsedInput = validateRegisterInput({
     firstName: formData.get("firstName")?.toString() ?? "",
     lastName: formData.get("lastName")?.toString() ?? "",
@@ -133,6 +151,7 @@ export async function POST(request: NextRequest) {
       firstName,
       lastName,
       email,
+      redirectTo,
       fieldErrors: parsedInput.fieldErrors,
       status: 422,
     });
@@ -151,6 +170,7 @@ export async function POST(request: NextRequest) {
       firstName: parsedInput.data.firstName,
       lastName: parsedInput.data.lastName,
       email: parsedInput.data.email,
+      redirectTo,
       status: 429,
       retryAfterSeconds: ipAttempt.retryAfterSeconds,
     });
@@ -171,6 +191,7 @@ export async function POST(request: NextRequest) {
       firstName: parsedInput.data.firstName,
       lastName: parsedInput.data.lastName,
       email: parsedInput.data.email,
+      redirectTo,
       status: 429,
       retryAfterSeconds: accountAttempt.retryAfterSeconds,
     });
@@ -194,6 +215,7 @@ export async function POST(request: NextRequest) {
       firstName: parsedInput.data.firstName,
       lastName: parsedInput.data.lastName,
       email: parsedInput.data.email,
+      redirectTo,
       status: 422,
     });
   }
@@ -214,6 +236,14 @@ export async function POST(request: NextRequest) {
     },
   });
 
+  await db.userSubscription.create({
+    data: {
+      userId: user.id,
+      plan: "FREE",
+      status: "active",
+    },
+  });
+
   const token = await createSessionToken({
     id: user.id,
     role: user.role,
@@ -221,7 +251,7 @@ export async function POST(request: NextRequest) {
     name: user.name,
   });
 
-  const response = NextResponse.redirect(new URL("/me", request.url), { status: 303 });
+  const response = NextResponse.redirect(new URL(redirectTo, request.url), { status: 303 });
   response.cookies.set("dance_session", token, sessionCookieOptions());
 
   logEvent("info", "auth.register.success", {

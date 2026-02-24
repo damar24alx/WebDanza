@@ -1,8 +1,10 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { BadgeCheck, Check, Crown, Medal, ShieldCheck, Sparkles, Users2 } from "lucide-react";
 import { AppShell } from "@/components/layout";
 import { Badge, Button, Card, CardContent } from "@/components/ui";
 import { pricingMock } from "@/mocks";
+import { getCurrentUser } from "@/server/auth/current-user";
+import { getUserEntitlement, planLabel } from "@/server/db/subscriptions";
 
 const compareRows = [
   {
@@ -27,7 +29,7 @@ const compareRows = [
     studio: "Incluido",
   },
   {
-    feature: "Admin Dashboard",
+    feature: "Team Workspace",
     explorer: "-",
     stylePack: "-",
     pro: "-",
@@ -42,20 +44,30 @@ const proReasons = [
 ];
 
 function getPlanHref(planId: string) {
-  if (planId === "explorer") {
+  const normalized = planId.trim().toLowerCase();
+  if (normalized === "style-pack" || normalized === "pro" || normalized === "studio") {
+    return `/checkout?plan=${encodeURIComponent(normalized)}`;
+  }
+  if (normalized === "explorer") {
     return "/styles";
   }
-  if (planId === "style-pack") {
-    return "/styles?level=intermediate";
-  }
-  if (planId === "pro") {
-    return "/learn";
-  }
 
-  return "#team-setup";
+  return "/pricing";
 }
 
-export default function PricingPage() {
+function withAuthIfNeeded(href: string, isAuthenticated: boolean) {
+  if (isAuthenticated || !href.startsWith("/checkout")) {
+    return href;
+  }
+
+  return `/auth/login?next=${encodeURIComponent(href)}`;
+}
+
+export default async function PricingPage() {
+  const currentUser = await getCurrentUser();
+  const entitlement = currentUser ? await getUserEntitlement(currentUser.id) : null;
+  const isAuthenticated = Boolean(currentUser);
+
   return (
     <AppShell fullWidth className="max-w-[1440px]">
       <div className="mx-auto w-full max-w-[1380px] space-y-12">
@@ -68,6 +80,15 @@ export default function PricingPage() {
           <p className="mx-auto mt-4 max-w-2xl text-sm text-[var(--text-2)] md:text-base">
             Planes hibridos para explorar gratis, profundizar por estilo o ir por acceso total.
           </p>
+          {entitlement ? (
+            <p className="mx-auto mt-3 max-w-2xl text-xs text-[var(--text-3)]">
+              Plan actual: <span className="font-semibold text-white">{planLabel(entitlement.plan)}</span>
+            </p>
+          ) : (
+            <p className="mx-auto mt-3 max-w-2xl text-xs text-[var(--text-3)]">
+              Si quieres adquirir un plan de pago, inicia sesion y continua checkout.
+            </p>
+          )}
         </section>
 
         <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -103,7 +124,7 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={getPlanHref(plan.id)}>
+                <Link href={withAuthIfNeeded(getPlanHref(plan.id), isAuthenticated)}>
                   <Button className="w-full" variant={plan.highlight ? "primary" : "outline"} type="button">
                     {plan.cta}
                   </Button>
@@ -144,7 +165,7 @@ export default function PricingPage() {
                 <FeatureChip icon={<Medal size={16} />} text="Listo para portfolio y CV" />
                 <FeatureChip icon={<ShieldCheck size={16} />} text="Emision controlada en MVP" />
               </div>
-              <Link href="/learn">
+              <Link href={withAuthIfNeeded("/checkout?plan=pro&next=/learn", isAuthenticated)}>
                 <Button className="mt-6" type="button">Comenzar ruta certificable</Button>
               </Link>
             </CardContent>
@@ -184,7 +205,7 @@ export default function PricingPage() {
           <div className="space-y-3">
             <FaqItem
               question="Puedo cambiar de plan en cualquier momento?"
-              answer="Si. Puedes ajustar tu plan desde cuenta sin perder historial de progreso."
+              answer="Si. Puedes volver a checkout y actualizar tu plan sin perder historial."
             />
             <FaqItem
               question="El certificado es verificable?"
@@ -192,7 +213,7 @@ export default function PricingPage() {
             />
             <FaqItem
               question="El plan Studio es para academias?"
-              answer="Si. Incluye herramientas internas para seguimiento de grupo y panel admin."
+              answer="Si. Incluye acceso para equipos y seguimiento grupal."
             />
           </div>
         </section>
@@ -232,3 +253,4 @@ function FeatureChip({ icon, text }: { icon: React.ReactNode; text: string }) {
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import {
   CheckCircle2,
@@ -15,6 +15,7 @@ import { EmptyState, LockedState } from "@/components/states";
 import { Badge, Button, Card, CardContent, Progress } from "@/components/ui";
 import { getCurrentUser } from "@/server/auth/current-user";
 import { getCourseDetailBySlug } from "@/server/db/catalog";
+import { evaluateCourseAccess, getUserEntitlement } from "@/server/db/subscriptions";
 
 const SITE_NAME = "Dance Academy";
 
@@ -85,10 +86,32 @@ export default async function CoursePlayerPage({
   const { courseSlug } = await params;
   const query = await searchParams;
   const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    redirect(`/auth/login?next=${encodeURIComponent(`/learn/${courseSlug}`)}`);
+  }
+
   const course = await getCourseDetailBySlug(courseSlug, currentUser?.id);
 
   if (!course) {
     notFound();
+  }
+
+  const entitlement = await getUserEntitlement(currentUser.id);
+  const access = evaluateCourseAccess(entitlement, course.styleSlug);
+  if (!access.allowed) {
+    const checkoutParams = new URLSearchParams();
+    checkoutParams.set("plan", access.requiredPlan ?? "pro");
+    if (access.suggestedStyleSlug) {
+      checkoutParams.set("style", access.suggestedStyleSlug);
+    }
+    checkoutParams.set("next", `/learn/${course.slug}`);
+    if (access.reason === "style_pack_mismatch") {
+      checkoutParams.set("error", "Tu pack actual no cubre este estilo.");
+    }
+    if (access.reason === "free_requires_upgrade") {
+      checkoutParams.set("error", "Tu plan actual no incluye esta ruta.");
+    }
+    redirect(`/checkout?${checkoutParams.toString()}`);
   }
 
   if (course.lessons.length === 0) {

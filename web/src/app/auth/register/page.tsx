@@ -7,12 +7,26 @@ type RegisterSearchParams = Promise<{
   firstName?: string;
   lastName?: string;
   email?: string;
+  next?: string;
   firstNameError?: string;
   lastNameError?: string;
   emailError?: string;
   passwordError?: string;
   passwordConfirmError?: string;
 }>;
+
+function safeRedirectPath(value?: string) {
+  if (!value) {
+    return "";
+  }
+
+  const normalized = value.trim();
+  if (!normalized.startsWith("/") || normalized.startsWith("//")) {
+    return "";
+  }
+
+  return normalized;
+}
 
 export default async function RegisterPage({
   searchParams,
@@ -29,6 +43,8 @@ export default async function RegisterPage({
   const emailError = (params.emailError ?? "").trim();
   const passwordError = (params.passwordError ?? "").trim();
   const passwordConfirmError = (params.passwordConfirmError ?? "").trim();
+  const nextPath = safeRedirectPath(params.next);
+  const loginHref = nextPath ? `/auth/login?next=${encodeURIComponent(nextPath)}` : "/auth/login";
 
   return (
     <main className="grid min-h-screen bg-[var(--surface-0)] lg:grid-cols-[1fr,1.2fr]">
@@ -53,6 +69,7 @@ export default async function RegisterPage({
             </div>
 
             <form className="space-y-4" noValidate action="/api/auth/register" method="post">
+              {nextPath ? <input type="hidden" name="redirectTo" value={nextPath} /> : null}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label
@@ -175,7 +192,7 @@ export default async function RegisterPage({
 
             <p className="text-xs text-[var(--text-3)]">
               Ya tienes cuenta?{" "}
-              <Link href="/auth/login" className="text-[var(--color-primary-soft)] hover:text-white">
+              <Link href={loginHref} className="text-[var(--color-primary-soft)] hover:text-white">
                 Inicia sesion
               </Link>
             </p>

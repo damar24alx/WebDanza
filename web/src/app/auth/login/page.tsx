@@ -36,6 +36,9 @@ export default async function LoginPage({
   const emailError = (params.emailError ?? "").trim();
   const passwordError = (params.passwordError ?? "").trim();
   const nextPath = safeRedirectPath(params.next);
+  const registerHref = nextPath
+    ? `/auth/register?next=${encodeURIComponent(nextPath)}`
+    : "/auth/register";
 
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
@@ -137,7 +140,7 @@ export default async function LoginPage({
               <Link href="/auth/recovery" className="hover:text-[var(--text-1)]">
                 Olvidaste tu contrasena?
               </Link>
-              <Link href="/auth/register" className="hover:text-[var(--text-1)]">
+              <Link href={registerHref} className="hover:text-[var(--text-1)]">
                 Crear cuenta
               </Link>
             </div>
@@ -150,16 +153,12 @@ export default async function LoginPage({
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/auth/register?provider=google">
-                <Button variant="outline" className="w-full" type="button">
-                  Google
-                </Button>
-              </Link>
-              <Link href="/auth/register?provider=apple">
-                <Button variant="outline" className="w-full" type="button">
-                  Apple
-                </Button>
-              </Link>
+              <Button variant="outline" className="w-full" type="button" disabled>
+                Google (pronto)
+              </Button>
+              <Button variant="outline" className="w-full" type="button" disabled>
+                Apple (pronto)
+              </Button>
             </div>
           </CardContent>
         </Card>

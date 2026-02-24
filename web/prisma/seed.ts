@@ -9,6 +9,8 @@ import {
   ProgressStatus,
   RightsStatus,
   SourceType,
+  SubscriptionPlan,
+  SubscriptionStatus,
 } from "@prisma/client";
 import { hashPassword } from "../src/server/auth/password";
 
@@ -916,7 +918,10 @@ async function seedCourses(styleIdBySlug: Map<string, string>, moveIdBySlug: Map
   return { courseIdBySlug };
 }
 
-async function seedUsersAndProgress(courseIdBySlug: Map<string, string>) {
+async function seedUsersAndProgress(
+  courseIdBySlug: Map<string, string>,
+  styleIdBySlug: Map<string, string>,
+) {
   const luna = await prisma.user.upsert({
     where: { email: "luna@dance.local" },
     update: {
@@ -927,6 +932,66 @@ async function seedUsersAndProgress(courseIdBySlug: Map<string, string>) {
     create: {
       email: "luna@dance.local",
       name: "Luna Rivera",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+  });
+
+  const freeUser = await prisma.user.upsert({
+    where: { email: "free@dance.local" },
+    update: {
+      name: "Free Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+    create: {
+      email: "free@dance.local",
+      name: "Free Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+  });
+
+  const packUser = await prisma.user.upsert({
+    where: { email: "pack@dance.local" },
+    update: {
+      name: "Style Pack Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+    create: {
+      email: "pack@dance.local",
+      name: "Style Pack Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+  });
+
+  const proUser = await prisma.user.upsert({
+    where: { email: "pro@dance.local" },
+    update: {
+      name: "Pro Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+    create: {
+      email: "pro@dance.local",
+      name: "Pro Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+  });
+
+  const studioUser = await prisma.user.upsert({
+    where: { email: "studio@dance.local" },
+    update: {
+      name: "Studio Student",
+      role: "STUDENT",
+      passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
+    },
+    create: {
+      email: "studio@dance.local",
+      name: "Studio Student",
       role: "STUDENT",
       passwordHash: hashPassword(STUDENT_DEMO_PASSWORD),
     },
@@ -944,6 +1009,79 @@ async function seedUsersAndProgress(courseIdBySlug: Map<string, string>) {
       name: "Dance Admin",
       role: "ADMIN",
       passwordHash: hashPassword(ADMIN_DEMO_PASSWORD),
+    },
+  });
+
+  const houseStyleId = styleIdBySlug.get("house") ?? null;
+  await prisma.userSubscription.upsert({
+    where: { userId: luna.id },
+    update: {
+      plan: SubscriptionPlan.PRO,
+      status: SubscriptionStatus.active,
+      styleId: null,
+      canceledAt: null,
+    },
+    create: {
+      userId: luna.id,
+      plan: SubscriptionPlan.PRO,
+      status: SubscriptionStatus.active,
+    },
+  });
+  await prisma.userSubscription.upsert({
+    where: { userId: freeUser.id },
+    update: {
+      plan: SubscriptionPlan.FREE,
+      status: SubscriptionStatus.active,
+      styleId: null,
+      canceledAt: null,
+    },
+    create: {
+      userId: freeUser.id,
+      plan: SubscriptionPlan.FREE,
+      status: SubscriptionStatus.active,
+    },
+  });
+  await prisma.userSubscription.upsert({
+    where: { userId: packUser.id },
+    update: {
+      plan: SubscriptionPlan.STYLE_PACK,
+      status: SubscriptionStatus.active,
+      styleId: houseStyleId,
+      canceledAt: null,
+    },
+    create: {
+      userId: packUser.id,
+      plan: SubscriptionPlan.STYLE_PACK,
+      status: SubscriptionStatus.active,
+      styleId: houseStyleId,
+    },
+  });
+  await prisma.userSubscription.upsert({
+    where: { userId: proUser.id },
+    update: {
+      plan: SubscriptionPlan.PRO,
+      status: SubscriptionStatus.active,
+      styleId: null,
+      canceledAt: null,
+    },
+    create: {
+      userId: proUser.id,
+      plan: SubscriptionPlan.PRO,
+      status: SubscriptionStatus.active,
+    },
+  });
+  await prisma.userSubscription.upsert({
+    where: { userId: studioUser.id },
+    update: {
+      plan: SubscriptionPlan.STUDIO,
+      status: SubscriptionStatus.active,
+      styleId: null,
+      canceledAt: null,
+    },
+    create: {
+      userId: studioUser.id,
+      plan: SubscriptionPlan.STUDIO,
+      status: SubscriptionStatus.active,
     },
   });
 
@@ -1430,7 +1568,7 @@ async function main() {
   await seedSubstyles(styleIdBySlug);
   const moveIdBySlug = await seedMoves(styleIdBySlug);
   const { courseIdBySlug } = await seedCourses(styleIdBySlug, moveIdBySlug);
-  await seedUsersAndProgress(courseIdBySlug);
+  await seedUsersAndProgress(courseIdBySlug, styleIdBySlug);
   await seedConceptsAndGraph(styleIdBySlug, moveIdBySlug);
   await seedMediaAndCitations();
 

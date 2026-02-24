@@ -50,7 +50,7 @@ export const pricingMock: PricingPlanMock[] = [
     description: "Para instructores y equipos.",
     features: [
       "Asientos para estudiantes",
-      "Panel editorial interno",
+      "Panel de equipo",
       "Reportes de actividad",
     ],
     cta: "Contactar ventas",

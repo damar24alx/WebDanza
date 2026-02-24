@@ -17,6 +17,7 @@ import {
   getStyleLookup,
   getStylesCatalog,
 } from "@/server/db/catalog";
+import { evaluateCourseAccess, getUserEntitlement } from "@/server/db/subscriptions";
 
 export const metadata: Metadata = {
   title: "Aprendizaje | Dance Academy",
@@ -43,6 +44,20 @@ function buildCourseResumeHref(course: {
   return `/learn/${course.slug}?lesson=${encodeURIComponent(course.resumeLessonSlug)}${stepQuery}`;
 }
 
+function buildCheckoutHref(input: {
+  plan: "style-pack" | "pro" | "studio" | "free" | null;
+  styleSlug: string;
+  nextPath: string;
+}) {
+  const query = new URLSearchParams();
+  query.set("plan", input.plan ?? "pro");
+  if (input.plan === "style-pack") {
+    query.set("style", input.styleSlug);
+  }
+  query.set("next", input.nextPath);
+  return `/checkout?${query.toString()}`;
+}
+
 export default async function LearnPage({
   searchParams,
 }: {
@@ -55,6 +70,7 @@ export default async function LearnPage({
     getStylesCatalog(),
     getStyleLookup(),
   ]);
+  const entitlement = currentUser ? await getUserEntitlement(currentUser.id) : null;
   const query = (params.q ?? "").trim().toLowerCase();
   const selectedLevel = (params.level ?? "all").toLowerCase();
   const selectedStyle = (params.style ?? "all").toLowerCase();
@@ -189,6 +205,25 @@ export default async function LearnPage({
                 const style = styleLookup.get(course.styleSlug);
                 const resumeHref = buildCourseResumeHref(course);
                 const isInProgress = course.progressPercent > 0 && course.progressPercent < 100;
+                const access = evaluateCourseAccess(entitlement, course.styleSlug);
+                const loginHref = `/auth/login?next=${encodeURIComponent(`/learn/${course.slug}`)}`;
+                const checkoutHref = buildCheckoutHref({
+                  plan: access.requiredPlan,
+                  styleSlug: course.styleSlug,
+                  nextPath: `/learn/${course.slug}`,
+                });
+                const actionHref = !currentUser
+                  ? loginHref
+                  : access.allowed
+                    ? resumeHref
+                    : checkoutHref;
+                const actionLabel = !currentUser
+                  ? "Iniciar sesion"
+                  : access.allowed
+                    ? isInProgress
+                      ? "Continuar curso"
+                      : "Abrir curso"
+                    : "Desbloquear curso";
                 return (
                   <Card key={course.slug} className="h-full">
                     <CardContent>
@@ -202,10 +237,15 @@ export default async function LearnPage({
                       </div>
                       <h3 className="mt-3 text-xl font-bold text-white">{course.title}</h3>
                       <p className="mt-1 text-sm text-[var(--text-2)]">{course.summary}</p>
+                      {!access.allowed ? (
+                        <p className="mt-2 text-xs font-semibold text-amber-300">
+                          Bloqueado por plan. Activa acceso para abrir este curso.
+                        </p>
+                      ) : null}
                       <div className="mt-4 flex items-center justify-between">
                         <p className="text-xs text-[var(--text-3)]">{course.lessons.length} lecciones</p>
-                        <Link href={resumeHref}>
-                          <Button size="sm">{isInProgress ? "Continuar curso" : "Abrir curso"}</Button>
+                        <Link href={actionHref}>
+                          <Button size="sm">{actionLabel}</Button>
                         </Link>
                       </div>
                     </CardContent>

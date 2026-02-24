@@ -33,6 +33,18 @@ enum UserRole {
   STUDENT
 }
 
+enum SubscriptionPlan {
+  FREE
+  STYLE_PACK
+  PRO
+  STUDIO
+}
+
+enum SubscriptionStatus {
+  active
+  canceled
+}
+
 enum MediaProvider {
   youtube
   vimeo
@@ -122,6 +134,7 @@ model User {
   certificateEvents CertificateEvent[] @relation("CertificateEventActor")
   passwordResetTokens PasswordResetToken[]
   lessonStepProgresses UserLessonStepProgress[]
+  subscription UserSubscription?
 }
 
 model Style {
@@ -148,6 +161,24 @@ model Style {
   moveStyles                MoveStyle[]
   courseList                Course[]
   node                      Node?
+  subscriptions             UserSubscription[]
+}
+
+model UserSubscription {
+  id         String             @id @default(uuid()) @db.Uuid
+  userId     String             @unique @db.Uuid
+  plan       SubscriptionPlan   @default(FREE)
+  status     SubscriptionStatus @default(active)
+  styleId    String?            @db.Uuid
+  startedAt  DateTime           @default(now())
+  canceledAt DateTime?
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  style      Style?             @relation(fields: [styleId], references: [id], onDelete: SetNull)
+
+  @@index([plan, status])
+  @@index([styleId])
 }
 
 model Substyle {

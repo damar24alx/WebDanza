@@ -53,6 +53,14 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (pathname.startsWith("/checkout")) {
+    if (!session) {
+      return redirectToLogin(request);
+    }
+
+    return NextResponse.next();
+  }
+
   if (pathname === "/auth/login" && session) {
     const target = new URL(session.role === "ADMIN" ? "/admin" : "/me", request.url);
     return NextResponse.redirect(target);
@@ -62,5 +70,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*", "/me/:path*", "/auth/login"],
+  matcher: ["/admin/:path*", "/api/admin/:path*", "/me/:path*", "/checkout/:path*", "/auth/login"],
 };

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
 import { getSessionFromRequest } from "@/server/auth/session";
+import { evaluateCourseAccess, getUserEntitlement } from "@/server/db/subscriptions";
 import { validateSameOrigin } from "@/server/security/csrf";
 import { completeLessonByCourseAndLessonSlug } from "@/server/db/progress";
 import { wantsJsonResponse } from "@/server/http/response";
@@ -101,6 +103,53 @@ export async function POST(request: NextRequest) {
     return withStatusMessage(request, redirectTo, {
       error: parsedInput.formError,
     });
+  }
+
+  const course = await db.course.findFirst({
+    where: {
+      slug: parsedInput.data.courseSlug,
+      publishedStatus: "published",
+    },
+    select: {
+      slug: true,
+      style: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  });
+  if (!course?.style?.slug) {
+    if (wantsJson) {
+      return NextResponse.json(
+        { ok: false, formError: "Curso no disponible.", fieldErrors: {} },
+        { status: 404 },
+      );
+    }
+    return withStatusMessage(request, redirectTo, {
+      error: "Curso no disponible.",
+    });
+  }
+
+  const entitlement = await getUserEntitlement(session.id);
+  const access = evaluateCourseAccess(entitlement, course.style.slug);
+  if (!access.allowed) {
+    const checkoutParams = new URLSearchParams();
+    checkoutParams.set("plan", access.requiredPlan ?? "pro");
+    if (access.suggestedStyleSlug) {
+      checkoutParams.set("style", access.suggestedStyleSlug);
+    }
+    checkoutParams.set("next", `/learn/${course.slug}`);
+    const checkoutHref = `/checkout?${checkoutParams.toString()}`;
+
+    if (wantsJson) {
+      return NextResponse.json(
+        { ok: false, formError: "Tu plan no permite registrar progreso en este curso.", fieldErrors: {}, checkoutHref },
+        { status: 403 },
+      );
+    }
+
+    return NextResponse.redirect(new URL(checkoutHref, request.url), { status: 303 });
   }
 
   const result = await completeLessonByCourseAndLessonSlug({
