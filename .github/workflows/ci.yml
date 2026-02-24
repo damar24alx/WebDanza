@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
 
 jobs:
@@ -61,6 +62,12 @@ jobs:
           npx prisma migrate deploy
           npm run db:seed
 
+      - name: Prisma validate
+        run: npx prisma validate
+
+      - name: Prisma migrate status
+        run: npx prisma migrate status
+
       - name: Lint
         run: npm run lint
 
@@ -73,8 +80,14 @@ jobs:
       - name: Integration tests
         run: npm run test:integration
 
+      - name: DB integrity audit
+        run: npm run db:audit-integrity
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
       - name: Smoke tests
         run: npm run test:smoke
+
+      - name: Runtime dependency audit
+        run: npm audit --omit=dev

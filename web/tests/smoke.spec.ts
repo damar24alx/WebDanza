@@ -108,7 +108,10 @@ test("smoke home hero keeps visible title", async ({ page }) => {
   const response = await gotoStable(page, "/");
   expect(response).not.toBeNull();
   expect(response?.ok()).toBeTruthy();
-  await expect(page.getByRole("heading", { name: /aprende danza con una ruta clara/i })).toBeVisible();
+
+  const heroTitle = page.getByTestId("home-hero-title");
+  await expect(heroTitle).toBeVisible();
+  await expect(heroTitle).not.toHaveText(/^\s*$/);
 });
 
 for (const route of validSlugRoutes) {

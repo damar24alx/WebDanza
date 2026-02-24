@@ -229,6 +229,47 @@ describe("auth routes (integration)", () => {
     }
   });
 
+  test("register returns 429 + Retry-After in JSON mode when rate limited", async () => {
+    const suffix = `${Date.now()}-${Math.round(Math.random() * 1000)}`;
+    const email = `register-limit-${suffix}@dance.local`;
+    let lastResponse: Response | null = null;
+
+    try {
+      for (let attempt = 0; attempt < 7; attempt += 1) {
+        const request = buildFormRequest(
+          "/api/auth/register",
+          {
+            firstName: "Rate",
+            lastName: "Limit",
+            email,
+            password: "DancePass123",
+            passwordConfirm: "DancePass123",
+          },
+          {
+            accept: "application/json",
+          },
+        );
+        lastResponse = await registerPost(request);
+      }
+
+      assert.ok(lastResponse);
+      assert.equal(lastResponse?.status, 429);
+      assert.ok(lastResponse?.headers.get("retry-after"));
+      const body = (await lastResponse?.json()) as {
+        ok: boolean;
+        formError: string;
+      };
+      assert.equal(body.ok, false);
+      assert.match(body.formError, /Demasiados intentos/i);
+    } finally {
+      await db.user.deleteMany({
+        where: {
+          email,
+        },
+      });
+    }
+  });
+
   test("recovery request validates email format and preserves input", async () => {
     const request = buildFormRequest("/api/auth/recovery/request", {
       email: "bad-email",
